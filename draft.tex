@@ -1,0 +1,389 @@
+\documentclass[mat1, tisk]{fmfdelo}
+% \documentclass[fin1, tisk]{fmfdelo}
+% Če pobrišete možnost tisk, bodo povezave obarvane,
+% na začetku pa ne bo praznih strani po naslovu, …
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+% METAPODATKI
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+% - vaše ime
+\avtor{...}
+
+% - naslov dela v slovenščini
+\naslov{...}
+
+% - naslov dela v angleščini
+\title{...}
+
+% - ime mentorja/mentorice s polnim nazivom:
+%   - doc.~dr.~Ime Priimek
+%   - izr.~prof.~dr.~Ime Priimek
+%   - prof.~dr.~Ime Priimek
+%   za druge variante uporabite ustrezne ukaze
+\mentor{...}
+% \somentor{...}
+% \mentorica{...}
+% \somentorica{...}
+% \mentorja{...}{...}
+% \somentorja{...}{...}
+% \mentorici{...}{...}
+% \somentorici{...}{...}
+
+% - leto diplome
+\letnica{...} 
+
+% - povzetek v slovenščini
+%   V povzetku na kratko opišite vsebinske rezultate dela. Sem ne sodi razlaga
+%   organizacije dela, torej v katerem razdelku je kaj, pač pa le opis vsebine.
+\povzetek{...}
+
+% - povzetek v angleščini
+\abstract{...}
+
+% - klasifikacijske oznake, ločene z vejicami
+%   Oznake, ki opisujejo področje dela, so dostopne na strani https://www.ams.org/msc/
+\klasifikacija{..., ...}
+
+% - ključne besede, ki nastopajo v delu, ločene s \sep
+\kljucnebesede{...\sep ...}
+
+% - angleški prevod ključnih besed
+\keywords{...\sep ...} % angleški prevod ključnih besed
+
+% - angleško-slovenski slovar strokovnih izrazov
+\slovar{
+ \geslo{Connectedness}{povezanost}
+ \geslo{Adjacent}{sosednji}
+ \geslo{Connected components}{povezane komponente}
+ \geslo{Specialization quasi-ordering}{?}
+ \geslo{Finest topology/Coarsest topology}{?}
+% ...
+}
+
+% - ime datoteke z viri (vključno s končnico .bib), če uporabljate BibTeX
+% \literatura{....bib}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+% DODATNE DEFINICIJE
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+% naložite dodatne pakete, ki jih potrebujete
+% \usepackage{...}
+
+% deklarirajte vse matematične operatorje, da jih bo LaTeX pravilno stavil
+% \DeclareMathOperator{\...}{...}
+
+% vstavite svoje definicije ...
+% \newcommand{\...}{...}
+
+\newtheorem{definition}{Definicija}[subsection]
+\newtheorem{theorem}{Izrek}[subsection]
+
+\makeindex
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+% ZAČETEK VSEBINE
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+\begin{document}
+
+\section{Uvod}
+Motivacija, kje se uporablja segmentacija slik?\\
+(ROSENFELD Digital topology pg.2) 
+\begin{quote}
+  
+  Digital image processing or picture processing [1] is a rapidly growing discipline with broad applications in business (document reading), industry (automated assembly and inspection), medicine (radiology, hematology, etc.), and the environmental scien- ces (meteorology, geology, land-use management, etc.), among many other fields [2]. Most of this work involves picture analysis: given a picture, to construct a description of it in terms of the objects it contains or the regions of which it is composed and their properties and relationships. For example, a printed page is made up of characters on a background; a blood smear on a microscope slide contains blood cells on a background; a chest x-ray shows the heart, lungs, ribs, etc.; a satellite TV image of terrain is composed of terrain types; and so on. The process of decomposing a picture into regions, or into objects and background, is called segmentation.
+\end{quote}
+Ko sliko segmentiramo lahko opazujemo lastnosti segmentacije.\\
+Zakaj so topološke lastnosti slike zanimive?\\
+(ROSENFELD Digital topology pg.2) 
+\begin{quote}
+  Topological properties of digital picture subsets are useful for a number of reasons. After a subset has been singled out, e.g., by thresholding, one usually wants to further segment it into connected regions, since these often correspond to distinct objects (characters, blood cells, etc.). One may also want to track the borders of these regions, since the sequences of moves around the borders provide a compact encoding of region shape. Alternatively, one may want to "thin" the regions into "skeletons," without changing their connectedness properties, since this too yields a compact representation (e.g., an elongated region is represented by a set of arcs or curves). The adjacency or surroundedness relations among the regions can be compactly represented by a graph whose nodes are the regions, and in which two nodes are joined by an arc iff those two regions are adjacent.
+\end{quote}
+\begin{quote}
+  Many algorithms exist for segmenting a picture subset into its connected components, border following, thinning, and constructing the adjacency graph of a partition of a picture; see, e.g., [1, Chapter 9]. To prove that these algorithms work correctly, or even (in some cases) to state them precisely, it is necessary to establish some of the basic topological properties of digital picture subsets
+\end{quote}
+\section{Končne topologije in šibke urejenosti}
+Končna topologija je topologija na končni množici. Šibko urejena množica je množica s tranzitivno in refleksivno relacijo.
+Končne topologije so isti objekti kot končne šibko urejene množice iz drugega zornega kota. Za končno množico $X$ lahko
+za vsako točko definiramo minimalno odprto množico $U_x$ kot presek vseh odprtih
+množic, ki vsebujejo $x$. Minimalne odprte množice vseh točk tvorijo bazo prostora.
+Taki bazi pravimo minimalna baza. Vsaka baza prostora vsebuje minimalno bazo,
+ker če je $U_x$ unija odprtih množic, mora biti $x$ vsebovan v eni izmed njih.
+Tedaj se ta množica sovpada z $U_x$.\\
+Naj bo $x \leq y$, če $x \in U_y$ šibka urejenost nad $X$. Iz take šibke urejenosti
+lahko definiramo topologijo nad $X$ z bazo $\{y \in X | x \leq y\}_{x \in X}$.
+Sedaj lahko pokažemo, da je $y \leq x$ če in samo če $y \in U_x$.
+Če je $y \leq x$, potem je $y$ v vsaki osnovni množici, ki vsebuje $x$, torej je $y \in U_x$.
+Tudi obratno, če $y \in U_x$, potem je $y \in \{z \in X | z \leq x\}$, torej  je $y \leq x$.\\
+Prostor je $T_0$, če za vsaki različni točki $x,y \in X$ obstaja odprta množica
+$U$, ki vsebuje $x$ in ne $y$ ali obratno. Aksiom $T_0$ se sovpada z antisimetričnostjo na
+končnih šibko urejenih množicah. Torej končni $T_0$ prostori so ekvivalentni končni delno urejeni množici.\\
+
+\subsection{Separacijski aksiomi}
+\href{https://www.math.uchicago.edu/~may/MISC/FiniteSpaces.pdf}{FINITE TOPOLOGICAL SPACES}
+\begin{definition}
+  $(T_0)$ Topologija nad množico $X$ je $T_0$ ali Kolmogoroffova, če za vsaki različni točki
+  $x,y \in X$ obstaja odprta množica $U$, ki vsebuje $x$ in ne $y$ ali obratno.
+\end{definition}
+\begin{definition}
+  $(T_1)$ Topologija nad množico $X$ je $T_1$, če vsaki različni točki $x,y \in X$
+  lahko ločimo z odprtimi množicami. To pomeni, da obstaja odprta množica $U$,
+  ki vsebuje $x$ in ne $y$, ter odprta množica $V$, ki vsebuje $y$ in ne $x$.
+\end{definition}
+\begin{definition}
+  $(T_2)$ Topologija nad množico $X$ je $T_2$ ali Hausdorffova, če za vsaki različni
+  točki $x,y \in X$ obstajata disjunktni odprti množici $U$ in $V$, da velja
+  $x \in U$ in $y \in V$.
+\end{definition}
+% \subsection{Primerjava topologij}
+% kaj pomeni, če je topologija finejša ali bol groba od druge.
+% \href{https://www.uoanbar.edu.iq/EPSCollege/catalog/res1(1).pdf}{ON SEPARATION AXIOMS AND RELATIONSHIPS AMONG THEM}
+% (Non-Hausdorff Topology and Domain Theory: Selected Topics in
+% Point-Set Topology) \\
+% (Specialization quasi-ordering) Iz vsake topologije lahko naredimo šibko urejenost:
+% Naj bo $X$ topološki prostor. Šibko urejnost $\leq$ na $X$ definiramo:
+% $x \leq y \iff$ vsaka odprta podmnožica, ki vsebuje $x$, vsebuje tudi $y$ \\
+% Iz šibke urejenost pa lahko definiramo več različnih topologij.
+\subsection{topologija Aleksandrova}
+\begin{definition}
+  
+\end{definition}
+Topologija Aleksandrova na $\leq$ je najfinejša topologija,
+ki ima $\leq$ kot (Specialization quasi-ordering).
+\begin{theorem}
+  Odprte podmnožice topologije Aleksandrova nad $\leq$ so zgornje zaprte podmnožice $\leq$, zaprte množice so spodnje zaprte podmnožice $\leq$.
+\end{theorem}
+(J. Goubault-Larrecq. Non-Hausdorff Topology and Domain Theory: Selected Topics in Point-Set Topology.)
+\begin{quote}
+  Proof Consider the collection $O$ of all upward closed subsets of $X$. This is a
+  topology. Call $\preceq$, temporarily, its specialization quasi-ordering. If x $\preceq$ y, then
+  every upward closed subset containing $x$ must contain $y$, in particular $\uparrow x$; so
+  $x \leq y$. Conversely, if $x \leq y$, then clearly $x \preceq y$.
+  So $\leq$ is indeed the specialization quasi-ordering of $O$.It is the finest topology with  as specialization
+  quasi-ordering, by Lemma 4.2.5. That its closed sets are exactly the downward closed subsets
+  is because the downward closed subsets are exactly the complements of upward closed subsets
+\end{quote}
+\subsection{Topologija Aleksandrova na slikah}
+(\href{https://en.wikipedia.org/wiki/Abstract_cell_complex}{wikipedia})
+\begin{quote}
+  In mathematics, an \textbf{abstract} cell complex is an \textbf{abstract} set with Alexandrov topology
+\end{quote}
+Abstract cell complexes differ from simplicial cell complexes because the
+elements of simplicial cell complexes are simplices. Simplices are
+a generalization of the notion of a triangle or tetrahedron to arbitrary dimensions. 
+The simplex is so-named because it represents the simplest possible polytope in any given dimension.
+Image recognition works with square pixels.
+
+(\href{https://en.wikipedia.org/wiki/Abstract_cell_complex}{wikipedia})
+\begin{quote}
+  Abstract complexes allow the introduction of classical \\ topology
+  (Alexandrov-topology) in grids being the basis of digital image processing.
+  This possibility defines the great advantage of abstract cell complexes: It becomes possible to exactly
+  define the notions of connectivity and of the boundary of subsets. The definition
+  of dimension of cells and of complexes is in the general case different from that
+  of simplicial complexes (see below).
+  The notion of an abstract cell complex differs essentially from that of a
+  CW-complex because an abstract cell complex is no Hausdorff space. This is
+  important from the point of view of computer science since it is impossible
+  to explicitly represent a non-discrete Hausdorff space in a computer. (The
+  neighborhood of each point in such a space must have infinitely many points).
+\end{quote}
+
+\subsubsection{Problemi pri uporabi Topologije Aleksandrove za procesiranje slik}
+Image -> Abstract Cell complex -> Alexandrov topology\\
+(paper)
+\begin{quote}
+  it lacks some essential properties which are desirable for certain applications.
+\end{quote}
+\begin{itemize}
+  \item Topologija Aleksandrova ni invariantna za translacije.\\
+  Cell complexes are not translation invariant because the cells are assigned
+  a label that is their coordinate.\\
+  (\href{https://en.wikipedia.org/wiki/Abstract_cell_complex}{wikipedia})
+  \begin{quote}
+    A digital image may be represented by a 2D Abstract Cell Complex (ACC)
+    by decomposing the image into its ACC dimensional constituents:
+    points (0-cell), cracks/edges (1-cell), and pixels/faces (2-cell).
+
+    This decomposition together with a coordinate assignment rule to unambiguously
+    assign coordinates from the image pixels to the dimensional constituents permit
+    certain image analysis operations to be carried out on the image with elegant
+    algorithms such as crack boundary tracing, digital straight segment subdivision,
+    etc. One such rule maps the points, cracks, and faces to the top left coordinate of the pixel.
+  \end{quote}
+  \item Ne ohranja povezanosti?\\
+  Ne nujno.
+  To je implicirano iz cilja članka:
+  \begin{quote}
+    In this paper the following problem is investigated:
+    Is it possible for a given graph $G$ with a set $V$ of vertices to introduce a
+    topology on $V$, by declaring certain subsets of $V$ as ``open,' so that a subset 
+    of $V$ is topologically connected if and only if it is connected in $G$ 
+    (i.e., if the corresponding subgraph of $G$ is connected)?
+  \end{quote}
+\end{itemize}
+
+\subsubsection{Problemi pri uporabi Topologije nad digitalnimi prostori}
+\begin{quote}
+  It is a generalization of the problem of constructing a topology on a
+  digital space which retains one of the standard notions of
+  digital connectivity (i.e., ``4-connectivity', ``8-connectivity')
+  In 1970 Marcus and Wyse deﬁned a topology on
+  $\mathbb{Z}^n$ in which any subset is topologically connected if and
+  only if it is 2n-connected. In 1978 Chassery [2] proved this
+  topology to be the only one on $\mathbb{Z}^2$ compatible with 4-connectivity.
+  He further proved that there doesn't exist a
+  topology on $\mathbb{Z}^2$ which retains the 8-connectivity. A much
+  simpler proof of this latter fact was given quite recently
+  by Latecki. As a by-product of our investigations, a
+  different proof which is extremely simple can be given for
+  this assertion. At the end of the article, we will mention
+  a further proof in which the Alexandroff Specialization
+  relation is used.
+\end{quote}
+
+
+
+
+% (\href{https://arxiv.org/pdf/2108.03096.pdf}{Topological Conditional Separation} 2.2)
+% \begin{quote}
+%   A topology is an Alexandrov topology if and only if it is the topology of a
+%   preorder. In fact, one can associate a topology with any binary relation
+%   (see (8) below) and prove that a topology is an Alexandrov topology if and only if it is the
+%   topology of a binary relation
+% \end{quote}
+
+\href{http://bims.iranjournals.ir/article_266_e1ff26c6f7b350afcde8bd3ec3654132.pdf}{AN ALEXANDROFF TOPOLOGY ON GRAPHS}
+Pravi, da ima digitalna\\ topologija problem, da ne obstaja na vseh grafih
+(opisano v glavnem članku) in definira ``graphic topology'.
+\section{?}
+\subsection{Grafi}
+Graf $G = (V,E)$ vsebuje množico vozlišč $V$ in množico povezav $E \subseteq \binom{V}{2}$.
+Povezavo $\{x,y\} \in E; x,y \in V$ lahko označimo tudi z $xy$.\\
+$G$ je povezan graf, če za vsaki par vozlišč $x,y \in V$ obstaja končno zaporedje
+vozlišč $v_1,\dots,v_n \in V$, da velja $xv_1, v_1v_2, \dots, v_n y \in E$.\\
+Če je $V$ prazna množica, je $G$ prazen graf. Če je $V$ končna množica $n$ točk $V=\{v_1,\dots,v_n\}$
+in $E=\{v_1 v_2,\dots,v_{n-1}v_n,v_n v_1\}$ takrat se $G$ imenuje krog \\
+Za vsako množico vozlišč $V' \subseteq V$ definiramo induciran podgraf $G[V'] = (V',E')$
+kjer je $E' = \{xy \in E | x,y \in V'\}$. Torej induciran podgraf ohranja vse povezave
+iz $G$, ki povezujejo vozlišča iz $V'$. Če je $G'$ induciran podgraf $G$,
+ga označimo z relacijo $G' \sqsubseteq  G$.\\
+Množico vozlišč grafa $G$ označimo z $V(G)$, množico povezav pa z $E(G)$. Unija
+grafov $G_1 \cup G_2$ je definirana kot graf, ki ima vozlišča $V(G_1) \cup V(G_2)$
+in povezave $E(G_1) \cup E(G_2)$.\\
+\begin{definition}
+  Naj bo $G = (V,E)$ graf. Naj bo $O$ topologija na $V$. $O$ imenujemo topologija
+  na $G$, če velja:
+  \begin{itemize}
+    \item[(1)] Za vsak $G' \sqsubseteq G$ je $V(G')$ povezan v $O$.
+    \item[(2)] Za vsako podmnožico $V' \subseteq V$, ki je povezana v $O$, je $G[V']$ povezan graf.
+  \end{itemize}
+\end{definition}
+\begin{theorem}
+  Naj bo $G$ graf s topologijo $O$. Za vsak $H \sqsubseteq G$ je topologija
+  omejena na $V(H)$, topologija na $H$. Topologijo $O$ omejeno na $V(H)$ označimo z $O|_{V(H)}$.
+\end{theorem}
+\begin{proof}
+  Za vsak $H' \sqsubseteq H$ imamo $O|_{V(H')} = O|_{V(H)}|_{V(H')}$. Torej vsaka
+  podmnožica $V(H)$ je povezana v $O|_{V(H)}$ če in samo če je povezana v $O$.
+  $H' \sqsubseteq G$ je povezan če in samo če je $V(H') \subseteq V(H)$ povezan v $O$.
+  Torej so pogoji za topologijo na grafu $H$ izpolnjeni. \\
+\end{proof}
+
+\subsection{Topologija dvodelnih grafov}
+Naj bo $G^b$ povezan dvodelen graf $G^b = (V,E)$, ki ima vsaj tri vozlišča.
+$V$ je torej unija dveh nepraznih disjunktnih množic $V_A$ in $V_B$. Vsaka
+povezava v $E$ povezuje samo vozlišča iz $V_A$ z vozlišči iz $V_B$.\\
+Definiramo dve topologiji na množici vozlišč $V$ tako, da opišemo
+topološko okolico vsake točke $x \in V$. To je najmanjša odprta množica, ki
+vsebuje $x$: $U_x \in O$. Iz tega sledi, da je vsaka podmnožica $U_x$, ki vsebuje $x$ je povezana.
+Poleg tega, je vsaka $U \in O, U \neq \empty$ unija določenih $U_x$.\\
+Naj bo $N_x = \{y \  | \  yx \in E\}$ množica sosednjih točk točke $x$.\\
+\[
+  \begin{split}
+  O_1:&\quad
+  U_x:=\{x\}\ \ \forall x \in V_A, \quad
+  U_x:=\{x\}\cup N_x\ \  \forall x \in V_B\\
+  O_2:&\quad
+  U_x:=\{x\}\cup N_x\ \  \forall x \in V_A, \quad
+  U_x:=\{x\}\ \ \forall x \in V_B\\
+\end{split}
+\]
+Topologiji $O_1$ in $O_2$ nista ekvivalentni razen na grafih, ki nimajo povezav.
+Topologiji lahko nista niti homeomorfni.
+\begin{theorem}
+  $O_1$ in $O_2$ sta topologiji na $G^b$.
+\end{theorem}
+\subsection{Povezanost v digitalnih slikah?}
+(ROSENFELD Digital topology pg.4) 
+\begin{quote}
+  We begin by formulating the concept of connectedness for subsets of a digital picture $\Pi$.
+  For concreteness, we assume that $H$ is an array of lattice points having positive integer coordinates $(x,y)$, where $1 \leq x \leq M, 1 \leq y \leq N$.
+\end{quote}
+\begin{definition}
+  4-okolica
+\end{definition}
+\begin{definition}
+  8-okolica
+\end{definition}
+\begin{definition}
+  Naj bosta $P$, $Q$ točki iz $\Pi$. Pot iz $P$ do $Q$ je zaporedje točk 
+  $P = P_0,P_1,\dots,P_n = Q$ za katerega velja, da je $P_i$ sosed točki
+  $P_{i-1}$ za $1 \leq i \leq n$
+\end{definition}
+\begin{definition}
+  $P$ in $Q$ sta povezana v $S$, če obstaja pot iz $P$ do $Q$, ki vsebuje
+  samo točke iz $S$.
+\end{definition}
+\begin{definition}
+  Povezanost v $S$ je ekvivalenčna relacija, katere ekvivalenčne \\ razrede kličemo
+  (povezane) komponente $S$-ja. Če ima $S$ samo eno komponento, je povezan.
+\end{definition}
+\subsection{Loki in krivulje v digitalnih slikah?}
+\begin{quote}
+  commonly used method of shape analysis in digital picture processing involves
+  reducing ``thick'' digital point sets to idealized ``thin'' forms---e.g., reducing
+  elongated, simply connected objects to arcs, or objects that have a single hole
+  to closed curves. We will discuss ``thinning'' processes of this sort in Section 4;
+  but first we must introduce digital definitions of arcs and curves.
+\end{quote}
+\begin{definition}
+  Lok
+\end{definition}
+\begin{definition}
+  Luknja??
+\end{definition}
+\begin{definition}
+  Simply connected space
+\end{definition}
+\begin{definition}
+  Zaprta krivulja
+\end{definition}
+\begin{definition}
+  Zaprta krivulja
+\end{definition}
+\begin{theorem}
+  A curve has exactly one hole.
+\end{theorem}
+\section{Topologija na grafu}
+Topologija na množici vozlišč grafa:\\
+\nocite{*}
+
+
+
+\begin{definition}
+  Naj bo $G$ graf. Naj bo $O$ topologija na $V(G)$. $O$ je topologija na $G$, če velja:
+  \begin{itemize}
+    \item[(1)] Za vsak $G' \sqsubseteq G$ je $V(G')$ povezan v $O$.
+    \item[(2)] Za vsako podmnožico $V' \subseteq V$, ki je povezana v $0$, je $G[V']$ povezan graf. 
+  \end{itemize}
+\end{definition}
+
+\cleardoublepage
+\section{Literatura}
+\literatura{literatura}
+
+\newpage
+\end{document}
