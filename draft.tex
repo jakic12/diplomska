@@ -79,6 +79,7 @@
 
 \newtheorem{definition}{Definicija}[subsection]
 \newtheorem{theorem}{Izrek}[subsection]
+\newtheorem{lemma}{Lema}[subsection]
 
 \makeindex
 
@@ -104,7 +105,49 @@ Zakaj so topološke lastnosti slike zanimive?\\
 \begin{quote}
   Many algorithms exist for segmenting a picture subset into its connected components, border following, thinning, and constructing the adjacency graph of a partition of a picture; see, e.g., [1, Chapter 9]. To prove that these algorithms work correctly, or even (in some cases) to state them precisely, it is necessary to establish some of the basic topological properties of digital picture subsets
 \end{quote}
+% IZ Bretto 1. stran intro
+% \section{Digitalni prostori}
+% Podatkovne strukture v računalništvu so števne, torej edine množice, ki jih lahko
+% uporabljamo so diskretne ali digitalne množice. Pridevnik digitalno uporabimo kot
+% nasprotje za zvezno. Na primer $R^n, n \geq 1$ je zvezen prostor
+% in $\mathbb{Z}^n, n \geq 1$ digitalen.
+
+\section{Definicije}
+Vsi grafi bodo neusmerjeni, brez izoliranih vozlišč in preprosti torej brez zank
+in večkratnih povezav med vozlišči.
+\textbf{Graf} $G = (V,E)$ vsebuje množico vozlišč $V$ in množico povezav $E \subseteq \binom{V}{2}$.
+Povezavo $\{x,y\} \in E; x,y \in V$ lahko označimo tudi z $xy$.\\
+Množica sosednjih vozlišč vozlišča $x$ je $N_x = \{y \in V | xy \in E\}$.\\
+Število sosednjih vozlišč vozlišča $x$ je $deg(x) = |N_x|$. Če je $deg(x)$ končno
+za vsak $x \in V$, je graf $G$ \textbf{lokalno končen}.\\
+$G$ je \textbf{povezan graf}, če za vsaki par vozlišč $x,y \in V$ obstaja končno
+zaporedje različnih vozlišč $v_1,\dots,v_n \in V$, da velja $xv_1, v_1v_2, \dots, v_n y \in E$.\\
+Graf $G$ se imenuje \textbf{krog}, če je $V$ končna množica $n$ točk $V=\{v_1,\dots,v_n\}$ in
+$E=\{v_1 v_2,\dots,v_{n-1}v_n,v_n v_1\}$ \\
+Za vsako množico vozlišč $V' \subseteq V$ definiramo \textbf{induciran podgraf} $G[V'] = (V',E')$
+kjer je $E' = \{xy \in E | x,y \in V'\}$. Torej induciran podgraf ohranja vse povezave
+iz $G$, ki povezujejo vozlišča iz $V'$. Če je $G'$ induciran podgraf $G$,
+ga označimo z relacijo $G' \sqsubseteq  G$.\\
+Množico vozlišč grafa $G$ označimo z $V(G)$, množico povezav pa z $E(G)$. Unija
+grafov $G_1 \cup G_2$ je definirana kot graf, ki ima vozlišča $V(G_1) \cup V(G_2)$
+in povezave $E(G_1) \cup E(G_2)$.\\
+\textbf{Topologija} na množici $X$ je neprazna družina podmnožic $\tau$.
+Elementom topologije pravimo odprte množice, zadoščati morajo naslednji pogoji:
+Vsaka poljubna unija odprtih množic je odprta, vsak končen presek odprtih množic je odprt
+in prazna množica ter celotna množica $X$ sta odprti. Množica $X$ skupaj s topologijo
+je topološki prostor. Označimo ga z $(X,\tau)$.\\
+\textbf{Okolica} točke $x \in X$ je vsaka podmnožica $V \subseteq X$, ki vsebuje
+odprto množico $U$, ki vsebuje $x$.\\
+Topološki prostor je \textbf{povezan}, če se množice $X$ ne da izraziti kot unija
+dveh disjunktnih nepraznih odprtih množic.\\
+\textbf{Topologija Aleksandrova} je topologija v kateri je vsak poljuben presek odprtih
+množic odprt (v navadni topologiji velja samo za končne preseke). Iz tega sledi,
+da ima vsaka točka v topologiji Aleksandrova najmanjšo okolico, ki je odprta.\\
+Topologija nad množico $X$ je $\mathbf{T_0}$, če za vsaki različni točki $x,y \in X$
+obstaja odprta množica $U$, ki vsebuje $x$ in ne $y$ ali obratno
+
 \section{Končne topologije in šibke urejenosti}
+(Barmak)\\  
 Končna topologija je topologija na končni množici. Šibko urejena množica je množica s tranzitivno in refleksivno relacijo.
 Končne topologije so isti objekti kot končne šibko urejene množice iz drugega zornega kota. Za končno množico $X$ lahko
 za vsako točko definiramo minimalno odprto množico $U_x$ kot presek vseh odprtih
@@ -121,22 +164,22 @@ Prostor je $T_0$, če za vsaki različni točki $x,y \in X$ obstaja odprta množ
 $U$, ki vsebuje $x$ in ne $y$ ali obratno. Aksiom $T_0$ se sovpada z antisimetričnostjo na
 končnih šibko urejenih množicah. Torej končni $T_0$ prostori so ekvivalentni končni delno urejeni množici.\\
 
-\subsection{Separacijski aksiomi}
-\href{https://www.math.uchicago.edu/~may/MISC/FiniteSpaces.pdf}{FINITE TOPOLOGICAL SPACES}
-\begin{definition}
-  $(T_0)$ Topologija nad množico $X$ je $T_0$ ali Kolmogoroffova, če za vsaki različni točki
-  $x,y \in X$ obstaja odprta množica $U$, ki vsebuje $x$ in ne $y$ ali obratno.
-\end{definition}
-\begin{definition}
-  $(T_1)$ Topologija nad množico $X$ je $T_1$, če vsaki različni točki $x,y \in X$
-  lahko ločimo z odprtimi množicami. To pomeni, da obstaja odprta množica $U$,
-  ki vsebuje $x$ in ne $y$, ter odprta množica $V$, ki vsebuje $y$ in ne $x$.
-\end{definition}
-\begin{definition}
-  $(T_2)$ Topologija nad množico $X$ je $T_2$ ali Hausdorffova, če za vsaki različni
-  točki $x,y \in X$ obstajata disjunktni odprti množici $U$ in $V$, da velja
-  $x \in U$ in $y \in V$.
-\end{definition}
+% \subsection{Separacijski aksiomi}
+% \href{https://www.math.uchicago.edu/~may/MISC/FiniteSpaces.pdf}{FINITE TOPOLOGICAL SPACES}
+% \begin{definition}
+%   $(T_0)$ Topologija nad množico $X$ je $T_0$ ali Kolmogoroffova, če za vsaki različni točki
+%   $x,y \in X$ obstaja odprta množica $U$, ki vsebuje $x$ in ne $y$ ali obratno.
+% \end{definition}
+% \begin{definition}
+%   $(T_1)$ Topologija nad množico $X$ je $T_1$, če vsaki različni točki $x,y \in X$
+%   lahko ločimo z odprtimi množicami. To pomeni, da obstaja odprta množica $U$,
+%   ki vsebuje $x$ in ne $y$, ter odprta množica $V$, ki vsebuje $y$ in ne $x$.
+% \end{definition}
+% \begin{definition}
+%   $(T_2)$ Topologija nad množico $X$ je $T_2$ ali Hausdorffova, če za vsaki različni
+%   točki $x,y \in X$ obstajata disjunktni odprti množici $U$ in $V$, da velja
+%   $x \in U$ in $y \in V$.
+% \end{definition}
 % \subsection{Primerjava topologij}
 % kaj pomeni, če je topologija finejša ali bol groba od druge.
 % \href{https://www.uoanbar.edu.iq/EPSCollege/catalog/res1(1).pdf}{ON SEPARATION AXIOMS AND RELATIONSHIPS AMONG THEM}
@@ -259,36 +302,28 @@ Image -> Abstract Cell complex -> Alexandrov topology\\
 Pravi, da ima digitalna\\ topologija problem, da ne obstaja na vseh grafih
 (opisano v glavnem članku) in definira ``graphic topology'.
 \section{?}
-\subsection{Grafi}
-Graf $G = (V,E)$ vsebuje množico vozlišč $V$ in množico povezav $E \subseteq \binom{V}{2}$.
-Povezavo $\{x,y\} \in E; x,y \in V$ lahko označimo tudi z $xy$.\\
-$G$ je povezan graf, če za vsaki par vozlišč $x,y \in V$ obstaja končno zaporedje
-vozlišč $v_1,\dots,v_n \in V$, da velja $xv_1, v_1v_2, \dots, v_n y \in E$.\\
-Če je $V$ prazna množica, je $G$ prazen graf. Če je $V$ končna množica $n$ točk $V=\{v_1,\dots,v_n\}$
-in $E=\{v_1 v_2,\dots,v_{n-1}v_n,v_n v_1\}$ takrat se $G$ imenuje krog \\
-Za vsako množico vozlišč $V' \subseteq V$ definiramo induciran podgraf $G[V'] = (V',E')$
-kjer je $E' = \{xy \in E | x,y \in V'\}$. Torej induciran podgraf ohranja vse povezave
-iz $G$, ki povezujejo vozlišča iz $V'$. Če je $G'$ induciran podgraf $G$,
-ga označimo z relacijo $G' \sqsubseteq  G$.\\
-Množico vozlišč grafa $G$ označimo z $V(G)$, množico povezav pa z $E(G)$. Unija
-grafov $G_1 \cup G_2$ je definirana kot graf, ki ima vozlišča $V(G_1) \cup V(G_2)$
-in povezave $E(G_1) \cup E(G_2)$.\\
+\subsection{Končne topologije na grafih}
+(WIKIPEDIA!!)\\
+\begin{definition}
+  Za dan topološki prostor $(X, \tau)$ in dano podmnožico $S \subseteq X$, definiramo
+  topologijo, zožano na $S$ \[\tau|_S = \{U \cap S\ |\ U \in \tau\}\]
+\end{definition}
 \begin{definition}
   Naj bo $G = (V,E)$ graf. Naj bo $O$ topologija na $V$. $O$ imenujemo topologija
   na $G$, če velja:
   \begin{itemize}
-    \item[(1)] Za vsak $G' \sqsubseteq G$ je $V(G')$ povezan v $O$.
+    \item[(1)] Za vsak povezan $G' \sqsubseteq G$ je $V(G')$ povezan v $O$.
     \item[(2)] Za vsako podmnožico $V' \subseteq V$, ki je povezana v $O$, je $G[V']$ povezan graf.
   \end{itemize}
 \end{definition}
 \begin{theorem}
-  Naj bo $G$ graf s topologijo $O$. Za vsak $H \sqsubseteq G$ je topologija
-  omejena na $V(H)$, topologija na $H$. Topologijo $O$ omejeno na $V(H)$ označimo z $O|_{V(H)}$.
+  Naj bo $G$ graf s topologijo $O$. Za vsak induciran podgraf $H \sqsubseteq G$ je topologija,
+  omejena na $V(H)$, topologija na grafu $H$. Tako topologijo označimo z $O|_{V(H)}$.
 \end{theorem}
 \begin{proof}
   Za vsak $H' \sqsubseteq H$ imamo $O|_{V(H')} = O|_{V(H)}|_{V(H')}$. Torej vsaka
-  podmnožica $V(H)$ je povezana v $O|_{V(H)}$ če in samo če je povezana v $O$.
-  $H' \sqsubseteq G$ je povezan če in samo če je $V(H') \subseteq V(H)$ povezan v $O$.
+  podmnožica $V(H)$ je povezana v $O|_{V(H)}$, če in samo če je povezana v $O$.
+  $H' \sqsubseteq G$ je povezan, če in samo če je $V(H') \subseteq V(H)$ povezan v $O$.
   Torej so pogoji za topologijo na grafu $H$ izpolnjeni. \\
 \end{proof}
 
@@ -298,8 +333,9 @@ $V$ je torej unija dveh nepraznih disjunktnih množic $V_A$ in $V_B$. Vsaka
 povezava v $E$ povezuje samo vozlišča iz $V_A$ z vozlišči iz $V_B$.\\
 Definiramo dve topologiji na množici vozlišč $V$ tako, da opišemo
 topološko okolico vsake točke $x \in V$. To je najmanjša odprta množica, ki
-vsebuje $x$: $U_x \in O$. Iz tega sledi, da je vsaka podmnožica $U_x$, ki vsebuje $x$ je povezana.
-Poleg tega, je vsaka $U \in O, U \neq \empty$ unija določenih $U_x$.\\
+vsebuje $x$: $U_x \in O$. Ker $U_x$ ni mogoče razdeliti na odprte množice, je $U_x$
+in vsaka podmnožica $U_x$, ki vsebuje $x$ povezana.
+Poleg tega, je vsaka $U \in O, U \neq \emptyset$ unija določenih $U_x$.\\
 Naj bo $N_x = \{y \  | \  yx \in E\}$ množica sosednjih točk točke $x$.\\
 \[
   \begin{split}
@@ -316,73 +352,60 @@ Topologiji lahko nista niti homeomorfni.
 \begin{theorem}
   $O_1$ in $O_2$ sta topologiji na $G^b$.
 \end{theorem}
-\subsection{Povezanost v digitalnih slikah?}
-(ROSENFELD Digital topology pg.4) 
-\begin{quote}
-  We begin by formulating the concept of connectedness for subsets of a digital picture $\Pi$.
-  For concreteness, we assume that $H$ is an array of lattice points having positive integer coordinates $(x,y)$, where $1 \leq x \leq M, 1 \leq y \leq N$.
-\end{quote}
-\begin{definition}
-  4-okolica
-\end{definition}
-\begin{definition}
-  8-okolica
-\end{definition}
-\begin{definition}
-  Naj bosta $P$, $Q$ točki iz $\Pi$. Pot iz $P$ do $Q$ je zaporedje točk 
-  $P = P_0,P_1,\dots,P_n = Q$ za katerega velja, da je $P_i$ sosed točki
-  $P_{i-1}$ za $1 \leq i \leq n$
-\end{definition}
-\begin{definition}
-  $P$ in $Q$ sta povezana v $S$, če obstaja pot iz $P$ do $Q$, ki vsebuje
-  samo točke iz $S$.
-\end{definition}
-\begin{definition}
-  Povezanost v $S$ je ekvivalenčna relacija, katere ekvivalenčne \\ razrede kličemo
-  (povezane) komponente $S$-ja. Če ima $S$ samo eno komponento, je povezan.
-\end{definition}
-\subsection{Loki in krivulje v digitalnih slikah?}
-\begin{quote}
-  commonly used method of shape analysis in digital picture processing involves
-  reducing ``thick'' digital point sets to idealized ``thin'' forms---e.g., reducing
-  elongated, simply connected objects to arcs, or objects that have a single hole
-  to closed curves. We will discuss ``thinning'' processes of this sort in Section 4;
-  but first we must introduce digital definitions of arcs and curves.
-\end{quote}
-\begin{definition}
-  Lok
-\end{definition}
-\begin{definition}
-  Luknja??
-\end{definition}
-\begin{definition}
-  Simply connected space
-\end{definition}
-\begin{definition}
-  Zaprta krivulja
-\end{definition}
-\begin{definition}
-  Zaprta krivulja
-\end{definition}
-\begin{theorem}
-  A curve has exactly one hole.
-\end{theorem}
-\section{Topologija na grafu}
-Topologija na množici vozlišč grafa:\\
-\nocite{*}
-
-
-
-\begin{definition}
-  Naj bo $G$ graf. Naj bo $O$ topologija na $V(G)$. $O$ je topologija na $G$, če velja:
+\begin{proof}
+  Naj bo $O$ enak $O_1$ ali $O_2$.
   \begin{itemize}
-    \item[(1)] Za vsak $G' \sqsubseteq G$ je $V(G')$ povezan v $O$.
-    \item[(2)] Za vsako podmnožico $V' \subseteq V$, ki je povezana v $0$, je $G[V']$ povezan graf. 
+    \item[(1)] Naj bo $G' \sqsubseteq G^b$ povezan graf. Dokazati želimo, da je
+    množica $V(G')$ povezana v $O$, torej, da je ne moremo razdeliti na dve
+    disjunktni odprti podmnožici. Za vsaki dve sosednji točki $x$ in $y$ je
+    $U_x \cap U_y$ zmeraj neprazen, saj $y \in U_x$ ali $x \in U_y$. $V(G')$
+    razdelimo na dve neprazni disjunktni množici $V_1$ in $V_2$,
+    $V(G') = V_1 \cup V_2$. Naj bo $A \in O|_{V(G')}$
+    najmanjša odprta množica, ki vsebuje $V_1$, in $B \in O|_{V(G')}$
+    najmanjša odprta množica, ki vsebuje $V_2$. Tedaj je $A \cap B \neq \emptyset$,
+    torej je $V(G')$ povezan v $O$.
+    \item[(2)] Naj bo $G' \sqsubseteq G^b$ nepovezan graf. Dokazati želimo, da
+    je množica $V(G')$ nepovezana v $O$. Ker je $G'$ nepovezan, lahko $G'$ razdelimo
+    na unijo dveh ne nujno povezanih induciranih podgrafov $C$ in $D$ tako, da nobeno vozlišče iz $C$
+    ni povezano z nobenim vozliščem iz $D$. Torej
+    \[\bigcup_{x\in V(C)}U_x \cap V(D) = \emptyset = V(C) \cap \bigcup_{x\in V(D)}U_x\]
+    $V(C)$ in $V(D)$ lahko razpišemo:
+    \[V(C) = V(G') \cap \left(\bigcup_{x\in V(C)} U_x\right)\]
+    \[V(D) = V(G') \cap \left(\bigcup_{x\in V(D)} U_x\right)\]
+    Vidimo, da sta $V(C)$ in $V(D)$ disjunktni odprti množici v $O|_{V(G')}$,
+    torej je $V(G')$ nepovezana v $O$.
   \end{itemize}
-\end{definition}
+\end{proof}
+
+Naj bo $O$ poljubna topologija na $G^b$. Naslednje leme držijo za $\forall x \in V$
+\begin{lemma}
+  $\{x\} \subseteq U_x \subseteq \{x\} \cup N_x$
+\end{lemma}
+\begin{proof}
+  $\{x\} \subseteq U_x$ sledi iz definicije. Recimo, da obstaja $x'$, da
+  $U_{x'} \nsubseteq \{x'\} \cup N_{x'}$ ne drži, potem obstaja
+  $y \in U_{x'}$, $y \notin (\{x'\} \cup N_{x'})$. Ker je $\{x', y\} \subseteq U_x$,
+  je ta množica povezana v $O$. Ker je $G^b[\{x',y\}]$ nepovezan graf, je to v
+  protislovju z definicijo topologije na $G^b$.
+\end{proof}
+\begin{lemma}
+  $U_x = \{x\}$ ali $U_x = \{x\} \cup N_x$
+\end{lemma}
+\begin{proof}
+  Recimo, da lema ne drži. Potem obstaja $x'$, da $U_{x'} \neq \{x'\}$ in
+  $U_{x'} \subsetneq \{x'\} \cup N_{x'}$. Torej obstaja $y \in N_{x'}$, $y \notin U_{x'}$.
+  Ker je $y \in N_{x'}$, sta $x$ in $y$ povezana. Ker sta povezana in je $G^b$
+  dvodelen graf, velja $N_{x'} \cup N_y = \emptyset$. Ker sta $U_{x'}$ in $U_y$ 
+  podmnožici $N_x'$ in $N_y$, je bodisi $U_{x'} \cap U_y = \emptyset$,
+  bodisi $U_{x'} \cap U_y = \{x'\}$. Če velja $U_{x'} \cap U_y = \emptyset$, sledi
+  protislovja, ker $\{x',y\}$ je povezana množica v $O$.
+  Če velja $U_{x'} \cap U_y = \{x'\}$, potem je $U_{x'} = \{x'\}$, kar je v
+  protislovju z predpostavko $U_{x'} \neq \{x'\}$.
+\end{proof}
 
 \cleardoublepage
 \section{Literatura}
+\nocite{*}
 \literatura{literatura}
 
 \newpage
