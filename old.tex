@@ -1,373 +1,95 @@
-%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-% datoteka diploma-vzorec.tex
-%
-% vzorčna datoteka za pisanje diplomskega dela v formatu LaTeX
-% na UL Fakulteti za računalništvo in informatiko
-%
-% vkup spravil Gašper Fijavž, december 2010
-% 
-%
-%
-% verzija 12. februar 2014 (besedilo teme, seznam kratic, popravki Gašper Fijavž)
-% verzija 10. marec 2014 (redakcijski popravki Zoran Bosnić)
-% verzija 11. marec 2014 (redakcijski popravki Gašper Fijavž)
-% verzija 15. april 2014 (pdf/a 1b compliance, not really - just claiming, Damjan Cvetan, Gašper Fijavž)
-% verzija 23. april 2014 (privzeto cc licenca)
-% verzija 16. september 2014 (odmiki strain od roba)
-% verzija 28. oktober 2014 (odstranil vpisno številko)
-% verija 5. februar 2015 (Literatura v kazalu, online literatura)
-% verzija 25. september 2015 (angl. naslov v izjavi o avtorstvu)
-% verzija 26. februar 2016 (UL izjava o avtorstvu)
-% verzija 16. april 2016 (odstranjena izjava o avtorstvu)
-% verzija 5. junij 2016 (Franc Solina dodal vrstice, ki jih je označil s svojim imenom)
-
-
-\documentclass[a4paper, 12pt]{book}
-%\documentclass[a4paper, 12pt, draft]{book}  Nalogo preverite tudi z opcijo draft, ki vam bo pokazala, katere vrstice so predolge!
-
-
-
-\usepackage[utf8x]{inputenc}   % omogoča uporabo slovenskih črk kodiranih v formatu UTF-8
-\usepackage[slovene,english]{babel}    % naloži, med drugim, slovenske delilne vzorce
-\usepackage[pdftex]{graphicx}  % omogoča vlaganje slik različnih formatov
-\usepackage{fancyhdr}          % poskrbi, na primer, za glave strani
-\usepackage{amssymb}           % dodatni simboli
-\usepackage{amsmath}           % eqref, npr.
-%\usepackage{hyperxmp}
-\usepackage[hyphens]{url}  % dodal Solina
-\usepackage{comment}       % dodal Solina
-
-\usepackage[pdftex, colorlinks=true,
-						citecolor=black, filecolor=black, 
-						linkcolor=black, urlcolor=black,
-						pagebackref=false, 
-						pdfproducer={LaTeX}, pdfcreator={LaTeX}, hidelinks]{hyperref}
-
-\usepackage{color}       % dodal Solina
-\usepackage{soul}       % dodal Solina
-\usepackage[numbers]{natbib}  % dodal Solina
-
-\usepackage{amsthm}
-
-%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-%	DIPLOMA INFO
-%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-\newcommand{\ttitle}{Digitalna topologija na grafih}
-\newcommand{\ttitleEn}{Digital topology on graphs}
-\newcommand{\tsubject}{\ttitle}
-\newcommand{\tsubjectEn}{\ttitleEn}
-\newcommand{\tauthor}{Jakob Drusany}
-\newcommand{\tkeywords}{računalnik, računalnik, računalnik}
-\newcommand{\tkeywordsEn}{computer, computer, computer}
-
-
-%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-%	HYPERREF SETUP
-%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-\hypersetup{pdftitle={\ttitle}}
-\hypersetup{pdfsubject=\ttitleEn}
-\hypersetup{pdfauthor={\tauthor, matjaz.kralj@fri.uni-lj.si}}
-\hypersetup{pdfkeywords=\tkeywordsEn}
-
-
- 
-
-
-%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-% postavitev strani
-%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%  
-
-\addtolength{\marginparwidth}{-20pt} % robovi za tisk
-\addtolength{\oddsidemargin}{40pt}
-\addtolength{\evensidemargin}{-40pt}
-
-\renewcommand{\baselinestretch}{1.3} % ustrezen razmik med vrsticami
-\setlength{\headheight}{15pt}        % potreben prostor na vrhu
-\renewcommand{\chaptermark}[1]%
-{\markboth{\MakeUppercase{\thechapter.\ #1}}{}} \renewcommand{\sectionmark}[1]%
-{\markright{\MakeUppercase{\thesection.\ #1}}} \renewcommand{\headrulewidth}{0.5pt} \renewcommand{\footrulewidth}{0pt}
-\fancyhf{}
-\fancyhead[LE,RO]{\sl \thepage} 
-%\fancyhead[LO]{\sl \rightmark} \fancyhead[RE]{\sl \leftmark}
-\fancyhead[RE]{\sc \tauthor}              % dodal Solina
-\fancyhead[LO]{\sc Diplomska naloga}     % dodal Solina
-
-
-\newcommand{\BibTeX}{{\sc Bib}\TeX}
-
-%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-% naslovi
-%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%  
-
-
-\newcommand{\autfont}{\Large}
-\newcommand{\titfont}{\LARGE\bf}
-\newcommand{\clearemptydoublepage}{\newpage{\pagestyle{empty}\cleardoublepage}}
-\setcounter{tocdepth}{1}	      % globina kazala
-
-%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-% konstrukti
-%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%  
-\newtheorem{izrek}{Izrek}[chapter]
-\newtheorem{trditev}{Trditev}[izrek]
-\newenvironment{dokaz}{\emph{Dokaz.}\ }{\hspace{\fill}{$\Box$}}
+\documentclass[mat1]{fmfdelo}
+% \documentclass[fin1, tisk]{fmfdelo}
+% Če pobrišete možnost tisk, bodo povezave obarvane,
+% na začetku pa ne bo praznih strani po naslovu, …
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-%% PDF-A
+% METAPODATKI
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
+% - vaše ime
+\avtor{...}
 
-%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%% 
-% define medatata
-%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%% 
-\def\Title{\ttitle}
-\def\Author{\tauthor, matjaz.kralj@fri.uni-lj.si}
-\def\Subject{\ttitleEn}
-\def\Keywords{\tkeywordsEn}
+% - naslov dela v slovenščini
+\naslov{...}
 
-%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%% 
-% \convertDate converts D:20080419103507+02'00' to 2008-04-19T10:35:07+02:00
-%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%% 
-\def\convertDate{%
-    \getYear
+% - naslov dela v angleščini
+\title{...}
+
+% - ime mentorja/mentorice s polnim nazivom:
+%   - doc.~dr.~Ime Priimek
+%   - izr.~prof.~dr.~Ime Priimek
+%   - prof.~dr.~Ime Priimek
+%   za druge variante uporabite ustrezne ukaze
+\mentor{...}
+% \somentor{...}
+% \mentorica{...}
+% \somentorica{...}
+% \mentorja{...}{...}
+% \somentorja{...}{...}
+% \mentorici{...}{...}
+% \somentorici{...}{...}
+
+% - leto diplome
+\letnica{...} 
+
+% - povzetek v slovenščini
+%   V povzetku na kratko opišite vsebinske rezultate dela. Sem ne sodi razlaga
+%   organizacije dela, torej v katerem razdelku je kaj, pač pa le opis vsebine.
+\povzetek{...}
+
+% - povzetek v angleščini
+\abstract{...}
+
+% - klasifikacijske oznake, ločene z vejicami
+%   Oznake, ki opisujejo področje dela, so dostopne na strani https://www.ams.org/msc/
+\klasifikacija{..., ...}
+
+% - ključne besede, ki nastopajo v delu, ločene s \sep
+\kljucnebesede{...\sep ...}
+
+% - angleški prevod ključnih besed
+\keywords{...\sep ...} % angleški prevod ključnih besed
+
+% - angleško-slovenski slovar strokovnih izrazov
+\slovar{
+ \geslo{Connectedness}{povezanost}
+ \geslo{Adjacent}{sosednji}
+ \geslo{Connected components}{povezane komponente}
+ \geslo{Specialization quasi-ordering}{?}
+ \geslo{Finest topology/Coarsest topology}{?}
+% ...
 }
 
-{\catcode`\D=12
- \gdef\getYear D:#1#2#3#4{\edef\xYear{#1#2#3#4}\getMonth}
-}
-\def\getMonth#1#2{\edef\xMonth{#1#2}\getDay}
-\def\getDay#1#2{\edef\xDay{#1#2}\getHour}
-\def\getHour#1#2{\edef\xHour{#1#2}\getMin}
-\def\getMin#1#2{\edef\xMin{#1#2}\getSec}
-\def\getSec#1#2{\edef\xSec{#1#2}\getTZh}
-\def\getTZh +#1#2{\edef\xTZh{#1#2}\getTZm}
-\def\getTZm '#1#2'{%
-    \edef\xTZm{#1#2}%
-    \edef\convDate{\xYear-\xMonth-\xDay T\xHour:\xMin:\xSec+\xTZh:\xTZm}%
-}
-
-\expandafter\convertDate\pdfcreationdate 
-
-%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-% get pdftex version string
-%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%% 
-\newcount\countA
-\countA=\pdftexversion
-\advance \countA by -100
-\def\pdftexVersionStr{pdfTeX-1.\the\countA.\pdftexrevision}
-
-
-%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-% XMP data
-%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%  
-\usepackage{xmpincl}
-\includexmp{pdfa-1b}
-
-%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-% pdfInfo
-%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%  
-\pdfinfo{%
-    /Title    (\ttitle)
-    /Author   (\tauthor, damjan@cvetan.si)
-    /Subject  (\ttitleEn)
-    /Keywords (\tkeywordsEn)
-    /ModDate  (\pdfcreationdate)
-    /Trapped  /False
-}
-
+% - ime datoteke z viri (vključno s končnico .bib), če uporabljate BibTeX
+% \literatura{....bib}
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+% DODATNE DEFINICIJE
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+% naložite dodatne pakete, ki jih potrebujete
+% \usepackage{...}
+
+% deklarirajte vse matematične operatorje, da jih bo LaTeX pravilno stavil
+% \DeclareMathOperator{\...}{...}
+
+% vstavite svoje definicije ...
+% \newcommand{\...}{...}
 
 \newtheorem{definition}{Definicija}[subsection]
 \newtheorem{theorem}{Izrek}[subsection]
 \newtheorem{lemma}{Lema}[subsection]
 
+\makeindex
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+% ZAČETEK VSEBINE
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
 \begin{document}
-\selectlanguage{slovene}
-\frontmatter
-\setcounter{page}{1} %
-\renewcommand{\thepage}{}       % preprecimo težave s številkami strani v kazalu
-\newcommand{\sn}[1]{"`#1"'}                    % dodal Solina (slovenski narekovaji)
 
-%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-%naslovnica
- \thispagestyle{empty}%
-   \begin{center}
-    {\large\sc Univerza v Ljubljani\\%
-%      Fakulteta za elektrotehniko\\% za študijski program Multimedija
-%      Fakulteta za upravo\\% za študijski program Upravna informatika
-      Fakulteta za računalništvo in informatiko\\%
-%      Fakulteta za matematiko in fiziko\\% za študijski program Računalništvo in matematika
-     }
-    \vskip 10em%
-    {\autfont \tauthor\par}%
-    {\titfont \ttitle \par}%
-    {\vskip 3em \textsc{DIPLOMSKO DELO\\[5mm]         % dodal Solina za ostale študijske programe
-%    VISOKOŠOLSKI STROKOVNI ŠTUDIJSKI PROGRAM\\ PRVE STOPNJE\\ RAČUNALNIŠTVO IN INFORMATIKA}\par}%
-     UNIVERZITETNI  ŠTUDIJSKI PROGRAM\\ PRVE STOPNJE\\ RAČUNALNIŠTVO IN INFORMATIKA}\par}%
-%    INTERDISCIPLINARNI UNIVERZITETNI\\ ŠTUDIJSKI PROGRAM PRVE STOPNJE\\ MULTIMEDIJA}\par}%
-%    INTERDISCIPLINARNI UNIVERZITETNI\\ ŠTUDIJSKI PROGRAM PRVE STOPNJE\\ UPRAVNA INFORMATIKA}\par}%
-%    INTERDISCIPLINARNI UNIVERZITETNI\\ ŠTUDIJSKI PROGRAM PRVE STOPNJE\\ RAČUNALNIŠTVO IN MATEMATIKA}\par}%
-    \vfill\null%
-% izberite pravi habilitacijski naziv mentorja!
-    {\large \textsc{Mentor}: viš. pred./doc./izr. prof./prof. dr. Peter Klepec\par}%
-   {\large \textsc{Somentor}:  viš. pred./doc./izr. prof./prof. dr.  Martin Krpan \par}%
-    {\vskip 2em \large Ljubljana, 2019 \par}%
-\end{center}
-% prazna stran
-%\clearemptydoublepage      % dodal Solina (izjava o licencah itd. se izpiše na hrbtni strani naslovnice)
-
-%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-%copyright stran
-\thispagestyle{empty}
-\vspace*{8cm}
-
-\noindent
-{\sc Copyright}. 
-Rezultati diplomske naloge so intelektualna lastnina avtorja in matične fakultete Univerze v Ljubljani.
-Za objavo in koriščenje rezultatov diplomske naloge je potrebno pisno privoljenje avtorja, fakultete ter mentorja.
-
-\begin{center}
-\mbox{}\vfill
-\emph{Besedilo je oblikovano z urejevalnikom besedil \LaTeX.}
-\end{center}
-% prazna stran
-\clearemptydoublepage
-
-%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-% stran 3 med uvodnimi listi
-\thispagestyle{empty}
-\
-\vfill
-
-\bigskip
-\noindent\textbf{Kandidat:} Ime Priimek\\
-\noindent\textbf{Naslov:} Naslov diplome v slovenščini\\
-% vstavite ustrezen naziv študijskega programa!
-\noindent\textbf{Vrsta naloge:} npr. Diplomska naloga na univerzitetnem programu prve stopnje Računalništvo in informatika \\
-% izberite pravi habilitacijski naziv mentorja!
-\noindent\textbf{Mentor:} viš. pred. / doc. / izr. prof. / prof. dr. Ime Priimek\\
-\noindent\textbf{Somentor:} isto kot za mentorja
-
-\bigskip
-\noindent\textbf{Opis:}\\
-Besedilo teme diplomskega dela študent prepiše iz študijskega informacijskega sistema, kamor ga je vnesel mentor. 
-V nekaj stavkih bo opisal, kaj pričakuje od kandidatovega diplomskega dela. 
-Kaj so cilji, kakšne metode naj uporabi, morda bo zapisal tudi ključno literaturo.
-
-\bigskip
-\noindent\textbf{Title:} Naslov diplome v angleščini
-
-\bigskip
-\noindent\textbf{Description:}\\
-opis diplome v angleščini
-
-\vfill
-
-
-
-\vspace{2cm}
-
-% prazna stran
-\clearemptydoublepage
-
-% zahvala
-\thispagestyle{empty}\mbox{}\vfill\null\it%
-\noindent
-Na tem mestu zapišite, komu se zahvaljujete za izdelavo diplomske naloge. Pazite, da ne boste koga pozabili. Utegnil vam bo zameriti. Temu se da izogniti tako, da celotno zahvalo izpustite.
-\rm\normalfont
-
-% prazna stran
-\clearemptydoublepage
-
-%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-% kazalo
-\pagestyle{empty}
-\def\thepage{}% preprecimo tezave s stevilkami strani v kazalu
-\tableofcontents{}
-
-
-% prazna stran
-\clearemptydoublepage
-
-%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-% seznam kratic
-
-\chapter*{Seznam uporabljenih kratic}  % spremenil Solina, da predolge vrstice ne gredo preko desnega roba
-
-\begin{comment}
-\begin{tabular}{l|l|l}
-  {\bf kratica} & {\bf angleško} & {\bf slovensko} \\ \hline
-  % after \\: \hline or \cline{col1-col2} \cline{col3-col4} ...
-  {\bf CA} & classification accuracy & klasifikacijska točnost \\
-  {\bf DBMS} & database management system & sistem za upravljanje podatkovnih baz \\
-  {\bf SVM} & support vector machine & metoda podpornih vektorjev \\
-  \dots & \dots & \dots \\
-\end{tabular}
-\end{comment}
-
-\noindent\begin{tabular}{p{0.1\textwidth}|p{.4\textwidth}|p{.4\textwidth}}    % po potrebi razširi prvo kolono tabele na račun drugih dveh!
-  {\bf kratica} & {\bf angleško}                             & {\bf slovensko} \\ \hline
-  {\bf CA}      & classification accuracy               & klasifikacijska točnost \\
-  {\bf DBMS} & database management system & sistem za upravljanje podatkovnih baz \\
-  {\bf SVM}   & support vector machine              & metoda podpornih vektorjev \\
-%  \dots & \dots & \dots \\
-\end{tabular}
-
-
-% prazna stran
-\clearemptydoublepage
-
-%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-% povzetek
-\addcontentsline{toc}{chapter}{Povzetek}
-\chapter*{Povzetek}
-
-\noindent\textbf{Naslov:} \ttitle
-\bigskip
-
-\noindent\textbf{Avtor:} \tauthor
-\bigskip
-
-%\noindent\textbf{Povzetek:} 
-\noindent V vzorcu je predstavljen postopek priprave diplomskega dela z uporabo okolja \LaTeX. Vaš povzetek mora sicer vsebovati približno 100 besed, ta tukaj je odločno prekratek.
-Dober povzetek vključuje: (1) kratek opis obravnavanega problema, (2) kratek opis vašega pristopa za reševanje tega problema in (3) (najbolj uspešen) rezultat ali prispevek magistrske naloge.
-
-\bigskip
-
-\noindent\textbf{Ključne besede:} \tkeywords.
-% prazna stran
-\clearemptydoublepage
-
-%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-% abstract
-\selectlanguage{english}
-\addcontentsline{toc}{chapter}{Abstract}
-\chapter*{Abstract}
-
-\noindent\textbf{Title:} \ttitleEn
-\bigskip
-
-\noindent\textbf{Author:} \tauthor
-\bigskip
-
-%\noindent\textbf{Abstract:} 
-\noindent This sample document presents an approach to typesetting your BSc thesis using \LaTeX. 
-A proper abstract should contain around 100 words which makes this one way too short.
-\bigskip
-
-\noindent\textbf{Keywords:} \tkeywordsEn.
-\selectlanguage{slovene}
-% prazna stran
-\clearemptydoublepage
-
-%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-\mainmatter
-\setcounter{page}{1}
-\pagestyle{fancy}
-
-\chapter{Uvod}
+\section{Uvod}
 Motivacija, kje se uporablja segmentacija slik?\\
 (ROSENFELD Digital topology pg.2) 
 \begin{quote}
@@ -384,13 +106,13 @@ Zakaj so topološke lastnosti slike zanimive?\\
   Many algorithms exist for segmenting a picture subset into its connected components, border following, thinning, and constructing the adjacency graph of a partition of a picture; see, e.g., [1, Chapter 9]. To prove that these algorithms work correctly, or even (in some cases) to state them precisely, it is necessary to establish some of the basic topological properties of digital picture subsets
 \end{quote}
 % IZ Bretto 1. stran intro
-% \chapter{Digitalni prostori}
+% \section{Digitalni prostori}
 % Podatkovne strukture v računalništvu so števne, torej edine množice, ki jih lahko
 % uporabljamo so diskretne ali digitalne množice. Pridevnik digitalno uporabimo kot
 % nasprotje za zvezno. Na primer $R^n, n \geq 1$ je zvezen prostor
 % in $\mathbb{Z}^n, n \geq 1$ digitalen.
 
-\chapter{Definicije}
+\section{Definicije}
 Vsi grafi bodo neusmerjeni, brez izoliranih vozlišč in preprosti torej brez zank
 in večkratnih povezav med vozlišči.
 \textbf{Graf} $G = (V,E)$ vsebuje množico vozlišč $V$ in množico povezav $E \subseteq \binom{V}{2}$.
@@ -424,7 +146,7 @@ da ima vsaka točka v topologiji Aleksandrova najmanjšo okolico, ki je odprta.\
 Topologija nad množico $X$ je $\mathbf{T_0}$, če za vsaki različni točki $x,y \in X$
 obstaja odprta množica $U$, ki vsebuje $x$ in ne $y$ ali obratno
 
-\chapter{Končne topologije in šibke urejenosti}
+\section{Končne topologije in šibke urejenosti}
 (Barmak)\\  
 Končna topologija je topologija na končni množici. Šibko urejena množica je množica s tranzitivno in refleksivno relacijo.
 Končne topologije so isti objekti kot končne šibko urejene množice iz drugega zornega kota. Za končno množico $X$ lahko
@@ -442,7 +164,7 @@ Prostor je $T_0$, če za vsaki različni točki $x,y \in X$ obstaja odprta množ
 $U$, ki vsebuje $x$ in ne $y$ ali obratno. Aksiom $T_0$ se sovpada z antisimetričnostjo na
 končnih šibko urejenih množicah. Torej končni $T_0$ prostori so ekvivalentni končni delno urejeni množici.\\
 
-% \section{Separacijski aksiomi}
+% \subsection{Separacijski aksiomi}
 % \href{https://www.math.uchicago.edu/~may/MISC/FiniteSpaces.pdf}{FINITE TOPOLOGICAL SPACES}
 % \begin{definition}
 %   $(T_0)$ Topologija nad množico $X$ je $T_0$ ali Kolmogoroffova, če za vsaki različni točki
@@ -458,7 +180,7 @@ končnih šibko urejenih množicah. Torej končni $T_0$ prostori so ekvivalentni
 %   točki $x,y \in X$ obstajata disjunktni odprti množici $U$ in $V$, da velja
 %   $x \in U$ in $y \in V$.
 % \end{definition}
-% \section{Primerjava topologij}
+% \subsection{Primerjava topologij}
 % kaj pomeni, če je topologija finejša ali bol groba od druge.
 % \href{https://www.uoanbar.edu.iq/EPSCollege/catalog/res1(1).pdf}{ON SEPARATION AXIOMS AND RELATIONSHIPS AMONG THEM}
 % (Non-Hausdorff Topology and Domain Theory: Selected Topics in
@@ -467,7 +189,7 @@ končnih šibko urejenih množicah. Torej končni $T_0$ prostori so ekvivalentni
 % Naj bo $X$ topološki prostor. Šibko urejnost $\leq$ na $X$ definiramo:
 % $x \leq y \iff$ vsaka odprta podmnožica, ki vsebuje $x$, vsebuje tudi $y$ \\
 % Iz šibke urejenost pa lahko definiramo več različnih topologij.
-\section{topologija Aleksandrova}
+\subsection{topologija Aleksandrova}
 \begin{definition}
   
 \end{definition}
@@ -486,7 +208,7 @@ ki ima $\leq$ kot (Specialization quasi-ordering).
   quasi-ordering, by Lemma 4.2.5. That its closed sets are exactly the downward closed subsets
   is because the downward closed subsets are exactly the complements of upward closed subsets
 \end{quote}
-\section{Topologija Aleksandrova na slikah}
+\subsection{Topologija Aleksandrova na slikah}
 (\href{https://en.wikipedia.org/wiki/Abstract_cell_complex}{wikipedia})
 \begin{quote}
   In mathematics, an \textbf{abstract} cell complex is an \textbf{abstract} set with Alexandrov topology
@@ -579,8 +301,8 @@ Image -> Abstract Cell complex -> Alexandrov topology\\
 \href{http://bims.iranjournals.ir/article_266_e1ff26c6f7b350afcde8bd3ec3654132.pdf}{AN ALEXANDROFF TOPOLOGY ON GRAPHS}
 Pravi, da ima digitalna\\ topologija problem, da ne obstaja na vseh grafih
 (opisano v glavnem članku) in definira ``graphic topology'.
-\chapter{?}
-\section{Končne topologije na grafih}
+\section{?}
+\subsection{Končne topologije na grafih}
 (WIKIPEDIA!!)\\
 \begin{definition}
   Za dan topološki prostor $(X, \tau)$ in dano podmnožico $S \subseteq X$, definiramo
@@ -605,7 +327,7 @@ Pravi, da ima digitalna\\ topologija problem, da ne obstaja na vseh grafih
   Torej so pogoji za topologijo na grafu $H$ izpolnjeni. \\
 \end{proof}
 
-\section{Topologija dvodelnih grafov}
+\subsection{Topologija dvodelnih grafov}
 Naj bo $G^b$ povezan dvodelen graf $G^b = (V,E)$, ki ima vsaj tri vozlišča.
 $V$ je torej unija dveh nepraznih disjunktnih množic $V_A$ in $V_B$. Vsaka
 povezava v $E$ povezuje samo vozlišča iz $V_A$ z vozlišči iz $V_B$.\\
@@ -693,9 +415,9 @@ množici, ki vsebujeta $x$ in $y$ in je $\{x,y\}$
 \end{proof}
 
 \cleardoublepage
-\addcontentsline{toc}{chapter}{Literatura}
-\bibliography{literatura}
-\bibliographystyle{plainnat}
+\section{Literatura}
+\nocite{*}
+\literatura{literatura}
 
+\newpage
 \end{document}
-
