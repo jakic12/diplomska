@@ -1,4 +1,4 @@
-\documentclass[mat1, tisk]{fmfdelo}
+\documentclass[mat1]{fmfdelo}
 % \documentclass[fin1, tisk]{fmfdelo}
 % Če pobrišete možnost tisk, bodo povezave obarvane,
 % na začetku pa ne bo praznih strani po naslovu, …
@@ -401,6 +401,17 @@ Naj bo $O$ poljubna topologija na $G^b$. Naslednje leme držijo za $\forall x \i
   protislovja, ker $\{x',y\}$ je povezana množica v $O$.
   Če velja $U_{x'} \cap U_y = \{x'\}$, potem je $U_{x'} = \{x'\}$, kar je v
   protislovju z predpostavko $U_{x'} \neq \{x'\}$.
+\end{proof}
+\begin{lemma}
+  Za vsak $y \in N_x$ velja $U_x = \{x\} \iff U_y = \{y\} \cup N_y$
+\end{lemma}
+\begin{proof}
+Če je $U_x = \{x\}, U_y = \{y\}$ za katerikoli $y$, sledi protislovje, saj je 
+$\{x,y\}$ nepovezana v $O$, $y$ pa je sosed $x$.
+Če velja $U_x = \{x\} \cup N_x, U_y = \{y\} \cup N_y$ za katerikoli $y$, potem je
+$U_x \cap U_y = \{x, y\} \in O$ (ker je $y \in N_x \Rightarrow x \in N_y$). Nadalje
+velja tudi $U_x = U_y = \{x,y\} \in O$. Ker sta $U_x$ in $U_y$ najmanjši odprti
+množici, ki vsebujeta $x$ in $y$ in je $\{x,y\}$ 
 \end{proof}
 
 \cleardoublepage
