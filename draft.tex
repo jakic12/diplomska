@@ -179,9 +179,10 @@
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
-\newtheorem{definition}{Definicija}[subsection]
-\newtheorem{theorem}{Izrek}[subsection]
-\newtheorem{lemma}{Lema}[subsection]
+\newtheorem{definition}{Definicija}[section]
+\newtheorem{theorem}{Izrek}[section]
+\newtheorem{lemma}{Lema}[section]
+\newtheorem{corollary}{Posledica}[section]
 
 \begin{document}
 \selectlanguage{slovene}
@@ -198,22 +199,22 @@
 %      Fakulteta za elektrotehniko\\% za študijski program Multimedija
 %      Fakulteta za upravo\\% za študijski program Upravna informatika
       Fakulteta za računalništvo in informatiko\\%
-%      Fakulteta za matematiko in fiziko\\% za študijski program Računalništvo in matematika
+      Fakulteta za matematiko in fiziko\\% za študijski program Računalništvo in matematika
      }
     \vskip 10em%
     {\autfont \tauthor\par}%
     {\titfont \ttitle \par}%
     {\vskip 3em \textsc{DIPLOMSKO DELO\\[5mm]         % dodal Solina za ostale študijske programe
 %    VISOKOŠOLSKI STROKOVNI ŠTUDIJSKI PROGRAM\\ PRVE STOPNJE\\ RAČUNALNIŠTVO IN INFORMATIKA}\par}%
-     UNIVERZITETNI  ŠTUDIJSKI PROGRAM\\ PRVE STOPNJE\\ RAČUNALNIŠTVO IN INFORMATIKA}\par}%
+%     UNIVERZITETNI  ŠTUDIJSKI PROGRAM\\ PRVE STOPNJE\\ RAČUNALNIŠTVO IN INFORMATIKA}\par}%
 %    INTERDISCIPLINARNI UNIVERZITETNI\\ ŠTUDIJSKI PROGRAM PRVE STOPNJE\\ MULTIMEDIJA}\par}%
 %    INTERDISCIPLINARNI UNIVERZITETNI\\ ŠTUDIJSKI PROGRAM PRVE STOPNJE\\ UPRAVNA INFORMATIKA}\par}%
-%    INTERDISCIPLINARNI UNIVERZITETNI\\ ŠTUDIJSKI PROGRAM PRVE STOPNJE\\ RAČUNALNIŠTVO IN MATEMATIKA}\par}%
+    INTERDISCIPLINARNI UNIVERZITETNI\\ ŠTUDIJSKI PROGRAM PRVE STOPNJE\\ RAČUNALNIŠTVO IN MATEMATIKA}\par}%
     \vfill\null%
 % izberite pravi habilitacijski naziv mentorja!
-    {\large \textsc{Mentor}: viš. pred./doc./izr. prof./prof. dr. Peter Klepec\par}%
-   {\large \textsc{Somentor}:  viš. pred./doc./izr. prof./prof. dr.  Martin Krpan \par}%
-    {\vskip 2em \large Ljubljana, 2019 \par}%
+    {\large \textsc{Mentor}: prof. dr. Petar Pavešić\par}%
+%   {\large \textsc{Somentor}:  viš. pred./doc./izr. prof./prof. dr.  Martin Krpan \par}%
+    {\vskip 2em \large Ljubljana, 2024 \par}%
 \end{center}
 % prazna stran
 %\clearemptydoublepage      % dodal Solina (izjava o licencah itd. se izpiše na hrbtni strani naslovnice)
@@ -579,9 +580,7 @@ Image -> Abstract Cell complex -> Alexandrov topology\\
 \href{http://bims.iranjournals.ir/article_266_e1ff26c6f7b350afcde8bd3ec3654132.pdf}{AN ALEXANDROFF TOPOLOGY ON GRAPHS}
 Pravi, da ima digitalna\\ topologija problem, da ne obstaja na vseh grafih
 (opisano v glavnem članku) in definira ``graphic topology'.
-\chapter{?}
-\section{Končne topologije na grafih}
-(WIKIPEDIA!!)\\
+\chapter{Topologije na grafih}
 \begin{definition}
   Za dan topološki prostor $(X, \tau)$ in dano podmnožico $S \subseteq X$, definiramo
   topologijo, zožano na $S$ \[\tau|_S = \{U \cap S\ |\ U \in \tau\}\]
@@ -594,7 +593,7 @@ Pravi, da ima digitalna\\ topologija problem, da ne obstaja na vseh grafih
     \item[(2)] Za vsako podmnožico $V' \subseteq V$, ki je povezana v $O$, je $G[V']$ povezan graf.
   \end{itemize}
 \end{definition}
-\begin{theorem}
+\begin{theorem}\label{theorem1}
   Naj bo $G$ graf s topologijo $O$. Za vsak induciran podgraf $H \sqsubseteq G$ je topologija,
   omejena na $V(H)$, topologija na grafu $H$. Tako topologijo označimo z $O|_{V(H)}$.
 \end{theorem}
@@ -656,7 +655,7 @@ Topologiji lahko nista niti homeomorfni.
 \end{proof}
 
 Naj bo $O$ poljubna topologija na $G^b$. Naslednje leme držijo za $\forall x \in V$
-\begin{lemma}
+\begin{lemma}\label{lem1}
   $\{x\} \subseteq U_x \subseteq \{x\} \cup N_x$
 \end{lemma}
 \begin{proof}
@@ -666,7 +665,7 @@ Naj bo $O$ poljubna topologija na $G^b$. Naslednje leme držijo za $\forall x \i
   je ta množica povezana v $O$. Ker je $G^b[\{x',y\}]$ nepovezan graf, je to v
   protislovju z definicijo topologije na $G^b$.
 \end{proof}
-\begin{lemma}
+\begin{lemma}\label{lem2}
   $U_x = \{x\}$ ali $U_x = \{x\} \cup N_x$
 \end{lemma}
 \begin{proof}
@@ -680,17 +679,64 @@ Naj bo $O$ poljubna topologija na $G^b$. Naslednje leme držijo za $\forall x \i
   Če velja $U_{x'} \cap U_y = \{x'\}$, potem je $U_{x'} = \{x'\}$, kar je v
   protislovju z predpostavko $U_{x'} \neq \{x'\}$.
 \end{proof}
-\begin{lemma}
+\begin{lemma}\label{lem3}
   Za vsak $y \in N_x$ velja $U_x = \{x\} \iff U_y = \{y\} \cup N_y$
 \end{lemma}
 \begin{proof}
 Če je $U_x = \{x\}, U_y = \{y\}$ za katerikoli $y$, sledi protislovje, saj je 
 $\{x,y\}$ nepovezana v $O$, $y$ pa je sosed $x$.
 Če velja $U_x = \{x\} \cup N_x, U_y = \{y\} \cup N_y$ za katerikoli $y$, potem je
-$U_x \cap U_y = \{x, y\} \in O$ (ker je $y \in N_x \Rightarrow x \in N_y$). Nadalje
-velja tudi $U_x = U_y = \{x,y\} \in O$. Ker sta $U_x$ in $U_y$ najmanjši odprti
-množici, ki vsebujeta $x$ in $y$ in je $\{x,y\}$ 
+$U_x \cap U_y = \{x, y\} \in O$ (ker je $y \in N_x \Rightarrow x \in N_y$). Ker je
+$U_x$ najmanjša odprta množica, ki vsebuje $x$, je $U_x = \{x,y\}$. Prav tako je
+tudi $U_y = \{x,y\}$. Zaradi leme \ref*{lem2}, sledi, da je $N_x = \{y\}$ in $N_y = \{x\}$.
+Ker je graf povezan in je edini sosed $x$ $y$, sta ti dve točki cel graf
+$V(G^b) = \{x,y\}$, kar je protislovje s predpostavko, da ima $G^b$ vsaj tri vozlišča.
 \end{proof}
+
+Iz zadnje leme sledi:
+\begin{theorem}
+Vsak povezan, dvodelen graf $G^b = (V,E)$, ki ima vsaj tri vozlišča, ima natanko
+dve topologiji. To sta $O_1$ in $O_2$:
+\[
+  \begin{split}
+  O_1:&\quad
+  U_x:=\{x\}\ \ \forall x \in V_A, \quad
+  U_x:=\{x\}\cup N_x\ \  \forall x \in V_B\\
+  O_2:&\quad
+  U_x:=\{x\}\cup N_x\ \  \forall x \in V_A, \quad
+  U_x:=\{x\}\ \ \forall x \in V_B\\
+\end{split}
+\]
+\end{theorem}
+
+\section{Obstoj topologije na grafu}
+
+\begin{corollary}\label{corollary1}
+Krog $C$, ki ima sodo število vozlišč $n > 3$, nima topologije.
+\end{corollary}
+\begin{proof}
+Za vsak $x \in V(C), G_x^b := C[\{x\} \cup N_x]$ je dvodelen graf, ki ima vsaj tri
+vozlišča. Recimo, da ima $C$ topologijo $O$ na vsakem $G_x^b$ je inducirana 
+topologija $O_1$ ali $O_2$. Za vsaki dve sosednji točki $x,y \in V(C)$ velja:
+\[
+    O|_{V(G_x^b)} \cong O_1 \iff O|_{V(G_y^b)} \cong O_2
+\]
+sicer, bi $U_x = \{x\}$ in $U_y = \{y\}$, kar bi pomenilo, da je množica
+$\{x, y\}$ nepovezana v $O$ in to je v protislovju z predpostavko, da sta $x$ in
+$y$ povezana. Če si izberemo neko začetno točko $X_0 \in V(C)$, lahko zaporedno
+izbiramo sosednje točke in opazujemo inducirane topologije.
+\[O|_{V(G_{X_0}^b)} \cong O_1\]
+\[O|_{V(G_{X_1}^b)} \cong O_2\]
+\[O|_{V(G_{X_3}^b)} \cong O_1\]
+Ker ima krog sodo število vozlišč, se na $x_0$ inducira topologija $O_2$. Torej
+na podgraf $G^b_{x_0}$ sta inducirani topologiji $O_1$ in $O_2$, kar je v protislovju.
+\end{proof}
+
+Iz posledice \ref*{corollary1} in iz Izreka \ref*{theorem1} sledi:
+\begin{theorem}
+Vsak graf $G$, ki vsebuje krog $C$ s lihim številom vozlišč, kot induciran podgraf,
+nima topologije.
+\end{theorem}
 
 \cleardoublepage
 \addcontentsline{toc}{chapter}{Literatura}
