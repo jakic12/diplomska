@@ -24,6 +24,7 @@
 
 \documentclass[a4paper, 12pt]{book}
 %\documentclass[a4paper, 12pt, draft]{book}  Nalogo preverite tudi z opcijo draft, ki vam bo pokazala, katere vrstice so predolge!
+\def\onlycontent{tru} % comment out to show also the cover pages
 
 
 
@@ -48,6 +49,7 @@
 \usepackage[numbers]{natbib}  % dodal Solina
 
 \usepackage{amsthm}
+\usepackage{svg}
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 %	DIPLOMA INFO
@@ -179,10 +181,14 @@
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
-\newtheorem{definition}{Definicija}[section]
 \newtheorem{theorem}{Izrek}[section]
 \newtheorem{lemma}{Lema}[section]
 \newtheorem{corollary}{Posledica}[section]
+\theoremstyle{definition}
+\newtheorem{definition}{Definicija}[section]
+\newtheorem{example}{Primer}[section]
+
+\graphicspath{ {./slike/} }
 
 \begin{document}
 \selectlanguage{slovene}
@@ -191,6 +197,7 @@
 \renewcommand{\thepage}{}       % preprecimo težave s številkami strani v kazalu
 \newcommand{\sn}[1]{"`#1"'}                    % dodal Solina (slovenski narekovaji)
 
+\ifx\onlycontent\undefined
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 %naslovnica
  \thispagestyle{empty}%
@@ -362,36 +369,58 @@ A proper abstract should contain around 100 words which makes this one way too s
 \selectlanguage{slovene}
 % prazna stran
 \clearemptydoublepage
-
+\fi
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 \mainmatter
 \setcounter{page}{1}
 \pagestyle{fancy}
 
 \chapter{Uvod}
-Motivacija, kje se uporablja segmentacija slik?\\
-(ROSENFELD Digital topology pg.2) 
+Procesiranje slik je zelo pomembno in hitro rastoče področje računalništva z 
+obširno uporabo na različnih področjih. Lahko je to avtomatizirano branje dokumentov
+v poslovnem svetu, avtomatski nadzor kakovosti v proizvodnji, medicinska diagnostika
+na podlagi radiologije in še mnogo drugih načinov uporabe. Večina dela na tem področju
+se ukvarja z problemom analize slik. To pomeni, da za dano sliko hočemo pridobiti
+opis slike na podlagi objektov na sliki, regij na sliki in njihovih medsebojnih relacij.
+Na primer dokument je sestavljen iz znakov na nekem ozadju; krvni razmaz je 
+sestavljen iz krvnih celic na nekem ozadju; rentgenska slika je sestavljena
+iz različnih organov; itd. Torej prva faza procesiranja je ločevanje slike na
+različne regije ali na objekte v ospredju in ozadje. Ta proces imenujemo \textbf{segmentacija}.\\
+Segmentacija je postopek dodeljevanja vsakega slikovnega elementa (piksla) v eno ali več
+razredov. Eden izmed preprostih pristopov je binarna segmentacija, kjer sliko razdelimo
+na dve regiji, ozadje in ospredje na podlagi nekega praga. Če je svetlost piksla večja
+od praga, ga dodelimo v ospredje, sicer v ozadje ali obratno. Obstaja veliko več
+kompleksnejših metod segmentacije, ki uporabljajo več podatkov kot samo svetlost
+pikslov.\\
+Ko sliko enkrat segmentiramo v manjše regije, lahko začnemo analizirati lastnosti
+teh regij in njihove medsebojne relacije. Nekatere lastnosti so odvisne od svetlosti
+pikslov, druge so odvisne samo od pozicije pikslov. Zelo osnovne so topološke lastnosti
+regij, ki vključujejo koncepte kot so povezanost, sosednost in so neodvisne od
+velikosti in oblike regij.\\
+Topološke lastnosti so uporabne zaradi različnih razlogov. Po tem ko smo izbrali
+neko regijo, na primer ospredje dokumenta, jo ponavadi hočemo še segmentirati v
+manjše povezane regije, ki predstavljajo posamezne objekte kot so znaki. Lahko
+hočemo skrčiti regijo na okostje, ki predstavlja skrčeno obliko regije in ohranja
+povezanost.
 \begin{quote}
-  
-  Digital image processing or picture processing [1] is a rapidly growing discipline with broad applications in business (document reading), industry (automated assembly and inspection), medicine (radiology, hematology, etc.), and the environmental scien- ces (meteorology, geology, land-use management, etc.), among many other fields [2]. Most of this work involves picture analysis: given a picture, to construct a description of it in terms of the objects it contains or the regions of which it is composed and their properties and relationships. For example, a printed page is made up of characters on a background; a blood smear on a microscope slide contains blood cells on a background; a chest x-ray shows the heart, lungs, ribs, etc.; a satellite TV image of terrain is composed of terrain types; and so on. The process of decomposing a picture into regions, or into objects and background, is called segmentation.
+    TODO: Še kak primer za uporabo topoloških lastnosti
 \end{quote}
-Ko sliko segmentiramo lahko opazujemo lastnosti segmentacije.\\
-Zakaj so topološke lastnosti slike zanimive?\\
-(ROSENFELD Digital topology pg.2) 
-\begin{quote}
-  Topological properties of digital picture subsets are useful for a number of reasons. After a subset has been singled out, e.g., by thresholding, one usually wants to further segment it into connected regions, since these often correspond to distinct objects (characters, blood cells, etc.). One may also want to track the borders of these regions, since the sequences of moves around the borders provide a compact encoding of region shape. Alternatively, one may want to "thin" the regions into "skeletons," without changing their connectedness properties, since this too yields a compact representation (e.g., an elongated region is represented by a set of arcs or curves). The adjacency or surroundedness relations among the regions can be compactly represented by a graph whose nodes are the regions, and in which two nodes are joined by an arc iff those two regions are adjacent.
-\end{quote}
-\begin{quote}
-  Many algorithms exist for segmenting a picture subset into its connected components, border following, thinning, and constructing the adjacency graph of a partition of a picture; see, e.g., [1, Chapter 9]. To prove that these algorithms work correctly, or even (in some cases) to state them precisely, it is necessary to establish some of the basic topological properties of digital picture subsets
-\end{quote}
-% IZ Bretto 1. stran intro
-% \chapter{Digitalni prostori}
-% Podatkovne strukture v računalništvu so števne, torej edine množice, ki jih lahko
-% uporabljamo so diskretne ali digitalne množice. Pridevnik digitalno uporabimo kot
-% nasprotje za zvezno. Na primer $R^n, n \geq 1$ je zvezen prostor
-% in $\mathbb{Z}^n, n \geq 1$ digitalen.
+V večini literature se sliko predstavi kot neke vrste graf. Ponavadi tak, da
+so vozlišča piksli, povezave pa so sosednosti med piksli, bodisi 4-sosednost
+bodisi 8-sosednost. Opazovanje topoloških lastnosti slik torej porodi potrebo po
+raziskovanju topologij na grafih. 
 
-\chapter{Definicije}
+\section{Digitalne topologije}
+Podatkovne strukture v računalništvu so števne, torej edine množice, ki jih lahko
+uporabljamo so diskretne ali digitalne množice. Pridevnik digitalno uporabimo kot
+nasprotje za zvezno. Diskretne topološke prostore, lahko definiramo kot topološke prostore,
+v katerih velja, da ima vsaka točka najmanjšo okolico. Pri navadni topologiji to
+lahko ne drži, saj lahko okoli vsake točke najdemo poljubno majhno okolico. 
+\begin{quote}
+    TODO: Lepši uvod v digitalne topologije
+\end{quote}
+
+\section{Definicije}
 Vsi grafi bodo neusmerjeni, brez izoliranih vozlišč in preprosti torej brez zank
 in večkratnih povezav med vozlišči.
 \textbf{Graf} $G = (V,E)$ vsebuje množico vozlišč $V$ in množico povezav $E \subseteq \binom{V}{2}$.
@@ -425,10 +454,10 @@ da ima vsaka točka v topologiji Aleksandrova najmanjšo okolico, ki je odprta.\
 Topologija nad množico $X$ je $\mathbf{T_0}$, če za vsaki različni točki $x,y \in X$
 obstaja odprta množica $U$, ki vsebuje $x$ in ne $y$ ali obratno
 
-\chapter{Končne topologije in šibke urejenosti}
-(Barmak)\\  
-Končna topologija je topologija na končni množici. Šibko urejena množica je množica s tranzitivno in refleksivno relacijo.
-Končne topologije so isti objekti kot končne šibko urejene množice iz drugega zornega kota. Za končno množico $X$ lahko
+\chapter{Končne topologije in delne urejenosti}
+Končna topologija je topologija na končni množici. Šibko urejena množica je
+množica s tranzitivno in refleksivno relacijo. Končne topologije so isti objekti
+kot končne šibko urejene množice iz drugega zornega kota. Za končno množico $X$ lahko
 za vsako točko definiramo minimalno odprto množico $U_x$ kot presek vseh odprtih
 množic, ki vsebujejo $x$. Minimalne odprte množice vseh točk tvorijo bazo prostora.
 Taki bazi pravimo minimalna baza. Vsaka baza prostora vsebuje minimalno bazo,
@@ -441,7 +470,41 @@ Sedaj lahko pokažemo, da je $y \leq x$ če in samo če $y \in U_x$.
 Tudi obratno, če $y \in U_x$, potem je $y \in \{z \in X | z \leq x\}$, torej  je $y \leq x$.\\
 Prostor je $T_0$, če za vsaki različni točki $x,y \in X$ obstaja odprta množica
 $U$, ki vsebuje $x$ in ne $y$ ali obratno. Aksiom $T_0$ se sovpada z antisimetričnostjo na
-končnih šibko urejenih množicah. Torej končni $T_0$ prostori so ekvivalentni končni delno urejeni množici.\\
+končnih šibko urejenih množicah. To pomeni, da če imamo elementa, za katera velja
+$a \leq b$ in $b \leq a$, se sovpada z $y \in U_x$ in $x \in U_y$. Torej končni $T_0$ prostori so ekvivalentni
+končni delno urejeni množici.\\
+
+\begin{example}\label{ex1}
+    Naj bo $(X,\tau)$ topološki prostor, pri čemer je $X = \{a,b,c,d\}$ končna
+    množica, odprte množice pa so $\emptyset, \{a,b,c,d\}, \{b,d\}, \{c\}, \{d\},
+    \{b,c,d\}$ in $\{c,d\}$. Prostor je $T_0$, torej je delno urejen. Slika \ref{pic1}
+    prikazuje odprte množice na $X$ z zaprtimi krivuljami.w
+    \begin{figure}[h]
+        \begin{center}
+        \includegraphics[width=0.2\textwidth]{example-topology.pdf}
+        \end{center}
+        \caption{Odprte množice na končni množici $X$ iz primera \ref{ex1}}
+        \label{pic1}
+    \end{figure}
+    Ker je množica delno urejena, lahko prostor predstavimo lepše z Hassejevim diagramom.
+    To lahko naredimo za vse končne $T_0$ prostore. Hassejev diagram je graf,
+    kjer so vozlišča elementi množice, povezave pa urejeni pari $(x,y)$, kjer je $x < y$ in
+    ne obstaja $z \in X$, da bi veljalo $x < z < y$. Namesto puščic na povezavah
+    predstavimo elemente višje v diagramu. Torej če je $x < y$, potem je $y$
+    narisan nad $x$.
+
+    \begin{figure}[h]
+        \begin{center}
+        \includegraphics[width=0.2\textwidth]{hasse-example.pdf}
+        \end{center}
+        \caption{Hassejev diagram končne delno urejene množice iz primera \ref{ex1}}
+        \label{pic2}
+    \end{figure}
+\end{example}
+
+%% flag complex
+
+
 
 % \section{Separacijski aksiomi}
 % \href{https://www.math.uchicago.edu/~may/MISC/FiniteSpaces.pdf}{FINITE TOPOLOGICAL SPACES}
@@ -469,24 +532,24 @@ končnih šibko urejenih množicah. Torej končni $T_0$ prostori so ekvivalentni
 % $x \leq y \iff$ vsaka odprta podmnožica, ki vsebuje $x$, vsebuje tudi $y$ \\
 % Iz šibke urejenost pa lahko definiramo več različnih topologij.
 \section{topologija Aleksandrova}
-\begin{definition}
+% \begin{definition}
   
-\end{definition}
-Topologija Aleksandrova na $\leq$ je najfinejša topologija,
-ki ima $\leq$ kot (Specialization quasi-ordering).
-\begin{theorem}
-  Odprte podmnožice topologije Aleksandrova nad $\leq$ so zgornje zaprte podmnožice $\leq$, zaprte množice so spodnje zaprte podmnožice $\leq$.
-\end{theorem}
-(J. Goubault-Larrecq. Non-Hausdorff Topology and Domain Theory: Selected Topics in Point-Set Topology.)
-\begin{quote}
-  Proof Consider the collection $O$ of all upward closed subsets of $X$. This is a
-  topology. Call $\preceq$, temporarily, its specialization quasi-ordering. If x $\preceq$ y, then
-  every upward closed subset containing $x$ must contain $y$, in particular $\uparrow x$; so
-  $x \leq y$. Conversely, if $x \leq y$, then clearly $x \preceq y$.
-  So $\leq$ is indeed the specialization quasi-ordering of $O$.It is the finest topology with  as specialization
-  quasi-ordering, by Lemma 4.2.5. That its closed sets are exactly the downward closed subsets
-  is because the downward closed subsets are exactly the complements of upward closed subsets
-\end{quote}
+% \end{definition}
+% Topologija Aleksandrova na $\leq$ je najfinejša topologija,
+% ki ima $\leq$ kot (Specialization quasi-ordering).
+% \begin{theorem}
+%   Odprte podmnožice topologije Aleksandrova nad $\leq$ so zgornje zaprte podmnožice $\leq$, zaprte množice so spodnje zaprte podmnožice $\leq$.
+% \end{theorem}
+% (J. Goubault-Larrecq. Non-Hausdorff Topology and Domain Theory: Selected Topics in Point-Set Topology.)
+% \begin{quote}
+%   Proof Consider the collection $O$ of all upward closed subsets of $X$. This is a
+%   topology. Call $\preceq$, temporarily, its specialization quasi-ordering. If x $\preceq$ y, then
+%   every upward closed subset containing $x$ must contain $y$, in particular $\uparrow x$; so
+%   $x \leq y$. Conversely, if $x \leq y$, then clearly $x \preceq y$.
+%   So $\leq$ is indeed the specialization quasi-ordering of $O$.It is the finest topology with  as specialization
+%   quasi-ordering, by Lemma 4.2.5. That its closed sets are exactly the downward closed subsets
+%   is because the downward closed subsets are exactly the complements of upward closed subsets
+% \end{quote}
 \section{Topologija Aleksandrova na slikah}
 (\href{https://en.wikipedia.org/wiki/Abstract_cell_complex}{wikipedia})
 \begin{quote}
