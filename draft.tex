@@ -420,6 +420,11 @@ lahko ne drži, saj lahko okoli vsake točke najdemo poljubno majhno okolico.
     TODO: Lepši uvod v digitalne topologije
 \end{quote}
 
+\section{Celični kompleksi}
+\begin{quote}
+    TODO: Laična razlaga celičnih kompleksov in njihove uporabe
+\end{quote}
+
 \section{Definicije}
 Vsi grafi bodo neusmerjeni, brez izoliranih vozlišč in preprosti torej brez zank
 in večkratnih povezav med vozlišči.
@@ -454,7 +459,8 @@ da ima vsaka točka v topologiji Aleksandrova najmanjšo okolico, ki je odprta.\
 Topologija nad množico $X$ je $\mathbf{T_0}$, če za vsaki različni točki $x,y \in X$
 obstaja odprta množica $U$, ki vsebuje $x$ in ne $y$ ali obratno
 
-\chapter{Končne topologije in delne urejenosti}
+\chapter{Končne topologije, delne urejenosti in celični kompleksi}
+\section{Povezava končnih topologij in delnih urejenosti}
 Končna topologija je topologija na končni množici. Šibko urejena množica je
 množica s tranzitivno in refleksivno relacijo. Končne topologije so isti objekti
 kot končne šibko urejene množice iz drugega zornega kota. Za končno množico $X$ lahko
@@ -463,22 +469,26 @@ množic, ki vsebujejo $x$. Minimalne odprte množice vseh točk tvorijo bazo pro
 Taki bazi pravimo minimalna baza. Vsaka baza prostora vsebuje minimalno bazo,
 ker če je $U_x$ unija odprtih množic, mora biti $x$ vsebovan v eni izmed njih.
 Tedaj se ta množica sovpada z $U_x$.\\
-Naj bo $x \leq y$, če $x \in U_y$ šibka urejenost nad $X$. Iz take šibke urejenosti
+Naj bo $X$ topološki prostor z bazo $\{U_x\}_{x \in X}$. Iz topološkega
+prostora lahko definiramo relacijo $x \leq y$ tako, da sta $x$ in $y$ v relaciji,
+če velja $x \in U_y$. Podana relacija je šibka urejenost nad $X$. Iz šibke urejenosti
 lahko definiramo topologijo nad $X$ z bazo $\{y \in X | x \leq y\}_{x \in X}$.
 Sedaj lahko pokažemo, da je $y \leq x$ če in samo če $y \in U_x$.
 Če je $y \leq x$, potem je $y$ v vsaki osnovni množici, ki vsebuje $x$, torej je $y \in U_x$.
 Tudi obratno, če $y \in U_x$, potem je $y \in \{z \in X | z \leq x\}$, torej  je $y \leq x$.\\
 Prostor je $T_0$, če za vsaki različni točki $x,y \in X$ obstaja odprta množica
-$U$, ki vsebuje $x$ in ne $y$ ali obratno. Aksiom $T_0$ se sovpada z antisimetričnostjo na
+$U$, ki vsebuje $x$ in ne $y$ ali obratno. Pogoj $T_0$ se sovpada z antisimetričnostjo na
 končnih šibko urejenih množicah. To pomeni, da če imamo elementa, za katera velja
-$a \leq b$ in $b \leq a$, se sovpada z $y \in U_x$ in $x \in U_y$. Torej končni $T_0$ prostori so ekvivalentni
-končni delno urejeni množici.\\
+$a \leq b$ in $b \leq a$, pomeni, da $y \in U_x$ in $x \in U_y$. Ker v $T_0$ prostorih
+za vsak par točk obstaja odprta množica, ki vsebuje eno točko in ne drugo, to pomeni,
+da je $x = y$. Torej končni $T_0$ prostori so ekvivalentni končni delno urejeni
+množici.\\
 
 \begin{example}\label{ex1}
     Naj bo $(X,\tau)$ topološki prostor, pri čemer je $X = \{a,b,c,d\}$ končna
     množica, odprte množice pa so $\emptyset, \{a,b,c,d\}, \{b,d\}, \{c\}, \{d\},
     \{b,c,d\}$ in $\{c,d\}$. Prostor je $T_0$, torej je delno urejen. Slika \ref{pic1}
-    prikazuje odprte množice na $X$ z zaprtimi krivuljami.w
+    prikazuje odprte množice na $X$ z zaprtimi krivuljami.
     \begin{figure}[h]
         \begin{center}
         \includegraphics[width=0.2\textwidth]{example-topology.pdf}
@@ -486,13 +496,6 @@ končni delno urejeni množici.\\
         \caption{Odprte množice na končni množici $X$ iz primera \ref{ex1}}
         \label{pic1}
     \end{figure}
-    Ker je množica delno urejena, lahko prostor predstavimo lepše z Hassejevim diagramom.
-    To lahko naredimo za vse končne $T_0$ prostore. Hassejev diagram je graf,
-    kjer so vozlišča elementi množice, povezave pa urejeni pari $(x,y)$, kjer je $x < y$ in
-    ne obstaja $z \in X$, da bi veljalo $x < z < y$. Namesto puščic na povezavah
-    predstavimo elemente višje v diagramu. Torej če je $x < y$, potem je $y$
-    narisan nad $x$.
-
     \begin{figure}[h]
         \begin{center}
         \includegraphics[width=0.2\textwidth]{hasse-example.pdf}
@@ -500,9 +503,28 @@ končni delno urejeni množici.\\
         \caption{Hassejev diagram končne delno urejene množice iz primera \ref{ex1}}
         \label{pic2}
     \end{figure}
+    Ker je množica delno urejena, lahko prostor predstavimo lepše z Hassejevim diagramom (Slika \ref{pic2}).
+    To lahko naredimo za vse končne $T_0$ prostore. Hassejev diagram je graf,
+    kjer so vozlišča elementi množice, povezave pa urejeni pari $(x,y)$, kjer je $x < y$ in
+    ne obstaja $z \in X$, da bi veljalo $x < z < y$. Namesto puščic na povezavah
+    predstavimo elemente višje v diagramu. Torej če je $x < y$, potem je $y$
+    narisan nad $x$.
+
 \end{example}
+Na delni urejenosti lahko definiramo nekaj izrazov. Element $x$ je \textbf{maksimalen},
+če $y \geq x$ implicira $y=x$ in je \textbf{maksimum} delne urejenosti, če velja
+$y \leq x$ za vsak $y \in X$. Delna urejenost ima \textbf{maksimum}, če in samo če
+obstaja natanko en maksimalen element. \textbf{Minimalen} element in \textbf{minimum} sta
+definirana dualno.\\
+\textbf{Veriga} v delni urejenosti je podmnožica elementov, ki so paroma primerljivi.
+\textbf{Antiveriga} je podmnožica elementov, ki so paroma neprimerljivi.\\
 
 %% flag complex
+\section{Simplicialni kompleksi}
+Simplicialni kompleks $K$ je sestavljen iz množice $V_K$ in množice $S_K$.
+$V_K$ se imenuje množica vozlišč, $S_K$ pa množica simpleksov
+
+\section{Povezava delnih urejenosti in celičnih kompleksov}
 
 
 \href{http://bims.iranjournals.ir/article_266_e1ff26c6f7b350afcde8bd3ec3654132.pdf}{AN ALEXANDROFF TOPOLOGY ON GRAPHS}
