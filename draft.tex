@@ -490,15 +490,15 @@ množici.\\
     \{b,c,d\}$ in $\{c,d\}$. Prostor je $T_0$, torej je delno urejen. Slika \ref{pic1}
     prikazuje odprte množice na $X$ z zaprtimi krivuljami.
     \begin{figure}[h]
+      \label{pic1}
         \begin{center}
-        \includegraphics[width=0.2\textwidth]{example-topology.pdf}
+        \includegraphics[width=0.3\textwidth]{example-topology.pdf}
         \end{center}
         \caption{Odprte množice na končni množici $X$ iz primera \ref{ex1}}
-        \label{pic1}
     \end{figure}
     \begin{figure}[h]
         \begin{center}
-        \includegraphics[width=0.2\textwidth]{hasse-example.pdf}
+        \includegraphics[width=0.3\textwidth]{hasse-example.pdf}
         \end{center}
         \caption{Hassejev diagram končne delno urejene množice iz primera \ref{ex1}}
         \label{pic2}
@@ -521,15 +521,83 @@ definirana dualno.\\
 
 %% flag complex
 \section{Simplicialni kompleksi}
-Simplicialni kompleks $K$ je sestavljen iz množice $V_K$ in množice $S_K$.
-$V_K$ se imenuje množica vozlišč, $S_K$ pa množica simpleksov
+Simplicialni kompleks $K$ je sestavljen iz množice $V_K$ in množice $S_K$, ki je
+sestavljena iz končnih, nepraznih podmnožic množice $V_K$.
+$V_K$ se imenuje množica točk, $S_K$ pa množica simpleksov. Veljati mora, da
+je vsaka podmnožica moči 1 množice $V_K$ simpleks in vsaka neprazna podmnožica
+simpleksov je simpleks. Lahko malenkost izrabimo notacijo in pišemo $v \in K$ namesto
+$v \in V_K$ in $\sigma \in K$ namesto $\sigma \in S_K$. V večini primerov bomo
+simplicialni kompleks identificirali samo kot množico njegovih simpleksov.\\
+Če je simpleks $\sigma$ podmnožica simpleksa $\tau$, pravimo, da je $\sigma$ njegovo \textbf{lice}.
+Simpleks, ki ima $n+1$ točk, imenujemo \textbf{$n$-simpleks} in pravimo, da je \textbf{dimenzije} $n$.
+Torej vse točke $K$ predstavljajo 0-simplekse. Dimenzija $K$ je supremum dimenzij
+vseh simpleksov v $K$. Če je $K$ prazen, ima dimenzijo -1, če ima $K$ simplekse
+poljubno velike dimenzije, je dimenzije neskončno.\\
+Naj bo $\sigma = \{v_0,v_1,\dots,v_n\}$ simpleks dimenzije $n$. Zaprt simpleks
+$\bar{\sigma}$ je množica konveksnih kombinacij točk v $\sigma$.
+\[
+  \bar{\sigma} = \left\{\sum_{i=0}^n \lambda_i v_i | \lambda_i \geq 0, \sum_{i=0}^n \lambda_i = 1\right\}
+\]
+Geometrijska realizacija $|K|$ simplicialnega kompleksa $K$ je množica 
+vseh takih konveksnih kombinacij $\sum_{v\in K} \lambda_v v, \lambda_v \geq 0$, kjer vsi $v$, ki imajo
+neničelno $\lambda_v$ tvorijo simpleks v $K$. $|K|$ je torej unija vseh zaprtih
+simpleksov $K$.
+\begin{example}
+  Naj bo $K$ simplicialni kompleks, ki vsebuje simplekse
+  $\{a,b,c\}$, $\{b,d\}$, $\{c,d\}$, $\{b,e\}$, $\{f\}$ in vse njihove neprazne
+  podmnožice.
+  Geometrijska realizacija $|K|$ je prikazana na sliki \ref{sx}.
+  \begin{figure}[h]
+      \begin{center}
+      \includegraphics[width=0.4\textwidth]{simplicialni-kompleks.pdf}
+      \end{center}
+      \caption{Geometrijska realizacija simplicialnega kompleksa $K$}
+      \label{sx}
+  \end{figure}
+\end{example}
+\newpage
+Topološki prostor $X$ je \textbf{topološki polieder},če obstaja simplicialni
+kompleks $K$, da je $X$ homeomorfen telesu $|K|$. Simplicialni kompleks
+$K$ imenujemo \textbf{triangulacija} poliedra $X$.
+\begin{example}
+  Pokažemo lahko, da je kolobar topološki polieder tako, da skiciramo njegovo
+  triangulacijo.
+    \begin{figure}[h]
+        \begin{center}
+        \includegraphics[width=0.4\textwidth]{torus-simpleks.pdf}
+        \end{center}
+        \caption{Triangulacija kolobarja}
+    \end{figure}
+\end{example}
+Za dan simplicialni kompleks $K$, lahko konstruiramo njegovo \textbf{baricentrično subdivizijo} $K'$.
+Točke $K'$ so simpleksi $K$ in simpleksi $K'$ verige simpleksov $K$. Veriga
+simpleksov je taka množica $\{\sigma_0,\sigma_1,\dots,\sigma_n\}, \sigma_i \in K$
+, da velja $\sigma_0 \subsetneq \sigma_1 \subsetneq \dots \subsetneq \sigma_n$.
+\newpage
+\begin{figure}[h]
+  \begin{center}
+  \includegraphics[width=0.8\textwidth]{baricentricna1.pdf}
+  \end{center}
+  \caption{Prvi korak baricentrične subdivizije}
+  \label{baricent1}
+\end{figure}
+\begin{figure}[h]
+  \begin{center}
+  \includegraphics[width=0.8\textwidth]{baricentricna2.pdf}
+  \end{center}
+  \caption{Simpleks $\{a, ac, abc\}$ in rezultat baricentrične subdivizije}
+  \label{baricent2}
+\end{figure}
+\begin{example}
+  Naj bo $K$ 2-simpleks $\{a,b,c\}$. Če hočemo konstruirati baricentrično subdivizijo $K$,
+  moramo najprej dodati točke za vsak simpleks v $K$ (Slika \ref{baricent1}).
+  Nato lahko dodamo nove simplekse, ki so verige simpleksov v $K$.
+  Nato dorišemo še najdaljše verige, saj so v tem primeru vsi ostali simpleksi v $K'$ podmnožice teh.
+  Primer take verige je $\{a, ac, abc\}$, saj velja $a \subsetneq ac \subsetneq abc$ (Slika \ref{baricent2}).
+\end{example}
 
 \section{Povezava delnih urejenosti in celičnih kompleksov}
 
-
-\href{http://bims.iranjournals.ir/article_266_e1ff26c6f7b350afcde8bd3ec3654132.pdf}{AN ALEXANDROFF TOPOLOGY ON GRAPHS}
-Pravi, da ima digitalna\\ topologija problem, da ne obstaja na vseh grafih
-(opisano v glavnem članku) in definira ``graphic topology'.
 \chapter{Topologije na grafih}
 \begin{definition}
   Za dan topološki prostor $(X, \tau)$ in dano podmnožico $S \subseteq X$, definiramo
@@ -688,6 +756,7 @@ Vsak graf $G$, ki vsebuje krog $C$ s lihim številom vozlišč, kot induciran po
 nima topologije.
 \end{theorem}
 
+\nocite{*}
 \cleardoublepage
 \addcontentsline{toc}{chapter}{Literatura}
 \bibliography{literatura}
