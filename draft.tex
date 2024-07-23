@@ -377,63 +377,48 @@ A proper abstract should contain around 100 words which makes this one way too s
 
 \chapter{Uvod}
 Procesiranje slik je zelo pomembno in hitro rastoče področje računalništva z 
-obširno uporabo na različnih področjih. Lahko je to avtomatizirano branje dokumentov
+obširno uporabo na različnih področjih, recimo avtomatizirano branje dokumentov
 v poslovnem svetu, avtomatski nadzor kakovosti v proizvodnji, medicinska diagnostika
-na podlagi radiologije in še mnogo drugih načinov uporabe. Večina dela na tem področju
-se ukvarja z problemom analize slik. To pomeni, da za dano sliko hočemo pridobiti
-opis slike na podlagi objektov na sliki, regij na sliki in njihovih medsebojnih relacij.
-Na primer dokument je sestavljen iz znakov na nekem ozadju; krvni razmaz je 
-sestavljen iz krvnih celic na nekem ozadju; rentgenska slika je sestavljena
-iz različnih organov; itd. Torej prva faza procesiranja je ločevanje slike na
-različne regije ali na objekte v ospredju in ozadje. Ta proces imenujemo \textbf{segmentacija}.\\
-Segmentacija je postopek dodeljevanja vsakega slikovnega elementa (piksla) v eno ali več
+na podlagi radiologije ipd. To delo bo osredotočeno na analizo slik.
+To pomeni, da za dano sliko hočemo pridobiti opis slike na podlagi objektov
+na sliki, regij na sliki in njihovih medsebojnih relacij.
+Na primer dokument je sestavljen iz znakov na nekem ozadju, krvni razmaz je 
+sestavljen iz krvnih celic na nekem ozadju, rentgenska slika je sestavljena
+iz različnih organov itd.  Prva faza procesiranja je torej ločevanje slike na
+različne regije -- na objekte v ospredju in ozadje. Ta proces imenujemo \textbf{segmentacija}.\\
+Segmentacija je postopek dodeljevanja vsakega slikovnega elementa (piksla) v enega ali več
 razredov. Eden izmed preprostih pristopov je binarna segmentacija, kjer sliko razdelimo
-na dve regiji, ozadje in ospredje na podlagi nekega praga. Če je svetlost piksla večja
-od praga, ga dodelimo v ospredje, sicer v ozadje ali obratno. Obstaja veliko več
+na dve regiji, ozadje in ospredje, na podlagi nekega praga. Če je svetlost piksla večja
+od tega praga, ga dodelimo v ospredje, sicer pa v ozadje, ali obratno. Obstaja veliko več
 kompleksnejših metod segmentacije, ki uporabljajo več podatkov kot samo svetlost
 pikslov.\\
 Ko sliko enkrat segmentiramo v manjše regije, lahko začnemo analizirati lastnosti
 teh regij in njihove medsebojne relacije. Nekatere lastnosti so odvisne od svetlosti
 pikslov, druge so odvisne samo od pozicije pikslov. Zelo osnovne so topološke lastnosti
-regij, ki vključujejo koncepte kot so povezanost, sosednost in so neodvisne od
+regij, ki vključujejo koncepte, kot so povezanost in sosednost, in so neodvisne od
 velikosti in oblike regij.\\
-Topološke lastnosti so uporabne zaradi različnih razlogov. Po tem ko smo izbrali
+Topološke lastnosti so uporabne zaradi različnih razlogov. Po tem, ko smo izbrali
 neko regijo, na primer ospredje dokumenta, jo ponavadi hočemo še segmentirati v
-manjše povezane regije, ki predstavljajo posamezne objekte kot so znaki. Lahko
+manjše povezane regije. Te predstavljajo posamezne objekte, kot so znaki. Lahko
 hočemo skrčiti regijo na okostje, ki predstavlja skrčeno obliko regije in ohranja
 povezanost.
 \begin{quote}
     TODO: Še kak primer za uporabo topoloških lastnosti
 \end{quote}
-V večini literature se sliko predstavi kot neke vrste graf. Ponavadi tak, da
-so vozlišča piksli, povezave pa so sosednosti med piksli, bodisi 4-sosednost
-bodisi 8-sosednost. Opazovanje topoloških lastnosti slik torej porodi potrebo po
-raziskovanju topologij na grafih. 
-
-\section{Digitalne topologije}
-Podatkovne strukture v računalništvu so števne, torej edine množice, ki jih lahko
-uporabljamo so diskretne ali digitalne množice. Pridevnik digitalno uporabimo kot
-nasprotje za zvezno. Diskretne topološke prostore, lahko definiramo kot topološke prostore,
-v katerih velja, da ima vsaka točka najmanjšo okolico. Pri navadni topologiji to
-lahko ne drži, saj lahko okoli vsake točke najdemo poljubno majhno okolico. 
-\begin{quote}
-    TODO: Lepši uvod v digitalne topologije
-\end{quote}
-
-\section{Celični kompleksi}
-\begin{quote}
-    TODO: Laična razlaga celičnih kompleksov in njihove uporabe
-\end{quote}
+V večini literature se sliko predstavi kot neke vrste graf. Ponavadi je tak, da
+so vozlišča piksli, vozlišči pa sta povezani, če sta sosednji (bodisi 4-povezanost
+bodisi 8-povezanost). Opazovanje topoloških lastnosti slik torej porodi potrebo po
+raziskovanju topologij na grafih.
 
 \section{Definicije}
-Vsi grafi bodo neusmerjeni, brez izoliranih vozlišč in preprosti torej brez zank
+Vsi omenjeni grafi bodo neusmerjeni, brez izoliranih vozlišč in preprosti, torej brez zank
 in večkratnih povezav med vozlišči.
 \textbf{Graf} $G = (V,E)$ vsebuje množico vozlišč $V$ in množico povezav $E \subseteq \binom{V}{2}$.
-Povezavo $\{x,y\} \in E; x,y \in V$ lahko označimo tudi z $xy$.\\
+Povezavo $\{x,y\} \in E; \ mx,y \in V$, lahko označimo tudi z $xy$.\\
 Množica sosednjih vozlišč vozlišča $x$ je $N_x = \{y \in V | xy \in E\}$.\\
 Število sosednjih vozlišč vozlišča $x$ je $deg(x) = |N_x|$. Če je $deg(x)$ končno
 za vsak $x \in V$, je graf $G$ \textbf{lokalno končen}.\\
-$G$ je \textbf{povezan graf}, če za vsaki par vozlišč $x,y \in V$ obstaja končno
+$G$ je \textbf{povezan graf}, če za vsak par vozlišč $x,y \in V$ obstaja končno
 zaporedje različnih vozlišč $v_1,\dots,v_n \in V$, da velja $xv_1, v_1v_2, \dots, v_n y \in E$.\\
 Graf $G$ se imenuje \textbf{krog}, če je $V$ končna množica $n$ točk $V=\{v_1,\dots,v_n\}$ in
 $E=\{v_1 v_2,\dots,v_{n-1}v_n,v_n v_1\}$ \\
@@ -539,7 +524,7 @@ $\bar{\sigma}$ je množica konveksnih kombinacij točk v $\sigma$.
   \bar{\sigma} = \left\{\sum_{i=0}^n \lambda_i v_i | \lambda_i \geq 0, \sum_{i=0}^n \lambda_i = 1\right\}
 \]
 Geometrijska realizacija $|K|$ simplicialnega kompleksa $K$ je množica 
-vseh takih konveksnih kombinacij $\sum_{v\in K} \lambda_v v, \lambda_v \geq 0$, kjer vsi $v$, ki imajo
+vseh takih konveksnih kombinacij $\sum_{v\in K} \lambda_v v,\ \lambda_v \geq 0$, tako da vsi $v$, ki imajo
 neničelno $\lambda_v$ tvorijo simpleks v $K$. $|K|$ je torej unija vseh zaprtih
 simpleksov $K$.
 \begin{example}
@@ -591,42 +576,79 @@ simpleksov je taka množica $\{\sigma_0,\sigma_1,\dots,\sigma_n\}, \sigma_i \in 
 \begin{example}
   Naj bo $K$ 2-simpleks $\{a,b,c\}$. Če hočemo konstruirati baricentrično subdivizijo $K$,
   moramo najprej dodati točke za vsak simpleks v $K$ (Slika \ref{baricent1}).
-  Nato lahko dodamo nove simplekse, ki so verige simpleksov v $K$.
   Nato dorišemo še najdaljše verige, saj so v tem primeru vsi ostali simpleksi v $K'$ podmnožice teh.
   Primer take verige je $\{a, ac, abc\}$, saj velja $a \subsetneq ac \subsetneq abc$ (Slika \ref{baricent2}).
 \end{example}
 
-\section{Povezava delnih urejenosti in celičnih kompleksov}
+\section{Povezava delnih urejenosti in simplicialnih kompleksov}
+\begin{definition}
+  Naj bo $X$ končni $T_0$ topološki prostor. Simplicialni kompleks $\mathcal{K}(X)$
+  asociran z $X$ je simplicialni kompleks, katerega množica simpleksov so neprazne verige $X$.
+\end{definition}
+\begin{definition}
+  Naj bo $K$ simplicialni kompleks. Asocirana Delna urejenost $\mathcal{X}(K)$ je
+  množica simpleksov $K$ urejeni z inkluzijo. Če sta $\sigma, \tau \in K$,
+  je $\sigma \leq \tau$, če je $\sigma \subseteq \tau$.
+\end{definition}
 
-\chapter{Topologije na grafih}
+\chapter{Digitalni prostori}
+Glavni cilj digitalne topologije in digitalne geometrije je premostiti vrzel
+med geometrijskimi in topološkimi lastnosti komputacijskih objektov in njihovimi
+teoretičnimi reprezentacijami v zveznem prostoru $R^n$. Če hočemo uporabiti
+topološke pojme v digitalni domeni, moramo najprej definirati prostor, ki je
+analogen zveznemu prostoru $R^n, (n > 1)$.\\
+Navadno definiramo digitalne prostore na dva načina. Lahko se odločimo katero 
+vrsto povezanosti ima prostor. Naj bo $x = (x_1,\dots,x_n)$
+točka v $\mathbb{Z}^n$.\\
+  ($3^n-1$)-sosed točke $x$ je vsaka točka
+  $y = (y_1,\dots,y_n) \in \mathbb{Z}^n$, za katero velja
+  \[
+    \max|x_i - y_i| = 1
+  \]
+  Na primer $n = 2$ nam porodi 8-povezano mrežo.\\
+  $2n$-sosed točke $x$ je vsaka točka $y = (y_1,\dots,y_n) \in \mathbb{Z}^n$,
+  za katero velja
+  \[
+    \sum_{i=1}^{n}|x_i - y_i| = 1
+  \]
+  Na primer $n = 2$ nam porodi 4-povezano mrežo.\\
+  V oddelku \ref{obstoj} bomo pokazali, da 8-povezana mreža nima kompatibilne topologije.
+\section{Celični kompleksi}
+\begin{quote}
+    TODO: Laična razlaga celičnih kompleksov in njihove uporabe
+\end{quote}
+
+\section{Topologije na grafih}
 \begin{definition}
   Za dan topološki prostor $(X, \tau)$ in dano podmnožico $S \subseteq X$, definiramo
   topologijo, zožano na $S$ \[\tau|_S = \{U \cap S\ |\ U \in \tau\}\]
 \end{definition}
 \begin{definition}
-  Naj bo $G = (V,E)$ graf. Naj bo $O$ topologija na $V$. $O$ imenujemo topologija
-  na $G$, če velja:
+  Naj bo $G = (V,E)$ graf. Naj bo $O$ topologija na $V$. $O$ imenujemo kompatibilna
+  topologija na $G$, če velja:
   \begin{itemize}
     \item[(1)] Za vsak povezan $G' \sqsubseteq G$ je $V(G')$ povezan v $O$.
     \item[(2)] Za vsako podmnožico $V' \subseteq V$, ki je povezana v $O$, je $G[V']$ povezan graf.
   \end{itemize}
 \end{definition}
 \begin{theorem}\label{theorem1}
-  Naj bo $G$ graf s topologijo $O$. Za vsak induciran podgraf $H \sqsubseteq G$ je topologija,
-  omejena na $V(H)$, topologija na grafu $H$. Tako topologijo označimo z $O|_{V(H)}$.
+  Naj bo $G$ graf s kompatibilno topologijo $O$. Za vsak induciran podgraf
+  $H \sqsubseteq G$ je topologija, omejena na $V(H)$, kompatibilna topologija
+  na grafu $H$. Tako topologijo označimo z $O|_{V(H)}$.
 \end{theorem}
 \begin{proof}
-  Za vsak $H' \sqsubseteq H$ imamo $O|_{V(H')} = O|_{V(H)}|_{V(H')}$. Torej vsaka
+  Za vsak $H' \sqsubseteq H$ imamo $O|_{V(H')} = O|_{V(H)}|_{V(H')}$. Množica $V(H)$
+  je podmnožica $V(G)$, zato je $O|_{V(H)}$ podmnožica $O$.
+  Torej vsaka
   podmnožica $V(H)$ je povezana v $O|_{V(H)}$, če in samo če je povezana v $O$.
-  $H' \sqsubseteq G$ je povezan, če in samo če je $V(H') \subseteq V(H)$ povezan v $O$.
-  Torej so pogoji za topologijo na grafu $H$ izpolnjeni. \\
+  $H' \sqsubseteq G$ je povezan, če in samo če je $V(H') \subseteq V(H)$ povezan v $O$.\\
 \end{proof}
 
 \section{Topologija dvodelnih grafov}
 Naj bo $G^b$ povezan dvodelen graf $G^b = (V,E)$, ki ima vsaj tri vozlišča.
 $V$ je torej unija dveh nepraznih disjunktnih množic $V_A$ in $V_B$. Vsaka
 povezava v $E$ povezuje samo vozlišča iz $V_A$ z vozlišči iz $V_B$.\\
-Definiramo dve topologiji na množici vozlišč $V$ tako, da opišemo
+Definiramo dve kompatibilni topologiji na množici vozlišč $V$ tako, da opišemo
 topološko okolico vsake točke $x \in V$. To je najmanjša odprta množica, ki
 vsebuje $x$: $U_x \in O$. Ker $U_x$ ni mogoče razdeliti na odprte množice, je $U_x$
 in vsaka podmnožica $U_x$, ki vsebuje $x$ povezana.
@@ -642,10 +664,10 @@ Naj bo $N_x = \{y \  | \  yx \in E\}$ množica sosednjih točk točke $x$.\\
   U_x:=\{x\}\ \ \forall x \in V_B\\
 \end{split}
 \]
-Topologiji $O_1$ in $O_2$ nista ekvivalentni razen na grafih, ki nimajo povezav.
-Topologiji lahko nista niti homeomorfni.
+Kompatibilni topologiji $O_1$ in $O_2$ nista ekvivalentni, razen na grafih,
+ki nimajo povezav; lahko nista niti homeomorfni.
 \begin{theorem}
-  $O_1$ in $O_2$ sta topologiji na $G^b$.
+  $O_1$ in $O_2$ sta kompatibilni topologiji na $G^b$.
 \end{theorem}
 \begin{proof}
   Naj bo $O$ enak $O_1$ ali $O_2$.
@@ -672,7 +694,7 @@ Topologiji lahko nista niti homeomorfni.
   \end{itemize}
 \end{proof}
 
-Naj bo $O$ poljubna topologija na $G^b$. Naslednje leme držijo za $\forall x \in V$
+Naj bo $O$ poljubna kompatibilna topologija na $G^b$. Naslednje leme držijo za $\forall x \in V$
 \begin{lemma}\label{lem1}
   $\{x\} \subseteq U_x \subseteq \{x\} \cup N_x$
 \end{lemma}
@@ -681,7 +703,7 @@ Naj bo $O$ poljubna topologija na $G^b$. Naslednje leme držijo za $\forall x \i
   $U_{x'} \nsubseteq \{x'\} \cup N_{x'}$ ne drži, potem obstaja
   $y \in U_{x'}$, $y \notin (\{x'\} \cup N_{x'})$. Ker je $\{x', y\} \subseteq U_x$,
   je ta množica povezana v $O$. Ker je $G^b[\{x',y\}]$ nepovezan graf, je to v
-  protislovju z definicijo topologije na $G^b$.
+  protislovju z definicijo kompatibilne topologije na $G^b$.
 \end{proof}
 \begin{lemma}\label{lem2}
   $U_x = \{x\}$ ali $U_x = \{x\} \cup N_x$
@@ -714,7 +736,7 @@ $V(G^b) = \{x,y\}$, kar je protislovje s predpostavko, da ima $G^b$ vsaj tri voz
 Iz zadnje leme sledi:
 \begin{theorem}
 Vsak povezan, dvodelen graf $G^b = (V,E)$, ki ima vsaj tri vozlišča, ima natanko
-dve topologiji. To sta $O_1$ in $O_2$:
+dve kompatibilni topologiji. To sta $O_1$ in $O_2$:
 \[
   \begin{split}
   O_1:&\quad
@@ -727,34 +749,43 @@ dve topologiji. To sta $O_1$ in $O_2$:
 \]
 \end{theorem}
 
-\section{Obstoj topologije na grafu}
+\section{Obstoj kompatibilne topologije na grafu} \label{obstoj}
 
 \begin{corollary}\label{corollary1}
-Krog $C$, ki ima sodo število vozlišč $n > 3$, nima topologije.
+Krog $C$, ki ima sodo število vozlišč $n > 3$, nima kompatibilne topologije.
 \end{corollary}
 \begin{proof}
 Za vsak $x \in V(C), G_x^b := C[\{x\} \cup N_x]$ je dvodelen graf, ki ima vsaj tri
-vozlišča. Recimo, da ima $C$ topologijo $O$ na vsakem $G_x^b$ je inducirana 
-topologija $O_1$ ali $O_2$. Za vsaki dve sosednji točki $x,y \in V(C)$ velja:
+vozlišča. Recimo, da ima $C$ kompatibilno topologijo $O$ na vsakem $G_x^b$ je inducirana 
+kompatibilna topologija $O_1$ ali $O_2$. Za vsaki dve sosednji točki $x,y \in V(C)$ velja:
 \[
     O|_{V(G_x^b)} \cong O_1 \iff O|_{V(G_y^b)} \cong O_2
 \]
 sicer, bi $U_x = \{x\}$ in $U_y = \{y\}$, kar bi pomenilo, da je množica
 $\{x, y\}$ nepovezana v $O$ in to je v protislovju z predpostavko, da sta $x$ in
 $y$ povezana. Če si izberemo neko začetno točko $X_0 \in V(C)$, lahko zaporedno
-izbiramo sosednje točke in opazujemo inducirane topologije.
+izbiramo sosednje točke in opazujemo inducirane kompatibilne topologije.
 \[O|_{V(G_{X_0}^b)} \cong O_1\]
 \[O|_{V(G_{X_1}^b)} \cong O_2\]
 \[O|_{V(G_{X_3}^b)} \cong O_1\]
-Ker ima krog sodo število vozlišč, se na $x_0$ inducira topologija $O_2$. Torej
-na podgraf $G^b_{x_0}$ sta inducirani topologiji $O_1$ in $O_2$, kar je v protislovju.
+Ker ima krog sodo število vozlišč, se na $x_0$ inducira kompatibilna topologija $O_2$. Torej
+na podgraf $G^b_{x_0}$ sta inducirani kompatibilni topologiji $O_1$ in $O_2$, kar je v protislovju.
 \end{proof}
 
 Iz posledice \ref*{corollary1} in iz Izreka \ref*{theorem1} sledi:
 \begin{theorem}
 Vsak graf $G$, ki vsebuje krog $C$ s lihim številom vozlišč, kot induciran podgraf,
-nima topologije.
+nima kompatibilne topologije.
 \end{theorem}
+Zaradi izreka lahko sklepamo, da 8-povezana mreža nima kompatibilne topologije,
+saj vsebuje krog s lihim številom vozlišč kot induciran podgraf (Slika \ref{oddCircle}).
+\begin{figure}
+  \begin{center}
+  \includegraphics[width=0.4\textwidth]{odd_circle.pdf}
+  \end{center}
+  \caption{krog s lihim številom vozlišč kot induciran podgraf 8-povezane mreže}
+  \label{oddCircle}
+\end{figure}
 
 \nocite{*}
 \cleardoublepage
