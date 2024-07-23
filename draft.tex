@@ -292,8 +292,10 @@ Na tem mestu zapišite, komu se zahvaljujete za izdelavo diplomske naloge. Pazit
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 % kazalo
 \pagestyle{empty}
+\fi
 \def\thepage{}% preprecimo tezave s stevilkami strani v kazalu
 \tableofcontents{}
+\ifx\onlycontent\undefined
 
 
 % prazna stran
@@ -376,30 +378,29 @@ A proper abstract should contain around 100 words which makes this one way too s
 \pagestyle{fancy}
 
 \chapter{Uvod}
-Procesiranje slik je zelo pomembno in hitro rastoče področje računalništva z 
+Procesiranje slik je zelo pomembno in hitro rastoča veja računalništva z 
 obširno uporabo na različnih področjih, recimo avtomatizirano branje dokumentov
 v poslovnem svetu, avtomatski nadzor kakovosti v proizvodnji, medicinska diagnostika
 na podlagi radiologije ipd. To delo bo osredotočeno na analizo slik.
-To pomeni, da za dano sliko hočemo pridobiti opis slike na podlagi objektov
-na sliki, regij na sliki in njihovih medsebojnih relacij.
-Na primer dokument je sestavljen iz znakov na nekem ozadju, krvni razmaz je 
+Za dano sliko hočemo pridobiti njen opis na podlagi objektov in regij na njej
+in njihovih medsebojnih relacij. Na primer dokument je sestavljen iz znakov na nekem ozadju, krvni razmaz je 
 sestavljen iz krvnih celic na nekem ozadju, rentgenska slika je sestavljena
-iz različnih organov itd.  Prva faza procesiranja je torej ločevanje slike na
+iz različnih organov itd. Prva faza procesiranja je torej ločevanje slike na
 različne regije -- na objekte v ospredju in ozadje. Ta proces imenujemo \textbf{segmentacija}.\\
 Segmentacija je postopek dodeljevanja vsakega slikovnega elementa (piksla) v enega ali več
 razredov. Eden izmed preprostih pristopov je binarna segmentacija, kjer sliko razdelimo
-na dve regiji, ozadje in ospredje, na podlagi nekega praga. Če je svetlost piksla večja
+na dve regiji, ozadje in ospredje, na podlagi izbranega praga. Če je svetlost piksla večja
 od tega praga, ga dodelimo v ospredje, sicer pa v ozadje, ali obratno. Obstaja veliko več
 kompleksnejših metod segmentacije, ki uporabljajo več podatkov kot samo svetlost
 pikslov.\\
 Ko sliko enkrat segmentiramo v manjše regije, lahko začnemo analizirati lastnosti
 teh regij in njihove medsebojne relacije. Nekatere lastnosti so odvisne od svetlosti
-pikslov, druge so odvisne samo od pozicije pikslov. Zelo osnovne so topološke lastnosti
+pikslov, druge samo od pozicije pikslov. Zelo osnovne so topološke lastnosti
 regij, ki vključujejo koncepte, kot so povezanost in sosednost, in so neodvisne od
 velikosti in oblike regij.\\
 Topološke lastnosti so uporabne zaradi različnih razlogov. Po tem, ko smo izbrali
 neko regijo, na primer ospredje dokumenta, jo ponavadi hočemo še segmentirati v
-manjše povezane regije. Te predstavljajo posamezne objekte, kot so znaki. Lahko
+manjše povezane regije. Te predstavljajo posamezne objekte, kot so znaki na dokumentu. Lahko
 hočemo skrčiti regijo na okostje, ki predstavlja skrčeno obliko regije in ohranja
 povezanost.
 \begin{quote}
@@ -411,93 +412,99 @@ bodisi 8-povezanost). Opazovanje topoloških lastnosti slik torej porodi potrebo
 raziskovanju topologij na grafih.
 
 \section{Definicije}
-Vsi omenjeni grafi bodo neusmerjeni, brez izoliranih vozlišč in preprosti, torej brez zank
-in večkratnih povezav med vozlišči.
+Vsi omenjeni grafi bodo neusmerjeni, brez izoliranih vozlišč in preprosti (brez zank
+in večkratnih povezav med vozlišči).
 \textbf{Graf} $G = (V,E)$ vsebuje množico vozlišč $V$ in množico povezav $E \subseteq \binom{V}{2}$.
-Povezavo $\{x,y\} \in E; \ mx,y \in V$, lahko označimo tudi z $xy$.\\
-Množica sosednjih vozlišč vozlišča $x$ je $N_x = \{y \in V | xy \in E\}$.\\
-Število sosednjih vozlišč vozlišča $x$ je $deg(x) = |N_x|$. Če je $deg(x)$ končno
+Povezavo $\{x,y\} \in E,\ x,y \in V$ lahko označimo tudi z $xy$.\\
+Množico sosednjih vozlišč vozlišča $x$ označujemo z \[N_x = \{y \in V\ |\ xy \in E\}.\]\\
+Število sosednjih vozlišč vozlišča $x$ je \[deg(x) = |N_x|.\] Če je $deg(x)$ končno
 za vsak $x \in V$, je graf $G$ \textbf{lokalno končen}.\\
 $G$ je \textbf{povezan graf}, če za vsak par vozlišč $x,y \in V$ obstaja končno
-zaporedje različnih vozlišč $v_1,\dots,v_n \in V$, da velja $xv_1, v_1v_2, \dots, v_n y \in E$.\\
-Graf $G$ se imenuje \textbf{krog}, če je $V$ končna množica $n$ točk $V=\{v_1,\dots,v_n\}$ in
-$E=\{v_1 v_2,\dots,v_{n-1}v_n,v_n v_1\}$ \\
-Za vsako množico vozlišč $V' \subseteq V$ definiramo \textbf{induciran podgraf} $G[V'] = (V',E')$
-kjer je $E' = \{xy \in E | x,y \in V'\}$. Torej induciran podgraf ohranja vse povezave
+zaporedje različnih vozlišč $v_1,\ \dots,\ v_n \in V$, da velja \[xv_1,\ v_1v_2,\ \dots,\ v_n y \in E.\]\\
+Graf $G$ imenujemo \textbf{krog}, če je $V$ končna množica $n$ točk \[V=\{v_1,\ \dots,\ v_n\}\] in
+\[E=\{v_1 v_2,\ \dots,\ v_{n-1}v_n,\ v_n v_1\}.\] \\
+Za vsako množico vozlišč $V' \subseteq V$ definiramo \textbf{induciran podgraf} \[G[V'] = (V',E'),\]
+kjer je \[E' = \{xy \in E\ |\ x,y \in V'\}.\] Induciran podgraf potemtakem ohranja vse povezave
 iz $G$, ki povezujejo vozlišča iz $V'$. Če je $G'$ induciran podgraf $G$,
 ga označimo z relacijo $G' \sqsubseteq  G$.\\
 Množico vozlišč grafa $G$ označimo z $V(G)$, množico povezav pa z $E(G)$. Unija
 grafov $G_1 \cup G_2$ je definirana kot graf, ki ima vozlišča $V(G_1) \cup V(G_2)$
 in povezave $E(G_1) \cup E(G_2)$.\\
-\textbf{Topologija} na množici $X$ je neprazna družina podmnožic $\tau$.
-Elementom topologije pravimo odprte množice, zadoščati morajo naslednji pogoji:
-Vsaka poljubna unija odprtih množic je odprta, vsak končen presek odprtih množic je odprt
-in prazna množica ter celotna množica $X$ sta odprti. Množica $X$ skupaj s topologijo
-je topološki prostor. Označimo ga z $(X,\tau)$.\\
+\textbf{Topologija} (ali topološka struktura) na množici $X$ je družina $\tau$ podmnožic
+$X$, ki zadošča naslednjim zahtevam:
+\begin{itemize}
+    \item[(1)] prazna množica in $X$ sta elementa $\tau$;
+    \item[(2)] unija poljubne poddružine $\tau$ je element $\tau$;
+    \item[(3)] presek poljubne končne poddružine $\tau$ je element $\tau$.
+\end{itemize}
+Elemente $\tau$ imenujemo \textbf{odprte množice} v $X$. \textbf{Topološki prostor}
+($X$, $\tau$) je množica $X$, opremljena s topologijo $\tau$.\\
 \textbf{Okolica} točke $x \in X$ je vsaka podmnožica $V \subseteq X$, ki vsebuje
 odprto množico $U$, ki vsebuje $x$.\\
-Topološki prostor je \textbf{povezan}, če se množice $X$ ne da izraziti kot unija
+Topološki prostor je \textbf{povezan}, če se množice $X$ ne da izraziti kot unije
 dveh disjunktnih nepraznih odprtih množic.\\
-\textbf{Topologija Aleksandrova} je topologija v kateri je vsak poljuben presek odprtih
-množic odprt (v navadni topologiji velja samo za končne preseke). Iz tega sledi,
+\textbf{Topologija Aleksandrova} je topologija, v kateri je vsak poljuben presek odprtih
+množic odprt (v navadni topologiji to velja samo za končne preseke). Iz tega sledi,
 da ima vsaka točka v topologiji Aleksandrova najmanjšo okolico, ki je odprta.\\
 Topologija nad množico $X$ je $\mathbf{T_0}$, če za vsaki različni točki $x,y \in X$
-obstaja odprta množica $U$, ki vsebuje $x$ in ne $y$ ali obratno
+obstaja odprta množica $U$, ki vsebuje eno in druge ne.
+\begin{quote}
+  TODO: Definicija baze topologije
+\end{quote}
 
 \chapter{Končne topologije, delne urejenosti in celični kompleksi}
 \section{Povezava končnih topologij in delnih urejenosti}
 Končna topologija je topologija na končni množici. Šibko urejena množica je
 množica s tranzitivno in refleksivno relacijo. Končne topologije so isti objekti
-kot končne šibko urejene množice iz drugega zornega kota. Za končno množico $X$ lahko
-za vsako točko definiramo minimalno odprto množico $U_x$ kot presek vseh odprtih
-množic, ki vsebujejo $x$. Minimalne odprte množice vseh točk tvorijo bazo prostora.
+kot končne šibko urejene množice iz drugega zornega kota. Za končno množico $X$ 
+za vsak $x\in X$ definiramo minimalno odprto množico $U_x$ kot presek vseh odprtih
+množic, ki vsebujejo $x$. Minimalne odprte množice vseh točk tvorijo bazo prostora,
+saj je vsaka odprta množica $U \subseteq X$ unija minimalnih odprtih množic $U_x,\ x\in U$.
 Taki bazi pravimo minimalna baza. Vsaka baza prostora vsebuje minimalno bazo,
-ker če je $U_x$ unija odprtih množic, mora biti $x$ vsebovan v eni izmed njih.
-Tedaj se ta množica sovpada z $U_x$.\\
-Naj bo $X$ topološki prostor z bazo $\{U_x\}_{x \in X}$. Iz topološkega
-prostora lahko definiramo relacijo $x \leq y$ tako, da sta $x$ in $y$ v relaciji,
-če velja $x \in U_y$. Podana relacija je šibka urejenost nad $X$. Iz šibke urejenosti
-lahko definiramo topologijo nad $X$ z bazo $\{y \in X | x \leq y\}_{x \in X}$.
-Sedaj lahko pokažemo, da je $y \leq x$ če in samo če $y \in U_x$.
-Če je $y \leq x$, potem je $y$ v vsaki osnovni množici, ki vsebuje $x$, torej je $y \in U_x$.
-Tudi obratno, če $y \in U_x$, potem je $y \in \{z \in X | z \leq x\}$, torej  je $y \leq x$.\\
-Prostor je $T_0$, če za vsaki različni točki $x,y \in X$ obstaja odprta množica
-$U$, ki vsebuje $x$ in ne $y$ ali obratno. Pogoj $T_0$ se sovpada z antisimetričnostjo na
-končnih šibko urejenih množicah. To pomeni, da če imamo elementa, za katera velja
-$a \leq b$ in $b \leq a$, pomeni, da $y \in U_x$ in $x \in U_y$. Ker v $T_0$ prostorih
-za vsak par točk obstaja odprta množica, ki vsebuje eno točko in ne drugo, to pomeni,
-da je $x = y$. Torej končni $T_0$ prostori so ekvivalentni končni delno urejeni
-množici.\\
+ker če izrazimo $U_x$ kot unijo odprtih množic iz baze, mora ena od teh množic
+vsebovati $x$. Tedaj ta množica sovpada z $U_x$.\\
+Naj bo $X$ topološki prostor z bazo $\{U_x\}_{x \in X}$. Na množici $X$ definiramo
+naslednjo relacijo:
+\[x \in U_y\quad \Rightarrow\quad x \leq y\]
+Podana relacija je šibka urejenost nad $X$. Iz šibke urejenosti
+definiramo topologijo nad $X$ z bazo $\{y \in X\ |\ x \leq y\}_{x \in X}$.
+Sedaj lahko pokažemo, da je $y \leq x$, če in samo če $y \in U_x$.
+Če je $y \leq x$, potem je $y$ v vsaki osnovni množici, ki vsebuje $x$. Iz tega sledi $y \in U_x$.
+Tudi obratno, če $y \in U_x$, potem je $y \in \{z \in X\ |\ z \leq x\}$, zato lahko sklepamo, da je $y \leq x$.\\
+Pogoj $T_0$ sovpada z antisimetričnostjo na končnih šibko urejenih množicah.
+To pomeni, da za elementa, za katera velja $a \leq b$ in $b \leq a$, velja $y \in U_x$ in $x \in U_y$.
+Ker v $T_0$ prostorih za vsak par točk obstaja odprta množica,
+ki vsebuje eno točko in ne druge, sledi, da je $x = y$. Končni $T_0$ prostori so
+torej ekvivalentni končni delno urejeni množici.\\
 
+\begin{figure}[h]
+  \label{pic1}
+    \begin{center}
+    \includegraphics[width=0.3\textwidth]{example-topology.pdf}
+    \end{center}
+    \caption{Odprte množice na končni množici $X$ iz primera \ref{ex1}}
+\end{figure}
 \begin{example}\label{ex1}
-    Naj bo $(X,\tau)$ topološki prostor, pri čemer je $X = \{a,b,c,d\}$ končna
-    množica, odprte množice pa so $\emptyset, \{a,b,c,d\}, \{b,d\}, \{c\}, \{d\},
-    \{b,c,d\}$ in $\{c,d\}$. Prostor je $T_0$, torej je delno urejen. Slika \ref{pic1}
+  Naj bo $(X,\tau)$ topološki prostor, pri čemer je $X = \{a,b,c,d\}$ končna
+  množica, odprte množice pa so $\emptyset, \{a,b,c,d\}, \{b,d\}, \{c\}, \{d\},
+  \{b,c,d\}$ in $\{c,d\}$. Prostor je $T_0$, torej je delno urejen. Slika \ref{pic1}
+  \begin{figure}[h]
+      \begin{center}
+      \includegraphics[width=0.3\textwidth]{hasse-example.pdf}
+      \end{center}
+      \caption{Hassejev diagram končne delno urejene množice iz primera \ref{ex1}}
+      \label{pic2}
+  \end{figure}
     prikazuje odprte množice na $X$ z zaprtimi krivuljami.
-    \begin{figure}[h]
-      \label{pic1}
-        \begin{center}
-        \includegraphics[width=0.3\textwidth]{example-topology.pdf}
-        \end{center}
-        \caption{Odprte množice na končni množici $X$ iz primera \ref{ex1}}
-    \end{figure}
-    \begin{figure}[h]
-        \begin{center}
-        \includegraphics[width=0.3\textwidth]{hasse-example.pdf}
-        \end{center}
-        \caption{Hassejev diagram končne delno urejene množice iz primera \ref{ex1}}
-        \label{pic2}
-    \end{figure}
-    Ker je množica delno urejena, lahko prostor predstavimo lepše z Hassejevim diagramom (Slika \ref{pic2}).
+    Ker je množica delno urejena, lahko prostor lepše predstavimo s Hassejevim diagramom (Slika \ref{pic2}).
     To lahko naredimo za vse končne $T_0$ prostore. Hassejev diagram je graf,
     kjer so vozlišča elementi množice, povezave pa urejeni pari $(x,y)$, kjer je $x < y$ in
-    ne obstaja $z \in X$, da bi veljalo $x < z < y$. Namesto puščic na povezavah
-    predstavimo elemente višje v diagramu. Torej če je $x < y$, potem je $y$
-    narisan nad $x$.
-
+    ne obstaja $z \in X$, da bi veljalo $x < z < y$. V diagramu
+    bomo namesto puščice iz $x$ v $y$ narisali $y$ nad $x$.
 \end{example}
-Na delni urejenosti lahko definiramo nekaj izrazov. Element $x$ je \textbf{maksimalen},
-če $y \geq x$ implicira $y=x$ in je \textbf{maksimum} delne urejenosti, če velja
+\newpage
+Na delni urejenosti definiramo nekaj izrazov.
+Element $x$ je \textbf{maksimalen}, če $y \geq x$ implicira $y=x$, in je \textbf{maksimum} delne urejenosti, če velja
 $y \leq x$ za vsak $y \in X$. Delna urejenost ima \textbf{maksimum}, če in samo če
 obstaja natanko en maksimalen element. \textbf{Minimalen} element in \textbf{minimum} sta
 definirana dualno.\\
@@ -509,23 +516,23 @@ definirana dualno.\\
 Simplicialni kompleks $K$ je sestavljen iz množice $V_K$ in množice $S_K$, ki je
 sestavljena iz končnih, nepraznih podmnožic množice $V_K$.
 $V_K$ se imenuje množica točk, $S_K$ pa množica simpleksov. Veljati mora, da
-je vsaka podmnožica moči 1 množice $V_K$ simpleks in vsaka neprazna podmnožica
-simpleksov je simpleks. Lahko malenkost izrabimo notacijo in pišemo $v \in K$ namesto
+je vsaka podmnožica $V_K$ moči 1 simpleks in, da je vsaka neprazna podmnožica
+simpleksov simpleks. Malce lahko izrabimo notacijo in pišemo $v \in K$ namesto
 $v \in V_K$ in $\sigma \in K$ namesto $\sigma \in S_K$. V večini primerov bomo
 simplicialni kompleks identificirali samo kot množico njegovih simpleksov.\\
 Če je simpleks $\sigma$ podmnožica simpleksa $\tau$, pravimo, da je $\sigma$ njegovo \textbf{lice}.
 Simpleks, ki ima $n+1$ točk, imenujemo \textbf{$n$-simpleks} in pravimo, da je \textbf{dimenzije} $n$.
-Torej vse točke $K$ predstavljajo 0-simplekse. Dimenzija $K$ je supremum dimenzij
-vseh simpleksov v $K$. Če je $K$ prazen, ima dimenzijo -1, če ima $K$ simplekse
+Vse točke $K$ predstavljajo 0-simplekse. Dimenzija $K$ je supremum dimenzij
+vseh simpleksov v $K$. Če je $K$ prazen, ima dimenzijo -1, če pa ima $K$ simplekse
 poljubno velike dimenzije, je dimenzije neskončno.\\
 Naj bo $\sigma = \{v_0,v_1,\dots,v_n\}$ simpleks dimenzije $n$. Zaprt simpleks
 $\bar{\sigma}$ je množica konveksnih kombinacij točk v $\sigma$.
 \[
-  \bar{\sigma} = \left\{\sum_{i=0}^n \lambda_i v_i | \lambda_i \geq 0, \sum_{i=0}^n \lambda_i = 1\right\}
+  \bar{\sigma} = \left\{\sum_{i=0}^n \lambda_i v_i\ |\ \lambda_i \geq 0, \sum_{i=0}^n \lambda_i = 1\right\}
 \]
 Geometrijska realizacija $|K|$ simplicialnega kompleksa $K$ je množica 
 vseh takih konveksnih kombinacij $\sum_{v\in K} \lambda_v v,\ \lambda_v \geq 0$, tako da vsi $v$, ki imajo
-neničelno $\lambda_v$ tvorijo simpleks v $K$. $|K|$ je torej unija vseh zaprtih
+neničelno $\lambda_v$, tvorijo simpleks v $K$. $|K|$ je torej unija vseh zaprtih
 simpleksov $K$.
 \begin{example}
   Naj bo $K$ simplicialni kompleks, ki vsebuje simplekse
@@ -541,7 +548,7 @@ simpleksov $K$.
   \end{figure}
 \end{example}
 \newpage
-Topološki prostor $X$ je \textbf{topološki polieder},če obstaja simplicialni
+Topološki prostor $X$ je \textbf{topološki polieder}, če obstaja simplicialni
 kompleks $K$, da je $X$ homeomorfen telesu $|K|$. Simplicialni kompleks
 $K$ imenujemo \textbf{triangulacija} poliedra $X$.
 \begin{example}
@@ -554,9 +561,9 @@ $K$ imenujemo \textbf{triangulacija} poliedra $X$.
         \caption{Triangulacija kolobarja}
     \end{figure}
 \end{example}
-Za dan simplicialni kompleks $K$, lahko konstruiramo njegovo \textbf{baricentrično subdivizijo} $K'$.
-Točke $K'$ so simpleksi $K$ in simpleksi $K'$ verige simpleksov $K$. Veriga
-simpleksov je taka množica $\{\sigma_0,\sigma_1,\dots,\sigma_n\}, \sigma_i \in K$
+Za dan simplicialni kompleks $K$ konstruiramo njegovo \textbf{baricentrično subdivizijo} $K'$.
+Točke $K'$ so simpleksi $K$ in simpleksi $K'$ so verige simpleksov $K$. Veriga
+simpleksov je taka množica $\{\sigma_0,\sigma_1,\dots,\sigma_n\},\ \sigma_i \in K$
 , da velja $\sigma_0 \subsetneq \sigma_1 \subsetneq \dots \subsetneq \sigma_n$.
 \newpage
 \begin{figure}[h]
@@ -582,11 +589,11 @@ simpleksov je taka množica $\{\sigma_0,\sigma_1,\dots,\sigma_n\}, \sigma_i \in 
 
 \section{Povezava delnih urejenosti in simplicialnih kompleksov}
 \begin{definition}
-  Naj bo $X$ končni $T_0$ topološki prostor. Simplicialni kompleks $\mathcal{K}(X)$
-  asociran z $X$ je simplicialni kompleks, katerega množica simpleksov so neprazne verige $X$.
+  Naj bo $X$ končni $T_0$ topološki prostor. Simplicialni kompleks $\mathcal{K}(X)$,
+  asociiran z $X$, je simplicialni kompleks, katerega množica simpleksov so neprazne verige $X$.
 \end{definition}
 \begin{definition}
-  Naj bo $K$ simplicialni kompleks. Asocirana Delna urejenost $\mathcal{X}(K)$ je
+  Naj bo $K$ simplicialni kompleks. Asociirana delna urejenost $\mathcal{X}(K)$ je
   množica simpleksov $K$ urejeni z inkluzijo. Če sta $\sigma, \tau \in K$,
   je $\sigma \leq \tau$, če je $\sigma \subseteq \tau$.
 \end{definition}
@@ -594,25 +601,27 @@ simpleksov je taka množica $\{\sigma_0,\sigma_1,\dots,\sigma_n\}, \sigma_i \in 
 \chapter{Digitalni prostori}
 Glavni cilj digitalne topologije in digitalne geometrije je premostiti vrzel
 med geometrijskimi in topološkimi lastnosti komputacijskih objektov in njihovimi
-teoretičnimi reprezentacijami v zveznem prostoru $R^n$. Če hočemo uporabiti
+teoretičnimi reprezentacijami v zveznem prostoru $\mathbb{R}^n$. Če hočemo uporabiti
 topološke pojme v digitalni domeni, moramo najprej definirati prostor, ki je
-analogen zveznemu prostoru $R^n, (n > 1)$.\\
-Navadno definiramo digitalne prostore na dva načina. Lahko se odločimo katero 
-vrsto povezanosti ima prostor. Naj bo $x = (x_1,\dots,x_n)$
-točka v $\mathbb{Z}^n$.\\
+analogen zveznemu prostoru $\mathbb{R}^n, (n > 1)$.\\
+Navadno definiramo digitalne prostore na dva načina. Lahko se odločimo, katero 
+vrsto povezanosti ima prostor. Naj bo $x = (x_1,\ \dots,\ x_n)$
+točka v $\mathbb{Z}^n,\ n > 1$.\\
   ($3^n-1$)-sosed točke $x$ je vsaka točka
-  $y = (y_1,\dots,y_n) \in \mathbb{Z}^n$, za katero velja
+  $y = (y_1,\ \dots,\ y_n) \in \mathbb{Z}^n$, za katero velja
   \[
     \max|x_i - y_i| = 1
   \]
-  Na primer $n = 2$ nam porodi 8-povezano mrežo.\\
-  $2n$-sosed točke $x$ je vsaka točka $y = (y_1,\dots,y_n) \in \mathbb{Z}^n$,
+  Tak prostor bomo označili kot $(d_{\inf},n)$-prostor
+  Na primer $(d_{\inf},2)$-prostor je 8-povezana mreža.\\
+  $2n$-sosed točke $x$ je vsaka točka $y = (y_1,\ \dots,\ y_n) \in \mathbb{Z}^n,\ n > 1$,
   za katero velja
   \[
     \sum_{i=1}^{n}|x_i - y_i| = 1
   \]
-  Na primer $n = 2$ nam porodi 4-povezano mrežo.\\
-  V oddelku \ref{obstoj} bomo pokazali, da 8-povezana mreža nima kompatibilne topologije.
+  Tak prostor bomo označili kot $(d_1,n)$-prostor
+  Na primer $(d_1,2)$-prostor je 4-povezana mreža.\\
+  V oddelku \ref{obstoj} bomo pokazali, da 8-povezana mreža in s tem tudi $(d_{\inf},n)$-prostor nima kompatibilne topologije.
 \section{Celični kompleksi}
 \begin{quote}
     TODO: Laična razlaga celičnih kompleksov in njihove uporabe
