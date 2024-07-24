@@ -24,7 +24,7 @@
 
 \documentclass[a4paper, 12pt]{book}
 %\documentclass[a4paper, 12pt, draft]{book}  Nalogo preverite tudi z opcijo draft, ki vam bo pokazala, katere vrstice so predolge!
-\def\onlycontent{tru} % comment out to show also the cover pages
+%\def\onlycontent{tru} % comment out to show also the cover pages
 
 
 
@@ -386,7 +386,7 @@ obširno uporabo na različnih področjih, recimo avtomatizirano branje dokument
 v poslovnem svetu, avtomatski nadzor kakovosti v proizvodnji, medicinska diagnostika
 na podlagi radiologije ipd. To delo bo osredotočeno na analizo slik.
 Za dano sliko hočemo pridobiti njen opis na podlagi objektov in regij na njej
-in njihovih medsebojnih relacij. Na primer dokument je sestavljen iz znakov na nekem ozadju, krvni razmaz je 
+in njihovih medsebojnih relacij. Recimo dokument je sestavljen iz znakov na nekem ozadju, krvni razmaz je 
 sestavljen iz krvnih celic na nekem ozadju, rentgenska slika je sestavljena
 iz različnih organov itd. Prva faza procesiranja je torej ločevanje slike na
 različne regije -- na objekte v ospredju in ozadje. Ta proces imenujemo \textbf{segmentacija}.\\
@@ -402,7 +402,7 @@ pikslov, druge samo od pozicije pikslov. Zelo osnovne so topološke lastnosti
 regij, ki vključujejo koncepte, kot so povezanost in sosednost, in so neodvisne od
 velikosti in oblike regij.\\
 Topološke lastnosti so uporabne zaradi različnih razlogov. Po tem, ko smo izbrali
-neko regijo, na primer ospredje dokumenta, jo ponavadi hočemo še segmentirati v
+neko regijo, recimo ospredje dokumenta, jo ponavadi hočemo še segmentirati v
 manjše povezane regije. Te predstavljajo posamezne objekte, kot so znaki na dokumentu. Lahko
 hočemo skrčiti regijo na okostje, ki predstavlja skrčeno obliko regije in ohranja
 povezanost.
@@ -415,13 +415,13 @@ raziskovanju topologij na grafih.
 Vsi omenjeni grafi bodo neusmerjeni, brez izoliranih vozlišč in preprosti (brez zank
 in večkratnih povezav med vozlišči).
 \textbf{Graf} $G = (V,E)$ vsebuje množico vozlišč $V$ in množico povezav $E \subseteq \binom{V}{2}$.
-Povezavo $\{x,y\} \in E,\ x,y \in V$ lahko označimo tudi z $xy$.\\
+Povezavo $\{x,y\} \in E,\ x,y \in V$, lahko označimo tudi z $xy$.\\
 Množico sosednjih vozlišč vozlišča $x$ označujemo z \[N_x = \{y \in V\ |\ xy \in E\}.\]\\
 Število sosednjih vozlišč vozlišča $x$ je \[deg(x) = |N_x|.\] Če je $deg(x)$ končno
 za vsak $x \in V$, je graf $G$ \textbf{lokalno končen}.\\
 $G$ je \textbf{povezan graf}, če za vsak par vozlišč $x,y \in V$ obstaja končno
 zaporedje različnih vozlišč $v_1,\ \dots,\ v_n \in V$, da velja \[xv_1,\ v_1v_2,\ \dots,\ v_n y \in E.\]\\
-Graf $G$ imenujemo \textbf{cikel}, če je $V$ končna množica $n$ točk \[V=\{v_1,\ \dots,\ v_n\}\] in
+Graf $G$ imenujemo \textbf{cikel}, če je $V$ končna množica $n$ točk \[V=\{v_1,\dots,v_n\}\] in
 \[E=\{v_1 v_2,\ \dots,\ v_{n-1}v_n,\ v_n v_1\}.\] \\
 Za vsako množico vozlišč $V' \subseteq V$ definiramo \textbf{induciran podgraf} \[G[V'] = (V',E'),\]
 kjer je \[E' = \{xy \in E\ |\ x,y \in V'\}.\] Induciran podgraf potemtakem ohranja vse povezave
@@ -432,24 +432,24 @@ grafov $G_1 \cup G_2$ je definirana kot graf, ki ima vozlišča $V(G_1) \cup V(G
 in povezave $E(G_1) \cup E(G_2)$.\\
 \textbf{Orientacija} grafa $G$ je taka šibka urejenost (refleksivna in tranzitivna relacija)
 na množici vozlišč $V(G)$, da velja $xy \in E(G)$, če in samo če je $x < y$ ali $y < x$.
-\textbf{Topologija} (ali topološka struktura) na množici $X$ je družina $\tau$ podmnožic
+\textbf{Topologija} (ali topološka struktura) na množici $X$ je družina $\mathcal{T}$ podmnožic
 $X$, ki zadošča naslednjim zahtevam:
 \begin{itemize}
-    \item[(1)] prazna množica in $X$ sta elementa $\tau$;
-    \item[(2)] unija poljubne poddružine $\tau$ je element $\tau$;
-    \item[(3)] presek poljubne končne poddružine $\tau$ je element $\tau$.
+    \item[(1)] prazna množica in $X$ sta elementa $\mathcal{T}$;
+    \item[(2)] unija poljubne poddružine $\mathcal{T}$ je element $\mathcal{T}$;
+    \item[(3)] presek poljubne končne poddružine $\mathcal{T}$ je element $\mathcal{T}$.
 \end{itemize}
-Elemente $\tau$ imenujemo \textbf{odprte množice} v $X$. \textbf{Topološki prostor}
-($X$, $\tau$) je množica $X$, opremljena s topologijo $\tau$.\\
+Elemente $\mathcal{T}$ imenujemo \textbf{odprte množice} v $X$. \textbf{Topološki prostor}
+($X$, $\mathcal{T}$) je množica $X$, opremljena s topologijo $\mathcal{T}$.\\
 \textbf{Okolica} točke $x \in X$ je vsaka podmnožica $V \subseteq X$, ki vsebuje
 odprto množico $U$, ki vsebuje $x$.\\
-Družina odprtih množic je \textbf{baza} topologije prostora $(X,\tau)$, če 
-vsak element $\tau$ lahko izrazimo kot unijo množic iz baze.\\
+Družina odprtih množic je \textbf{baza} topologije prostora $(X,\mathcal{T})$, če 
+vsak element $\mathcal{T}$ lahko izrazimo kot unijo množic iz baze.\\
 Topološki prostor je \textbf{povezan}, če se množice $X$ ne da izraziti kot unije
 dveh disjunktnih nepraznih odprtih množic.\\
-Funkcija $f:\ (X,\tau) \rightarrow (X',\tau')$ je \textbf{homeomorfizem}, če je
-$f: X \rightarrow X'$ bijektivna, ter če $f$ inducira bijekcijo med $\tau$ in $\tau'$.
-Tedaj pravimo, da sta topološka prostora $(X,\tau)$ in $(X',\tau')$ \textbf{homeomorfna}.\\
+Funkcija $f:\ (X,\mathcal{T}) \rightarrow (X',\mathcal{T}')$ je \textbf{homeomorfizem}, če je
+$f:\ X \rightarrow X'$ bijektivna, ter če $f$ inducira bijekcijo med $\mathcal{T}$ in $\mathcal{T}'$.
+Tedaj pravimo, da sta topološka prostora $(X,\mathcal{T})$ in $(X',\mathcal{T}')$ \textbf{homeomorfna}.\\
 \textbf{Topologija Aleksandrova} je topologija, v kateri je vsak poljuben presek odprtih
 množic odprt (v navadni topologiji to velja samo za končne preseke). Iz tega sledi,
 da ima vsaka točka v topologiji Aleksandrova najmanjšo okolico, ki je odprta.\\
@@ -457,7 +457,7 @@ Topologija nad množico $X$ je $\mathbf{T_0}$, če za vsaki različni točki $x,
 obstaja odprta množica $U$, ki vsebuje eno in druge ne.
 
 \chapter{Končne topologije, delne urejenosti in celični kompleksi}
-\section{Povezava končnih topologij in delnih urejenosti}
+\section{Povezava končnih topologij in delnih urejenosti}\label{poset-top}
 Končna topologija je topologija na končni množici. Šibko urejena množica je
 množica s tranzitivno in refleksivno relacijo. Končne topologije so isti objekti
 kot končne šibko urejene množice iz drugega zornega kota. Za končno množico $X$ 
@@ -486,17 +486,17 @@ torej ekvivalentni končni delno urejeni množici.\\
     \begin{center}
     \includegraphics[width=0.3\textwidth]{example-topology.pdf}
     \end{center}
-    \caption{Odprte množice na končni množici $X$ iz primera \ref{ex1}}
+    \caption{odprte množice na končni množici $X$ iz primera \ref{ex1}}
 \end{figure}
 \begin{example}\label{ex1}
-  Naj bo $(X,\tau)$ topološki prostor, pri čemer je $X = \{a,b,c,d\}$ končna
+  Naj bo $(X,\mathcal{T})$ topološki prostor, pri čemer je $X = \{a,b,c,d\}$ končna
   množica, odprte množice pa so $\emptyset, \{a,b,c,d\}, \{b,d\}, \{c\}, \{d\},
   \{b,c,d\}$ in $\{c,d\}$. Prostor je $T_0$, torej je delno urejen. Slika \ref{pic1}
   \begin{figure}[h]
       \begin{center}
       \includegraphics[width=0.3\textwidth]{hasse-example.pdf}
       \end{center}
-      \caption{Hassejev diagram končne delno urejene množice iz primera \ref{ex1}}
+      \caption{hassejev diagram končne delno urejene množice iz primera \ref{ex1}}
       \label{pic2}
   \end{figure}
     prikazuje odprte množice na $X$ z zaprtimi krivuljami.
@@ -518,23 +518,23 @@ definirana dualno.\\
 %% flag complex
 \section{Simplicialni kompleksi}
 Celični kompleks je abstraktna struktura, ki je sestavljena iz celic in njihovih
-relacij. Najprej si bomo ogledali vrsto celičnega kompleksa (Simplicialni kompleks),
-ki je bol regularen in zaradi tega lažji za uporabo v računalništvu. V zadnjem 
+relacij. Najprej si bomo ogledali tip celičnega kompleksa (simplicialni kompleks),
+ki je bolj regularen in zaradi tega lažji za uporabo v računalništvu. V zadnjem 
 razdelku \ref{celicni-kompleksi} bomo definirali splošnejši celični kompleks.\\
-Simplicialni kompleks $K$ je sestavljen iz množice $V_K$ in množice $S_K$, ki je
-sestavljena iz končnih, nepraznih podmnožic množice $V_K$.
-$V_K$ se imenuje množica točk, $S_K$ pa množica simpleksov. Veljati mora, da
-je vsaka podmnožica $V_K$ moči 1 simpleks in, da je vsaka neprazna podmnožica
+Simplicialni kompleks $K$ je sestavljen iz množic $V_K$ in $S_K$, pri čemer je
+$S_K$ sestavljena iz končnih, nepraznih podmnožic množice $V_K$.
+Množici $V_K$ pravimo množica točk, $S_K$ pa množica simpleksov. Veljati mora, da
+je vsaka podmnožica $V_K$ moči 1 simpleks in da je vsaka neprazna podmnožica
 simpleksov simpleks. Malce lahko izrabimo notacijo in pišemo $v \in K$ namesto
 $v \in V_K$ in $\sigma \in K$ namesto $\sigma \in S_K$. V večini primerov bomo
-simplicialni kompleks identificirali samo kot množico njegovih simpleksov.\\
-Če je simpleks $\sigma$ podmnožica simpleksa $\tau$, pravimo, da je $\sigma$ njegovo \textbf{lice}.
+simplicialni kompleks identificirali samo z množico njegovih simpleksov.\\
+Če je simpleks $\sigma$ podmnožica simpleksa $\mathcal{T}$, pravimo, da je $\sigma$ njegovo \textbf{lice}.
 Simpleks, ki ima $n+1$ točk, imenujemo \textbf{$n$-simpleks} in pravimo, da je \textbf{dimenzije} $n$.
 Vse točke $K$ predstavljajo 0-simplekse. Dimenzija $K$ je supremum dimenzij
-vseh simpleksov v $K$. Če je $K$ prazen, ima dimenzijo -1, če pa ima $K$ simplekse
-poljubno velike dimenzije, je dimenzije neskončno.\\
+vseh simpleksov v $K$. Če je $K$ prazen, ima dimenzijo -1, če pa vsebuje $K$ simplekse
+poljubno velike dimenzije, je njegova dimenzija neskončno.\\
 Naj bo $\sigma = \{v_0,v_1,\dots,v_n\}$ simpleks dimenzije $n$. Zaprt simpleks
-$\bar{\sigma}$ je množica konveksnih kombinacij točk v $\sigma$.
+$\bar{\sigma}$ je množica konveksnih kombinacij točk v $\sigma$:
 \[
   \bar{\sigma} = \left\{\sum_{i=0}^n \lambda_i v_i\ |\ \lambda_i \geq 0, \sum_{i=0}^n \lambda_i = 1\right\}
 \]
@@ -551,7 +551,7 @@ simpleksov $K$.
       \begin{center}
       \includegraphics[width=0.4\textwidth]{simplicialni-kompleks.pdf}
       \end{center}
-      \caption{Geometrijska realizacija simplicialnega kompleksa $K$}
+      \caption{geometrijska realizacija simplicialnega kompleksa $K$}
       \label{sx}
   \end{figure}
 \end{example}
@@ -566,7 +566,7 @@ $K$ imenujemo \textbf{triangulacija} poliedra $X$.
         \begin{center}
         \includegraphics[width=0.4\textwidth]{torus-simpleks.pdf}
         \end{center}
-        \caption{Triangulacija kolobarja}
+        \caption{triangulacija kolobarja}
     \end{figure}
 \end{example}
 Za dan simplicialni kompleks $K$ konstruiramo njegovo \textbf{baricentrično subdivizijo} $K'$.
@@ -578,20 +578,20 @@ simpleksov je taka množica $\{\sigma_0,\sigma_1,\dots,\sigma_n\},\ \sigma_i \in
   \begin{center}
   \includegraphics[width=0.8\textwidth]{baricentricna1.pdf}
   \end{center}
-  \caption{Prvi korak baricentrične subdivizije}
+  \caption{prvi korak baricentrične subdivizije}
   \label{baricent1}
 \end{figure}
 \begin{figure}[h]
   \begin{center}
   \includegraphics[width=0.8\textwidth]{baricentricna2.pdf}
   \end{center}
-  \caption{Simpleks $\{a, ac, abc\}$ in rezultat baricentrične subdivizije}
+  \caption{simpleks $\{a, ac, abc\}$ in rezultat baricentrične subdivizije}
   \label{baricent2}
 \end{figure}
 \begin{example}
   Naj bo $K$ 2-simpleks $\{a,b,c\}$. Če hočemo konstruirati baricentrično subdivizijo $K$,
   moramo najprej dodati točke za vsak simpleks v $K$ (Slika \ref{baricent1}).
-  Nato dorišemo še najdaljše verige, saj so v tem primeru vsi ostali simpleksi v $K'$ podmnožice teh.
+  Nato dorišemo še najdaljše verige, saj so v tem primeru vsi ostali simpleksi v $K'$ njihove podmnožice.
   Primer take verige je $\{a, ac, abc\}$, saj velja $a \subsetneq ac \subsetneq abc$ (Slika \ref{baricent2}).
 \end{example}
 
@@ -602,25 +602,25 @@ simpleksov je taka množica $\{\sigma_0,\sigma_1,\dots,\sigma_n\},\ \sigma_i \in
 \end{definition}
 \begin{definition}\label{asociated-poset}
   Naj bo $K$ simplicialni kompleks. Asociirana delna urejenost $\mathcal{X}(K)$ je
-  množica simpleksov $K$ urejeni z inkluzijo. Če sta $\sigma, \tau \in K$,
-  je $\sigma \leq \tau$, če je $\sigma \subseteq \tau$.
+  množica simpleksov $K$, urejena z relacijo inkluzije. Če sta $\sigma, \mathcal{T} \in K$,
+  je $\sigma \leq \mathcal{T}$, če je $\sigma \subseteq \mathcal{T}$.
 \end{definition}
 Vidimo lahko tesno povezavo med topološkimi prostori, delnimi urejenostmi in
 simplicialnimi kompleksi.
 \begin{example}
-Recimo da je $K$ 2-simpleks $\{a,b,c\}$. Asociirana delna urejenost $\mathcal{X}(K)$
-je množica simpleksov $K$ urejena z inkluzijo. Na sliki \ref{baricent-asoc} je prikazan
+Recimo, da je $K$ 2-simpleks $\{a,b,c\}$. Asociirana delna urejenost $\mathcal{X}(K)$
+je množica simpleksov $K$, urejena z relacijo inkluzije. Na sliki \ref{baricent-asoc} je prikazan
 Hassejev diagram asociirane delne urejenosti.
 \begin{figure}[h]
   \begin{center}
   \includegraphics[width=1\textwidth]{baricent-asoc.pdf}
   \end{center}
-  \caption{Skica baricentrične subdivizije $\mathcal{K}(\mathcal{X}(K))$}
+  \caption{skica baricentrične subdivizije $\mathcal{K}(\mathcal{X}(K))$}
   \label{baricent-asoc}
 \end{figure}
   Asociirana delna urejenost ima tudi
-svoj simplicialni kompleks $\mathcal{K}(\mathcal{X}(K))$, ki je točno baricentrična subdivizija
-$K$.
+svoj simplicialni kompleks $\mathcal{K}(\mathcal{X}(K))$, kar je točno
+baricentrična subdivizija $K$.
 \end{example}
 
 \chapter{Digitalni prostori}
@@ -629,33 +629,34 @@ med geometrijskimi in topološkimi lastnosti komputacijskih objektov in njihovim
 teoretičnimi reprezentacijami v zveznem prostoru $\mathbb{R}^n$. Če hočemo uporabiti
 topološke pojme v digitalni domeni, moramo najprej definirati prostor, ki je
 analogen zveznemu prostoru $\mathbb{R}^n, (n > 1)$.\\
-Navadno definiramo digitalne prostore na dva načina. Lahko se odločimo, katero 
-vrsto povezanosti ima prostor. Naj bo $x = (x_1,\ \dots,\ x_n)$
+Ponavadi definiramo digitalne prostore na dva načina. Lahko se odločimo, katero 
+vrsto povezanosti ima prostor. Naj bo $x = (x_1,\dots,x_n)$
 točka v $\mathbb{Z}^n,\ n > 1$.\\
   ($3^n-1$)-sosed točke $x$ je vsaka točka
-  $y = (y_1,\ \dots,\ y_n) \in \mathbb{Z}^n$, za katero velja
+  $y = (y_1,\dots,y_n) \in \mathbb{Z}^n$, za katero velja
   \[
-    \max|x_i - y_i| = 1
+    \max|x_i - y_i| = 1 \text{.}
   \]
-  Tak prostor bomo označili kot $(d_{\inf},n)$-prostor
-  Na primer $(d_{\inf},2)$-prostor je 8-povezana mreža.\\
-  $2n$-sosed točke $x$ je vsaka točka $y = (y_1,\ \dots,\ y_n) \in \mathbb{Z}^n,\ n > 1$,
+  Tak prostor bomo označili z $(d_{\inf},n)$-prostor.
+  Recimo $(d_{\inf},2)$-prostor je 8-povezana mreža.\\
+  $2n$-sosed točke $x$ je vsaka točka $y = (y_1,\dots,y_n) \in \mathbb{Z}^n,\ n > 1$,
   za katero velja
   \[
-    \sum_{i=1}^{n}|x_i - y_i| = 1
+    \sum_{i=1}^{n}|x_i - y_i| = 1 \text{.}
   \]
-  Tak prostor bomo označili kot $(d_1,n)$-prostor
-  Na primer $(d_1,2)$-prostor je 4-povezana mreža.\\
-  V oddelku \ref{obstoj} bomo pokazali, da 8-povezana mreža in s tem tudi $(d_{\inf},n)$-prostor nima kompatibilne topologije.
+  Tak prostor bomo označili z $(d_1,n)$-prostor.
+  Recimo $(d_1,2)$-prostor je 4-povezana mreža.\\
+  V razdelku \ref{obstoj} bomo pokazali, da 8-povezana mreža in s tem tudi
+  $(d_{\inf},n)$-prostor nima kompatibilne topologije.
 
 \section{Topologije na grafih}
 \begin{definition}
-  Za dan topološki prostor $(X, \tau)$ in dano podmnožico $S \subseteq X$, definiramo
-  topologijo, zožano na $S$ \[\tau|_S = \{U \cap S\ |\ U \in \tau\}\]
+  Za dan topološki prostor $(X, \mathcal{T})$ in dano podmnožico $S \subseteq X$ definiramo
+  topologijo, zožano na $S$: \[\mathcal{T}|_S = \{U \cap S\ |\ U \in \mathcal{T}\}\]
 \end{definition}
 \begin{definition}
-  Naj bo $G = (V,E)$ graf. Naj bo $O$ topologija na $V$. $O$ imenujemo kompatibilna
-  topologija na $G$, če velja:
+  Naj bo $G = (V,E)$ graf. Naj bo $O$ topologija na $V$. $O$ imenujemo \textbf{kompatibilna
+  topologija} na $G$, če velja:
   \begin{itemize}
     \item[(1)] Za vsak povezan $G' \sqsubseteq G$ je $V(G')$ povezan v $O$.
     \item[(2)] Za vsako podmnožico $V' \subseteq V$, ki je povezana v $O$, je $G[V']$ povezan graf.
@@ -667,22 +668,20 @@ točka v $\mathbb{Z}^n,\ n > 1$.\\
   na grafu $H$. Tako topologijo označimo z $O|_{V(H)}$.
 \end{theorem}
 \begin{proof}
-  Za vsak $H' \sqsubseteq H$ imamo $O|_{V(H')} = O|_{V(H)}|_{V(H')}$. Množica $V(H)$
-  je podmnožica $V(G)$, zato je $O|_{V(H)}$ podmnožica $O$.
-  Torej vsaka
-  podmnožica $V(H)$ je povezana v $O|_{V(H)}$, če in samo če je povezana v $O$.
+  Za vsak $H' \sqsubseteq H$ imamo $O|_{V(H)}|_{V(H')} = O|_{V(H')}$. 
+  Vsaka podmnožica $V(H)$ je povezana v $O|_{V(H)}$, če in samo če je povezana v $O$.
   $H' \sqsubseteq G$ je povezan, če in samo če je $V(H') \subseteq V(H)$ povezan v $O$.\\
 \end{proof}
 
-\section{Topologija dvodelnih grafov}
+\section{Kompatibilne topologije na dvodelnih grafih}
 Naj bo $G^b$ povezan dvodelen graf $G^b = (V,E)$, ki ima vsaj tri vozlišča.
 $V$ je torej unija dveh nepraznih disjunktnih množic $V_A$ in $V_B$. Vsaka
 povezava v $E$ povezuje samo vozlišča iz $V_A$ z vozlišči iz $V_B$.\\
 Definiramo dve kompatibilni topologiji na množici vozlišč $V$ tako, da opišemo
 topološko okolico vsake točke $x \in V$. To je najmanjša odprta množica, ki
 vsebuje $x$: $U_x \in O$. Ker $U_x$ ni mogoče razdeliti na odprte množice, je $U_x$
-in vsaka podmnožica $U_x$, ki vsebuje $x$ povezana.
-Poleg tega, je vsaka $U \in O, U \neq \emptyset$ unija določenih $U_x$.\\
+in vsaka podmnožica $U_x$, ki vsebuje $x$, povezana.
+Poleg tega je vsaka $U \in O,\ U \neq \emptyset$, unija določenih $U_x$.\\
 Naj bo $N_x = \{y \  | \  yx \in E\}$ množica sosednjih točk točke $x$.\\
 \[
   \begin{split}
@@ -705,7 +704,7 @@ ki nimajo povezav; lahko nista niti homeomorfni.
     \item[(1)] Naj bo $G' \sqsubseteq G^b$ povezan graf. Dokazati želimo, da je
     množica $V(G')$ povezana v $O$, torej, da je ne moremo razdeliti na dve
     disjunktni odprti podmnožici. Za vsaki dve sosednji točki $x$ in $y$ je
-    $U_x \cap U_y$ zmeraj neprazen, saj $y \in U_x$ ali $x \in U_y$. $V(G')$
+    $U_x \cap U_y$ neprazen, saj $y \in U_x$ ali $x \in U_y$. $V(G')$
     razdelimo na dve neprazni disjunktni množici $V_1$ in $V_2$,
     $V(G') = V_1 \cup V_2$. Naj bo $A \in O|_{V(G')}$
     najmanjša odprta množica, ki vsebuje $V_1$, in $B \in O|_{V(G')}$
@@ -724,19 +723,19 @@ ki nimajo povezav; lahko nista niti homeomorfni.
   \end{itemize}
 \end{proof}
 
-Naj bo $O$ poljubna kompatibilna topologija na $G^b$. Naslednje leme držijo za $\forall x \in V$
+Naj bo $O$ poljubna kompatibilna topologija na $G^b$. Naslednje leme držijo za vsak $x \in V$:
 \begin{lemma}\label{lem1}
-  $\{x\} \subseteq U_x \subseteq \{x\} \cup N_x$
+  $\{x\} \subseteq U_x \subseteq \{x\} \cup N_x$.
 \end{lemma}
 \begin{proof}
   $\{x\} \subseteq U_x$ sledi iz definicije. Recimo, da obstaja $x'$, da
-  $U_{x'} \nsubseteq \{x'\} \cup N_{x'}$ ne drži, potem obstaja
-  $y \in U_{x'}$, $y \notin (\{x'\} \cup N_{x'})$. Ker je $\{x', y\} \subseteq U_x$,
+  $U_{x'} \nsubseteq \{x'\} \cup N_{x'}$ ne drži. Potem obstaja
+  $y \in U_{x'}$, $y \notin \{x'\} \cup N_{x'}$. Ker je $\{x', y\} \subseteq U_x$,
   je ta množica povezana v $O$. Ker je $G^b[\{x',y\}]$ nepovezan graf, je to v
   protislovju z definicijo kompatibilne topologije na $G^b$.
 \end{proof}
 \begin{lemma}\label{lem2}
-  $U_x = \{x\}$ ali $U_x = \{x\} \cup N_x$
+  $U_x = \{x\}$ ali $U_x = \{x\} \cup N_x$.
 \end{lemma}
 \begin{proof}
   Recimo, da lema ne drži. Potem obstaja $x'$, da $U_{x'} \neq \{x'\}$ in
@@ -745,25 +744,28 @@ Naj bo $O$ poljubna kompatibilna topologija na $G^b$. Naslednje leme držijo za 
   dvodelen graf, velja $N_{x'} \cup N_y = \emptyset$. Ker sta $U_{x'}$ in $U_y$ 
   podmnožici $N_x'$ in $N_y$, je bodisi $U_{x'} \cap U_y = \emptyset$,
   bodisi $U_{x'} \cap U_y = \{x'\}$. Če velja $U_{x'} \cap U_y = \emptyset$, sledi
-  protislovja, ker $\{x',y\}$ je povezana množica v $O$.
+  protislovje, saj je $\{x',y\}$ povezana množica v $O$.
   Če velja $U_{x'} \cap U_y = \{x'\}$, potem je $U_{x'} = \{x'\}$, kar je v
-  protislovju z predpostavko $U_{x'} \neq \{x'\}$.
+  protislovju s predpostavko $U_{x'} \neq \{x'\}$.
 \end{proof}
 \begin{lemma}\label{lem3}
-  Za vsak $y \in N_x$ velja $U_x = \{x\} \iff U_y = \{y\} \cup N_y$
+  Naj bo $x \in V(G^b)$. Za vsak $y \in N_x$ velja $U_x = \{x\} \iff U_y = \{y\} \cup N_y$.
 \end{lemma}
 \begin{proof}
-Če je $U_x = \{x\}, U_y = \{y\}$ za katerikoli $y$, sledi protislovje, saj je 
-$\{x,y\}$ nepovezana v $O$, $y$ pa je sosed $x$.
-Če velja $U_x = \{x\} \cup N_x, U_y = \{y\} \cup N_y$ za katerikoli $y$, potem je
-$U_x \cap U_y = \{x, y\} \in O$ (ker je $y \in N_x \Rightarrow x \in N_y$). Ker je
-$U_x$ najmanjša odprta množica, ki vsebuje $x$, je $U_x = \{x,y\}$. Prav tako je
-tudi $U_y = \{x,y\}$. Zaradi leme \ref*{lem2}, sledi, da je $N_x = \{y\}$ in $N_y = \{x\}$.
-Ker je graf povezan in je edini sosed $x$ $y$, sta ti dve točki cel graf
-$V(G^b) = \{x,y\}$, kar je protislovje s predpostavko, da ima $G^b$ vsaj tri vozlišča.
+  Obravnavamo dve možnosti:
+  \begin{itemize}
+    \item[(1)] Naj bo $U_x = \{x\}$. Če je in $U_y = \{y\}$ za katerikoli $y \in N_x$, pridemo v protislovje, saj je 
+    $\{x,y\}$ nepovezana v $O$, $y$ pa je sosed $x$.
+    \item[(2)] Naj bo $U_x = \{x\} \cup N_x$. Če velja $U_y = \{y\} \cup N_y$ za katerikoli $y \in N_x$, potem je
+    $U_x \cap U_y = \{x, y\} \in O$ (ker je $y \in N_x \Rightarrow x \in N_y$). Ker je
+    $U_x$ najmanjša odprta množica, ki vsebuje $x$, je $U_x = \{x,y\}$. Prav tako je
+    tudi $U_y = \{x,y\}$. Iz leme \ref*{lem2}, sledi, da je $N_x = \{y\}$ in $N_y = \{x\}$.
+    Ker je graf povezan in je $y$ edini sosed $x$, sta ti dve točki cel graf
+    $V(G^b) = \{x,y\}$, kar je v protislovju s predpostavko, da ima $G^b$ vsaj tri vozlišča.
+  \end{itemize}
 \end{proof}
 
-Iz zadnje leme sledi:
+Iz zadnje leme sledi spodnji izrek.
 \begin{theorem}
 Vsak povezan, dvodelen graf $G^b = (V,E)$, ki ima vsaj tri vozlišča, ima natanko
 dve kompatibilni topologiji. To sta $O_1$ in $O_2$:
@@ -785,30 +787,30 @@ dve kompatibilni topologiji. To sta $O_1$ in $O_2$:
 Cikel $C$, ki ima liho število vozlišč $n > 3$, nima kompatibilne topologije.
 \end{corollary}
 \begin{proof}
-Za vsak $x \in V(C), G_x^b := C[\{x\} \cup N_x]$ je dvodelen graf, ki ima vsaj tri
-vozlišča. Recimo, da ima $C$ kompatibilno topologijo $O$ na vsakem $G_x^b$ je inducirana 
-kompatibilna topologija $O_1$ ali $O_2$. Za vsaki dve sosednji točki $x,y \in V(C)$ velja:
+Za vsak $x \in V(C)$ je $G_x^b := C[\{x\} \cup N_x]$ dvodelen graf, ki ima vsaj tri
+vozlišča. Recimo, da ima $C$ kompatibilno topologijo $O$. Potem je na vsakem $G_x^b$ inducirana 
+kompatibilna topologija $O_1$ ali $O_2$. Za vsaki dve sosednji točki $x,y \in V(C)$ velja
 \[
-    O|_{V(G_x^b)} \cong O_1 \iff O|_{V(G_y^b)} \cong O_2
+  O|_{V(G_x^b)} \cong O_1 \iff O|_{V(G_y^b)} \cong O_2.
 \]
-sicer, bi $U_x = \{x\}$ in $U_y = \{y\}$, kar bi pomenilo, da je množica
-$\{x, y\}$ nepovezana v $O$ in to je v protislovju z predpostavko, da sta $x$ in
-$y$ povezana. Če si izberemo neko začetno točko $X_0 \in V(C)$, lahko zaporedno
-izbiramo sosednje točke in opazujemo inducirane kompatibilne topologije.
+sicer bi $U_x = \{x\}$ in $U_y = \{y\}$, kar bi pomenilo, da je množica
+$\{x, y\}$ nepovezana v $O$, kar to je v protislovju s predpostavko, da sta $x$ in
+$y$ povezana. Če si izberemo neko začetno točko $X_0 \in V(C)$, lahko zaporedoma
+izbiramo sosednje točke in opazujemo inducirane kompatibilne topologije:
 \[O|_{V(G_{X_0}^b)} \cong O_1\]
 \[O|_{V(G_{X_1}^b)} \cong O_2\]
 \[O|_{V(G_{X_3}^b)} \cong O_1\]
 Ker ima cikel liho število vozlišč, se na $x_0$ inducira kompatibilna topologija $O_2$. Torej
-na podgraf $G^b_{x_0}$ sta inducirani kompatibilni topologiji $O_1$ in $O_2$, kar je v protislovju.
+sta na podgrafu $G^b_{x_0}$ inducirani tako $O_1$ kot $O_2$, kar ni mogoče.
 \end{proof}
 
-Iz posledice \ref*{corollary1} in iz Izreka \ref*{theorem1} sledi:
+Iz posledice \ref*{corollary1} in iz Izreka \ref*{theorem1} sledi naslednji izrek.
 \begin{theorem}
-Vsak graf $G$, ki vsebuje cikel lihe dolžine, kot induciran podgraf,
-nima kompatibilne topologije.
+Naj bo $G$ graf v katerem obstaja induciran podgraf, ki je cikel lihe dolžine. Potem
+$G$ nima kompatibilne topologije.
 \end{theorem}
 Zaradi izreka lahko sklepamo, da 8-povezana mreža nima kompatibilne topologije,
-saj vsebuje cikel lihe dolžine kot induciran podgraf (Slika \ref{oddCircle}).
+saj v njem obstaja induciran podgraf, ki je cikel lihe (Slika \ref{oddCircle}).
 \begin{figure}
   \begin{center}
   \includegraphics[width=0.4\textwidth]{odd_circle.pdf}
@@ -816,53 +818,53 @@ saj vsebuje cikel lihe dolžine kot induciran podgraf (Slika \ref{oddCircle}).
   \caption{cikel lihe dolžine kot induciran podgraf 8-povezane mreže}
   \label{oddCircle}
 \end{figure}
-Mrežo lahko malce drugače konstruiramo, tako da bo imela kompatibilno topologijo
-s pomočjo celičnih kompleksov.
+Mrežo lahko s pomočjo celičnih kompleksov malce drugače konstruiramo, tako
+da bo imela kompatibilno topologijo.
 
 \section{Celični kompleksi} \label{celicni-kompleksi}
-Abstraktni celični kompleksi so podobni simplicialnim kompleksom, vendar so
+Abstraktni celični kompleksi so podobni simplicialnim kompleksom, le da
 celice poljubne oblike in relacije med njimi bolj splošne. Abstraktni celični kompleks
-je trojica $C = (E,B,Dim)$, kjer je $E$ množica abstraktnih objektov,
-ki se imenujejo celice, $B \subseteq E \times E$ je antisimetrična,
-irefleksivna in tranzitivna relacija, za funkcijo dimenzije $DimE \rightarrow I\subseteq\mathbb{N}$
-velja: $Dim(e) < Dim(e')$ za vsak $(e,e') \in E$.
+je trojica $C = (E,B,Dim)$, kjer je $E$ množica abstraktnih objektov (celic), $B \subseteq E \times E$ antisimetrična,
+irefleksivna in tranzitivna relacija in $Dim:\ E \rightarrow I\subseteq\mathbb{N}$ funkcija
+za katero velja: $Dim(e) < Dim(e')$ za vsak $(e,e') \in E$. Tej funkciji pravimo
+dimenzija.
 \begin{figure}[h]
   \begin{center}
   \includegraphics[width=0.4\textwidth]{r2-cell.pdf}
   \end{center}
-  \caption{Primer dela celičnega kompleksa}
+  \caption{primer dela celičnega kompleksa}
   \label{celicni}
 \end{figure}
 Prostor $\mathbb{R}^2$ lahko predstavimo kot celični kompleks, kjer so celice
-točke, daljice in ploskve. Relacija $B$ je definirana kot relacija, ki povezuje
+točke, daljice in ploskve. Relacijo $B$ definiramo kot relacijo, ki povezuje
 točke in daljice, daljice in ploskve ter točke in ploskve. Dimenzija točke je 0,
 dimenzija daljice je 1, dimenzija ploskve pa je 2. Skico lahko vidimo na sliki
 \ref{celicni}.
-Na podoben način kot smo definirali asociirano delno urejenost s simplicialnim
+Na podoben način, kot smo definirali asociirano delno urejenost s simplicialnim
 kompleksom (Definicija \ref{asociated-poset}), lahko definiramo asociiran graf
-$G(C)$ sledeče:
+$G(C)$ na sledeč način:
 \begin{itemize}
   \item Vozlišča grafa so celice $E$.
   \item Povezava med dvema vozliščema $x$ in $y$ obstaja, če in samo če je
-  $(x,y) \in B$ ali $(y,x) \in B$
+  $(x,y) \in B$ ali $(y,x) \in B$.
 \end{itemize}
 \begin{figure}[h]
   \begin{center}
   \includegraphics[width=1\textwidth]{r2-cell-graph.pdf}
   \end{center}
-  \caption{Levi del slike prikazuje induciran podgraf asociiran s celičnim kompleksom iz slike \ref{celicni}, desni del predstavlja
-  orientacijo grafa}
+  \caption{levi del slike prikazuje induciran podgraf, asociiran s celičnim kompleksom
+  iz slike \ref{celicni}, desni del papredstavlja orientacijo grafa}
   \label{celicni-graf}
 \end{figure}
-Na levem delu slike \ref{celicni-graf} je predstavljen del grafa asociiranega z celičnim
-kompleksom $\mathbb{R}^2$. Siva vozlišča predstavljajo celice dimenzije 0, rdeča
+Na levem delu slike \ref{celicni-graf} je predstavljen del grafa, asociiranega s celičnim
+kompleksom prostora $\mathbb{R}^2$. Siva vozlišča predstavljajo celice dimenzije 0, rdeča
 vozlišča celice dimenzije 1, modra vozlišča pa celice dimenzije 2.
 Ker je $B$ tranzitivna, je graf $G(C)$ graf primerljivosti. 
-Lepše lahko relacijo pokažemo z orientacijo grafa $G(C)$, tako da za vsak
+Relacijo lahko lepše prikažemo z orientacijo grafa $G(C)$, tako da za vsak
 $(x,y) \in B$ narišemo povezavo iz $x$ v $y$ (Slika \ref{celicni-graf}).
 \begin{note}
-  Graf $G(C)$ je zelo podoben grafu 8-povezane mreže in zdi se, da vsebuje cikel
-  lihe dolžine kot induciran podgraf, podobno kot na sliki \ref{oddCircle}. S tem
+  Graf $G(C)$ je zelo podoben grafu 8-povezane mreže in zdi se, da vsebuje induciran
+  podgraf, ki je cikel lihe dolžine, podobno kot na sliki \ref{oddCircle}. Iz tega
   bi lahko sklepali, da tak kompleks nima kompatibilne topologije. Cikel lihe dolžine
   na sliki \ref{fail-celicni-graf} je sicer podgraf $G(C)$, vendar ni induciran.
   Induciran podgraf vsebuje vse povezave med vozlišči, ne samo izbrane.
@@ -871,44 +873,44 @@ $(x,y) \in B$ narišemo povezavo iz $x$ v $y$ (Slika \ref{celicni-graf}).
   \begin{center}
   \includegraphics[width=1\textwidth]{odd-circle-r2-cell.pdf}
   \end{center}
-  \caption{Poskus iskanja cikla lihe dolžine v asociiranem grafu celičnega kompleksa}
+  \caption{poskus iskanja cikla lihe dolžine v asociiranem grafu celičnega kompleksa}
   \label{fail-celicni-graf}
 \end{figure}
-Z $H(X)$ označimo horizontalne sosede rdečega vozlišča $x$, z $V(x)$ pa vertikalne
+S $H(X)$ označimo horizontalne sosede rdečega vozlišča $x$, z $V(x)$ pa vertikalne
 sosede rdečega vozlišča $x$.\\
 \begin{lemma}
-  Naj bo $C$ celični kompleks asociiran z $\mathbb{R}^2$ in $\tau$ $T_0$-Aleksandrova
-  topologija kompatibilna na $G(C)$. Za vsa vozlišča $x$ sive ali modre barve velja:
-  \[U_x = \{x\} \cup N_x \quad \text{ali} \quad U_x = \{x\}\]
+  Naj bo $C$ celični kompleks prostora $\mathbb{R}^2$, in $\mathcal{T}$ $T_0$-Aleksandrova
+  topologija, kompatibilna na $G(C)$. Za vsa vozlišča $x$ sive ali modre barve velja
+  \[U_x = \{x\} \cup N_x \quad \text{ali} \quad U_x = \{x\}\text{.}\]
 \end{lemma}
 \begin{sketch}
-Če $U_x \neq \{x\}$ lahko zaradi lastnosti $T_0$ pokažemo, da je 6 od 8 sosedov
-$x$ v $U_x$. Sklepamo lahko da sta tudi ostala dva soseda v $U_x$.
+Če velja $U_x \neq \{x\}$, lahko zaradi lastnosti $T_0$ pokažemo, da je šest od
+osmih sosedov $x$ v $U_x$. Sklepamo lahko, da sta tudi ostala dva soseda v $U_x$.
 Torej je $U_x = \{x\} \cup N_x$.
 \end{sketch}
 
 \begin{theorem}
-  Naj bo $C$ celični kompleks asociiran z $\mathbb{R}^2$. Na grafu $G(C)$ obstajata
-  natanko dve kompatibilni topologiji. To sta $\tau_1$ in $\tau_2$:
+  Naj bo $C$ celični kompleks prostora $\mathbb{R}^2$. Na grafu $G(C)$ obstajata
+  natanko dve kompatibilni topologiji. To sta $\mathcal{T}_1$ in $\mathcal{T}_2$:
   \begin{itemize}
-    \item $\tau_1$:
+    \item $\mathcal{T}_1$:
       \begin{itemize}
-        \item Naj bo $x$ vozlišče modre barve. $U_x = \{x\} \cup N_x$
-        \item Naj bo $x$ vozlišče rdeče barve. $U_x = H(x)$
-        \item Naj bo $x$ vozlišče sive barve. $U_x = \{x\}$
+        \item Naj bo $x$ vozlišče modre barve. Potem je $U_x = \{x\} \cup N_x$.
+        \item Naj bo $x$ vozlišče rdeče barve. Potem je $U_x = H(x)$.
+        \item Naj bo $x$ vozlišče sive barve. Potem je $U_x = \{x\}$.
       \end{itemize}
-      \item $\tau_2$:
+      \item $\mathcal{T}_2$:
       \begin{itemize}
-        \item Naj bo $x$ vozlišče modre barve. $U_x = \{x\}$
-        \item Naj bo $x$ vozlišče rdeče barve. $U_x = V(x)$
-        \item Naj bo $x$ vozlišče sive barve. $U_x = \{x\} \cup N_x$
+        \item Naj bo $x$ vozlišče modre barve. Potem je $U_x = \{x\}$.
+        \item Naj bo $x$ vozlišče rdeče barve. Potem je $U_x = V(x)$.
+        \item Naj bo $x$ vozlišče sive barve. Potem je $U_x = \{x\} \cup N_x$.
       \end{itemize}
   \end{itemize}
 \end{theorem}
-Izrek je brez dokaza, saj je izven obsega tega dela. Sledi iz izrekov 
-2-5 v izseku \Citet*{Bretto2007}.
+Sledi iz izrekov 2-5 v izseku \Citet*{Bretto2007}.
+Dokaz izreka je izven obsega tega dela.
 \begin{theorem}
-  Topologiji $\tau_1$ in $\tau_2$ sta homeomorfni.
+  Topologiji $\mathcal{T}_1$ in $\mathcal{T}_2$ sta homeomorfni.
 \end{theorem}
 \begin{proof}
 Graf lahko vložimo v $\mathbb{Z}^2$ tako, da bo \textbf{rdeče vozlišče} na mestu $(0,0)$ (Slika \ref{cell-graph-symetrical}).
@@ -925,33 +927,33 @@ Množico vozlišč sedaj razpišemo v odvisnosti od barve vozlišč:
   \begin{center}
   \includegraphics[width=0.6\textwidth]{r2-cell-graph-symetrical.pdf}
   \end{center}
-  \caption{Slika prikazuje simetrijo grafa $G(C)$ vloženega v $\mathbb{Z}^2$}
+  \caption{slika prikazuje simetrijo grafa $G(C)$, vloženega v $\mathbb{Z}^2$}
   \label{cell-graph-symetrical}
 \end{figure}
 Sedaj definiramo homeomorfizem:
 \begin{align*}
-    \phi:\ &(\mathbb{Z}^2,\tau_1) \rightarrow (\mathbb{Z}^2,\tau_2)\\
+    \phi:\ &(\mathbb{Z}^2,\mathcal{T}_1) \rightarrow (\mathbb{Z}^2,\mathcal{T}_2)\\
     &(x,y) \mapsto (y, x)
 \end{align*}
-Preslikava je zrcaljenje glede na premico $y=x$ (Zelena premica na sliki \ref{cell-graph-symetrical}).
-Pokazati moramo, da se okolica točke $(x,y)$ v $\tau_1$ preslika v okolico točke $(y,x)$ v $\tau_2$.
-Okolico točke $a$ v $\tau_1$ definiramo kot: $U_{\tau_1}(a)$
-Dokazati moramo torej:
-\[\phi(U_{\tau_1}(x,y)) = U_{\tau_2}((y,x))\]
+Preslikava je zrcaljenje glede na premico $y=x$ (zelena premica na sliki \ref{cell-graph-symetrical}).
+Pokazati moramo, da se okolica točke $(x,y)$ v $\mathcal{T}_1$ preslika v okolico točke $(y,x)$ v $\mathcal{T}_2$.
+Okolico točke $a$ v $\mathcal{T}_1$ označimo z $U_{\mathcal{T}_1}(a)$.
+Dokazati moramo torej
+\[\phi(U_{\mathcal{T}_1}(x,y)) = U_{\mathcal{T}_2}((y,x))\text{.}\]
 \begin{itemize}
-\item[(1)] Naj bo $(x,y) \in R$ vozlišče rdeče barve. Ker velja $x+y = 2k = y+x$
-hitro vidimo, da je $(y,x) \in R$. Isto velja tudi za točke v okolici:
+\item[(1)] Naj bo $(x,y) \in R$ vozlišče rdeče barve. Ker velja $x+y = 2k = y+x$,
+hitro vidimo, da je $(y,x) \in R$. Enako velja tudi za točke v okolici:
 \begin{align*}
-  \phi(U_{\tau_1}((x,y))) &= \phi(H(X))\\
+  \phi(U_{\mathcal{T}_1}((x,y))) &= \phi(H(X))\\
   &= \phi(\{(x+\epsilon,y), \epsilon \in \{-1,0,1\}\})\\
   &= \{(y,x+\epsilon), \epsilon \in \{-1,0,1\}\}\\
-  &= U_{\tau_2}((y,x))
+  &= U_{\mathcal{T}_2}((y,x))
 \end{align*}
 \item[(2)] Naj bo $(x,y) \in W$ vozlišče sive barve. Ker je $(x,y) = (2n+1, 2m)$,
-je $(y,x) = (2m, 2n+1) \in M$. Okolica točke $(x,y)$ v $\tau_1$ je samo točka $(x,y)$,
-okolica točke $(y,x)$ v $\tau_2$ pa je samo točka $(y,x)$.
+je $(y,x) = (2m, 2n+1) \in M$. Okolica točke $(x,y)$ v $\mathcal{T}_1$ je samo točka $(x,y)$,
+okolica točke $(y,x)$ v $\mathcal{T}_2$ pa je samo točka $(y,x)$.
 \[
-  \phi(U_{\tau_1}((x,y))) = \phi(\{(x,y)\}) = \{(y,x)\} = U_{\tau_2}((y,x))
+  \phi(U_{\mathcal{T}_1}((x,y))) = \phi(\{(x,y)\}) = \{(y,x)\} = U_{\mathcal{T}_2}((y,x))
 \]
 \end{itemize}
 \end{proof}
