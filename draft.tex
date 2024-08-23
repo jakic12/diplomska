@@ -380,7 +380,7 @@ A proper abstract should contain around 100 words which makes this one way too s
 \pagestyle{fancy}
 
 \chapter{Uvod}
-Procesiranje slik je zelo pomembno in hitro rastoča veja računalništva z 
+Procesiranje slik je zelo pomembna in hitro rastoča veja računalništva z 
 obširno uporabo na različnih področjih, recimo avtomatizirano branje dokumentov
 v poslovnem svetu, avtomatski nadzor kakovosti v proizvodnji, medicinska diagnostika
 na podlagi radiologije ipd. To delo bo osredotočeno na analizo slik.
@@ -410,13 +410,13 @@ so vozlišča piksli, vozlišči pa sta povezani, če sta sosednji (bodisi 4-pov
 bodisi 8-povezanost). Opazovanje topoloških lastnosti slik torej porodi potrebo po
 raziskovanju topologij na grafih.
 
-\section{Definicije}
-Vsi omenjeni grafi bodo neusmerjeni, brez izoliranih vozlišč in preprosti (brez zank
+\section{Teoretične osnove}
+Vsi omenjeni grafi bodo neusmerjeni, brez izoliranih vozlišč in enostavni (brez zank
 in večkratnih povezav med vozlišči).
-\textbf{Graf} $G = (V,E)$ vsebuje množico vozlišč $V$ in množico povezav $E \subseteq \binom{V}{2}$.
+\textbf{Graf} $G = (V,E)$ je določen z množico vozlišč $V$ in množico povezav $E \subseteq \binom{V}{2}$.
 Povezavo $\{x,y\} \in E,\ x,y \in V$, lahko označimo tudi z $xy$.\\
 Množico sosednjih vozlišč vozlišča $x$ označujemo z \[N_x = \{y \in V\ |\ xy \in E\}.\]\\
-Število sosednjih vozlišč vozlišča $x$ je \[deg(x) = |N_x|.\] Če je $deg(x)$ končno
+Število sosednjih vozlišč vozlišča $x$ je \[\deg(x) = |N_x|.\] Če je $\deg(x)$ končno
 za vsak $x \in V$, je graf $G$ \textbf{lokalno končen}.\\
 $G$ je \textbf{povezan graf}, če za vsak par vozlišč $x,y \in V$ obstaja končno
 zaporedje različnih vozlišč $v_1,\ \dots,\ v_n \in V$, da velja \[xv_1,\ v_1v_2,\ \dots,\ v_n y \in E.\]\\
@@ -428,9 +428,9 @@ iz $G$, ki povezujejo vozlišča iz $V'$. Če je $G'$ induciran podgraf $G$,
 ga označimo z relacijo $G' \sqsubseteq  G$.\\
 Množico vozlišč grafa $G$ označimo z $V(G)$, množico povezav pa z $E(G)$. Unija
 grafov $G_1 \cup G_2$ je definirana kot graf, ki ima vozlišča $V(G_1) \cup V(G_2)$
-in povezave $E(G_1) \cup E(G_2)$.\\
+in povezave $E(G_1) \cup E(G_2)$.\
 \textbf{Orientacija} grafa $G$ je taka šibka urejenost (refleksivna in tranzitivna relacija)
-na množici vozlišč $V(G)$, da velja $xy \in E(G)$, če in samo če je $x < y$ ali $y < x$.
+na množici vozlišč $V(G)$, da velja $xy \in E(G)$, če in samo če je $x < y$ ali $y < x$.\\\par
 \textbf{Topologija} (ali topološka struktura) na množici $X$ je družina $\mathcal{T}$ podmnožic
 $X$, ki zadošča naslednjim zahtevam:
 \begin{itemize}
@@ -442,6 +442,10 @@ Elemente $\mathcal{T}$ imenujemo \textbf{odprte množice} v $X$. \textbf{Topolo�
 ($X$, $\mathcal{T}$) je množica $X$, opremljena s topologijo $\mathcal{T}$.\\
 \textbf{Okolica} točke $x \in X$ je vsaka podmnožica $V \subseteq X$, ki vsebuje
 odprto množico $U$, ki vsebuje $x$.\\
+Premislimo kaj so ekstremne možnosti za topologijo na $X$.
+Najmanj, kar mora vsebovati sta prazna množica in $X$. Hitro lako preverimo, da
+je to topologija, pravimo ji \textbf{trivialna topologija}. Na drugi strani,
+lahko vzamemo vse podmnožice $X$ kot odprte množice. To je \textbf{diskretna topologija}.
 Družina odprtih množic je \textbf{baza} topologije prostora $(X,\mathcal{T})$, če 
 vsak element $\mathcal{T}$ lahko izrazimo kot unijo množic iz baze.\\
 Topološki prostor je \textbf{povezan}, če se množice $X$ ne da izraziti kot unije
@@ -449,27 +453,44 @@ dveh disjunktnih nepraznih odprtih množic.\\
 Funkcija $f:\ (X,\mathcal{T}) \rightarrow (X',\mathcal{T}')$ je \textbf{homeomorfizem}, če je
 $f:\ X \rightarrow X'$ bijektivna, ter če $f$ inducira bijekcijo med $\mathcal{T}$ in $\mathcal{T}'$.
 Tedaj pravimo, da sta topološka prostora $(X,\mathcal{T})$ in $(X',\mathcal{T}')$ \textbf{homeomorfna}.\\
-\textbf{Topologija Aleksandrova} je topologija, v kateri je vsak poljuben presek odprtih
-množic odprt (v navadni topologiji to velja samo za končne preseke). Iz tega sledi,
-da ima vsaka točka v topologiji Aleksandrova najmanjšo okolico, ki je odprta.\\
-Topologija nad množico $X$ je $\mathbf{T_0}$, če za vsaki različni točki $x,y \in X$
-obstaja odprta množica $U$, ki vsebuje eno in druge ne.
+\textbf{Topologija Aleksandrova} je topologija, v kateri je vsak presek odprtih
+množic odprt (v navadni topologiji to velja samo za končne preseke). Presek vseh odprtih množic, 
+ki vsebujejo točko $x$ je torej \textbf{najmanjša odprta okolica} točke $x$, ki jo označimo z $U_x$.\\
+Za topologijo $\mathcal{T}$ na množici $X$ pravimo, da \textbf{loči} podmnožico $A \subseteq X$
+od podmnožice $B \subset X$, če obstaja odprta množica $U$, ki vsebuje $A$ in ne vsebuje $B$,
+torej $A \subseteq U$ in $B \cap U = \emptyset$. Topologija \textbf{ostro loči}, če obstajata
+$U,V \in \mathcal{T}$, da velja $A \subseteq U, B \subseteq V$ in $U \cup V = \emptyset$ \\
+\textbf{Aksiomi ločljivosti} so zahteve za topološki prostor, ki zagotavljajo določeno
+stopnjo ločljivosti med točkami. Pišemo jih kot zaporedje vedno ostrejših zahtev
+$T_0,\ T_1,\ T_2,\ T_3,\ T_4$.\\
+
+\begin{itemize}
+  \item[$X$] je $T_0$: Za različni točki $x,y \in X$ obstaja odprta množica $U$, ki vsebuje
+  eno in ne drugo točko.
+  \item[$X$] je $T_1$: Za različni točki $x,y \in X$ obstaja okolica točke $x$, ki jo
+  ostro loči od $y$ in obenem obstaja okolica točke $y$, ki jo ostro loči od $x$.
+\end{itemize}
+
+Ostali aksiomi v tem delu niso pomembni, saj se bomo osredotočali na končne
+topološke prostore. \textbf{Končna} topologija je topologija na končni množici. Vsaka končna
+topologija je topologija Aleksandrova in brž ko zahtevamo na takem prostoru
+$T_1$, se nam porodi diskretna topologija.
 
 \chapter{Končne topologije, delne urejenosti in celični kompleksi}
 \section{Povezava končnih topologij in delnih urejenosti}\label{poset-top}
-Končna topologija je topologija na končni množici. Šibko urejena množica je
-množica s tranzitivno in refleksivno relacijo. Končne topologije so isti objekti
-kot končne šibko urejene množice iz drugega zornega kota. Za končno množico $X$ 
-za vsak $x\in X$ definiramo minimalno odprto množico $U_x$ kot presek vseh odprtih
-množic, ki vsebujejo $x$. Minimalne odprte množice vseh točk tvorijo bazo prostora,
+Šibko urejena množica je množica s tranzitivno in refleksivno relacijo.
+Pokazali bomo, da poljubna končna topologija na $X$ porodi šibko urejenost na $X$ in obratno.
+Dovolj je že, če je ta topologija topologija Aleksandrova.\\
+Minimalne odprte množice vseh točk tvorijo bazo prostora,
 saj je vsaka odprta množica $U \subseteq X$ unija minimalnih odprtih množic $U_x,\ x\in U$.
-Taki bazi pravimo minimalna baza. Vsaka baza prostora vsebuje minimalno bazo,
+Bazi, ki je sestavljena iz minimalnih odprtih množic pravimo minimalna baza.
+Vsaka baza prostora vsebuje minimalno bazo,
 ker če izrazimo $U_x$ kot unijo odprtih množic iz baze, mora ena od teh množic
 vsebovati $x$. Tedaj ta množica sovpada z $U_x$.\\
 Naj bo $X$ topološki prostor z bazo $\{U_x\}_{x \in X}$. Na množici $X$ definiramo
-naslednjo relacijo:
-\[x \in U_y\quad \Rightarrow\quad x \leq y\]
-Podana relacija je šibka urejenost nad $X$. Iz šibke urejenosti
+relacijo le s pravilom:
+\[x \leq y\quad \Longleftrightarrow\quad x \subseteq y\]
+Podana relacija je šibka urejenost nad $X$. Obratno, iz šibke urejenosti
 definiramo topologijo nad $X$ z bazo $\{y \in X\ |\ x \leq y\}_{x \in X}$.
 Sedaj lahko pokažemo, da je $y \leq x$, če in samo če $y \in U_x$.
 Če je $y \leq x$, potem je $y$ v vsaki osnovni množici, ki vsebuje $x$. Iz tega sledi $y \in U_x$.
@@ -524,10 +545,10 @@ Simplicialni kompleks $K$ je sestavljen iz množic $V_K$ in $S_K$, pri čemer je
 $S_K$ sestavljena iz končnih, nepraznih podmnožic množice $V_K$.
 Množici $V_K$ pravimo množica točk, $S_K$ pa množica simpleksov. Veljati mora, da
 je vsaka podmnožica $V_K$ moči 1 simpleks in da je vsaka neprazna podmnožica
-simpleksov simpleks. Malce lahko izrabimo notacijo in pišemo $v \in K$ namesto
+simpleksov simpleks. Malce lahko zlorabimo notacijo in pišemo $v \in K$ namesto
 $v \in V_K$ in $\sigma \in K$ namesto $\sigma \in S_K$. V večini primerov bomo
 simplicialni kompleks identificirali samo z množico njegovih simpleksov.\\
-Če je simpleks $\sigma$ podmnožica simpleksa $\mathcal{T}$, pravimo, da je $\sigma$ njegovo \textbf{lice}.
+Če je simpleks $\sigma$ podmnožica simpleksa $\tau$, pravimo, da je $\sigma$ njegovo \textbf{lice}.
 Simpleks, ki ima $n+1$ točk, imenujemo \textbf{$n$-simpleks} in pravimo, da je \textbf{dimenzije} $n$.
 Vse točke $K$ predstavljajo 0-simplekse. Dimenzija $K$ je supremum dimenzij
 vseh simpleksov v $K$. Če je $K$ prazen, ima dimenzijo -1, če pa vsebuje $K$ simplekse
@@ -553,6 +574,8 @@ simpleksov $K$.
       \caption{geometrijska realizacija simplicialnega kompleksa $K$}
       \label{sx}
   \end{figure}
+  Abstraktne konveksne kombinacije lahko vizualiziramo s konveksnimi kombinacijami
+  točk, ki so v 'splošni legi'.
 \end{example}
 \newpage
 Topološki prostor $X$ je \textbf{topološki polieder}, če obstaja simplicialni
@@ -594,7 +617,7 @@ simpleksov je taka množica $\{\sigma_0,\sigma_1,\dots,\sigma_n\},\ \sigma_i \in
   Primer take verige je $\{a, ac, abc\}$, saj velja $a \subsetneq ac \subsetneq abc$ (Slika \ref{baricent2}).
 \end{example}
 
-\section{Povezava toploških prostorov in simplicialnih kompleksov}
+\section{Povezava topoloških prostorov in simplicialnih kompleksov}
 \begin{definition}
   Naj bo $X$ končni $T_0$ topološki prostor. Simplicialni kompleks $\mathcal{K}(X)$,
   asociiran z $X$, je simplicialni kompleks, katerega množica simpleksov so neprazne verige $X$.
@@ -654,22 +677,19 @@ točka v $\mathbb{Z}^n,\ n > 1$.\\
   topologijo, zožano na $S$: \[\mathcal{T}|_S = \{U \cap S\ |\ U \in \mathcal{T}\}\]
 \end{definition}
 \begin{definition}
-  Naj bo $G = (V,E)$ graf. Naj bo $O$ topologija na $V$. $O$ imenujemo \textbf{kompatibilna
-  topologija} na $G$, če velja:
-  \begin{itemize}
-    \item[(1)] Za vsak povezan $G' \sqsubseteq G$ je $V(G')$ povezan v $O$.
-    \item[(2)] Za vsako podmnožico $V' \subseteq V$, ki je povezana v $O$, je $G[V']$ povezan graf.
-  \end{itemize}
+  Naj bo $G = (V,E)$ graf. Naj bo $\mathcal{T}$ topologija na $V$. $\mathcal{T}$ imenujemo \textbf{kompatibilna
+  topologija} na $G$, če velja, da je
+  $V' \subseteq V$ topološko povezan če in samo če je $G[V']$ grafovsko povezan.
 \end{definition}
 \begin{theorem}\label{theorem1}
-  Naj bo $G$ graf s kompatibilno topologijo $O$. Za vsak induciran podgraf
+  Naj bo $G$ graf s kompatibilno topologijo $\mathcal{T}$. Za vsak induciran podgraf
   $H \sqsubseteq G$ je topologija, omejena na $V(H)$, kompatibilna topologija
-  na grafu $H$. Tako topologijo označimo z $O|_{V(H)}$.
+  na grafu $H$. To topologijo označimo z $O|_{V(H)}$.
 \end{theorem}
 \begin{proof}
-  Za vsak $H' \sqsubseteq H$ imamo $O|_{V(H)}|_{V(H')} = O|_{V(H')}$. 
-  Vsaka podmnožica $V(H)$ je povezana v $O|_{V(H)}$, če in samo če je povezana v $O$.
-  $H' \sqsubseteq G$ je povezan, če in samo če je $V(H') \subseteq V(H)$ povezan v $O$.\\
+  Za vsak $H' \sqsubseteq H$ imamo $\mathcal{T}|_{V(H)}|_{V(H')} = \mathcal{T}|_{V(H')}$. 
+  Vsaka podmnožica $V(H)$ je povezana v $\mathcal{T}|_{V(H)}$, če in samo če je povezana v $\mathcal{T}$.
+  $H' \sqsubseteq G$ je povezan, če in samo če je $V(H') \subseteq V(H)$ povezan v $\mathcal{T}$.\\
 \end{proof}
 
 \section{Kompatibilne topologije na dvodelnih grafih}
@@ -678,16 +698,16 @@ $V$ je torej unija dveh nepraznih disjunktnih množic $V_A$ in $V_B$. Vsaka
 povezava v $E$ povezuje samo vozlišča iz $V_A$ z vozlišči iz $V_B$.\\
 Definiramo dve kompatibilni topologiji na množici vozlišč $V$ tako, da opišemo
 topološko okolico vsake točke $x \in V$. To je najmanjša odprta množica, ki
-vsebuje $x$: $U_x \in O$. Ker $U_x$ ni mogoče razdeliti na odprte množice, je $U_x$
+vsebuje $x$: $U_x \in \mathcal{T}$. Ker $U_x$ ni mogoče razdeliti na odprte množice, je $U_x$
 in vsaka podmnožica $U_x$, ki vsebuje $x$, povezana.
-Poleg tega je vsaka $U \in O,\ U \neq \emptyset$, unija določenih $U_x$.\\
+Poleg tega je vsaka $U \in \mathcal{T},\ U \neq \emptyset$, unija določenih $U_x$.\\
 Naj bo $N_x = \{y \  | \  yx \in E\}$ množica sosednjih točk točke $x$.\\
 \[
   \begin{split}
-  O_1:&\quad
+  \mathcal{T}_1:&\quad
   U_x:=\{x\}\ \ \forall x \in V_A, \quad
   U_x:=\{x\}\cup N_x\ \  \forall x \in V_B\\
-  O_2:&\quad
+  \mathcal{T}_2:&\quad
   U_x:=\{x\}\cup N_x\ \  \forall x \in V_A, \quad
   U_x:=\{x\}\ \ \forall x \in V_B\\
 \end{split}
@@ -698,39 +718,39 @@ ki nimajo povezav; lahko nista niti homeomorfni.
   $O_1$ in $O_2$ sta kompatibilni topologiji na $G^b$.
 \end{theorem}
 \begin{proof}
-  Naj bo $O$ enak $O_1$ ali $O_2$.
+  Naj bo $\mathcal{T}$ enak $\mathcal{T}_1$ ali $\mathcal{T}_2$.
   \begin{itemize}
     \item[(1)] Naj bo $G' \sqsubseteq G^b$ povezan graf. Dokazati želimo, da je
-    množica $V(G')$ povezana v $O$, torej, da je ne moremo razdeliti na dve
+    množica $V(G')$ povezana v $\mathcal{T}$, torej, da je ne moremo razdeliti na dve
     disjunktni odprti podmnožici. Za vsaki dve sosednji točki $x$ in $y$ je
     $U_x \cap U_y$ neprazen, saj $y \in U_x$ ali $x \in U_y$. $V(G')$
     razdelimo na dve neprazni disjunktni množici $V_1$ in $V_2$,
-    $V(G') = V_1 \cup V_2$. Naj bo $A \in O|_{V(G')}$
-    najmanjša odprta množica, ki vsebuje $V_1$, in $B \in O|_{V(G')}$
+    $V(G') = V_1 \cup V_2$. Naj bo $A \in \mathcal{T}|_{V(G')}$
+    najmanjša odprta množica, ki vsebuje $V_1$, in $B \in \mathcal{T}|_{V(G')}$
     najmanjša odprta množica, ki vsebuje $V_2$. Tedaj je $A \cap B \neq \emptyset$,
-    torej je $V(G')$ povezan v $O$.
+    torej je $V(G')$ povezan v $\mathcal{T}$.
     \item[(2)] Naj bo $G' \sqsubseteq G^b$ nepovezan graf. Dokazati želimo, da
-    je množica $V(G')$ nepovezana v $O$. Ker je $G'$ nepovezan, lahko $G'$ razdelimo
+    je množica $V(G')$ nepovezana v $\mathcal{T}$. Ker je $G'$ nepovezan, lahko $G'$ razdelimo
     na unijo dveh ne nujno povezanih induciranih podgrafov $C$ in $D$ tako, da nobeno vozlišče iz $C$
     ni povezano z nobenim vozliščem iz $D$. Torej
     \[\bigcup_{x\in V(C)}U_x \cap V(D) = \emptyset = V(C) \cap \bigcup_{x\in V(D)}U_x\]
     $V(C)$ in $V(D)$ lahko razpišemo:
     \[V(C) = V(G') \cap \left(\bigcup_{x\in V(C)} U_x\right)\]
     \[V(D) = V(G') \cap \left(\bigcup_{x\in V(D)} U_x\right)\]
-    Vidimo, da sta $V(C)$ in $V(D)$ disjunktni odprti množici v $O|_{V(G')}$,
-    torej je $V(G')$ nepovezana v $O$.
+    Vidimo, da sta $V(C)$ in $V(D)$ disjunktni odprti množici v $\mathcal{T}|_{V(G')}$,
+    torej je $V(G')$ nepovezana v $\mathcal{T}$.
   \end{itemize}
 \end{proof}
 
-Naj bo $O$ poljubna kompatibilna topologija na $G^b$. Naslednje leme držijo za vsak $x \in V$:
+Naj bo $\mathcal{T}$ poljubna kompatibilna topologija na $G^b$. Naslednje leme držijo za vsak $x \in V$:
 \begin{lemma}\label{lem1}
   $\{x\} \subseteq U_x \subseteq \{x\} \cup N_x$.
 \end{lemma}
 \begin{proof}
-  $\{x\} \subseteq U_x$ sledi iz definicije. Recimo, da obstaja $x'$, da
-  $U_{x'} \nsubseteq \{x'\} \cup N_{x'}$ ne drži. Potem obstaja
-  $y \in U_{x'}$, $y \notin \{x'\} \cup N_{x'}$. Ker je $\{x', y\} \subseteq U_x$,
-  je ta množica povezana v $O$. Ker je $G^b[\{x',y\}]$ nepovezan graf, je to v
+  $\{x\} \subseteq U_x$ sledi iz definicije. Recimo, da obstaja $x$, za katerega velja
+  $U_{x} \nsubseteq \{x\} \cup N_{x}$. Potem obstaja
+  $y \in U_{x}$, $y \notin \{x\} \cup N_{x}$. Ker je $\{x, y\} \subseteq U_x$,
+  je ta množica povezana v $\mathcal{T}$. Ker je $G^b[\{x',y\}]$ nepovezan graf, je to v
   protislovju z definicijo kompatibilne topologije na $G^b$.
 \end{proof}
 \begin{lemma}\label{lem2}
@@ -743,7 +763,7 @@ Naj bo $O$ poljubna kompatibilna topologija na $G^b$. Naslednje leme držijo za 
   dvodelen graf, velja $N_{x'} \cup N_y = \emptyset$. Ker sta $U_{x'}$ in $U_y$ 
   podmnožici $N_x'$ in $N_y$, je bodisi $U_{x'} \cap U_y = \emptyset$,
   bodisi $U_{x'} \cap U_y = \{x'\}$. Če velja $U_{x'} \cap U_y = \emptyset$, sledi
-  protislovje, saj je $\{x',y\}$ povezana množica v $O$.
+  protislovje, saj je $\{x',y\}$ povezana množica v $\mathcal{T}$.
   Če velja $U_{x'} \cap U_y = \{x'\}$, potem je $U_{x'} = \{x'\}$, kar je v
   protislovju s predpostavko $U_{x'} \neq \{x'\}$.
 \end{proof}
@@ -754,9 +774,9 @@ Naj bo $O$ poljubna kompatibilna topologija na $G^b$. Naslednje leme držijo za 
   Obravnavamo dve možnosti:
   \begin{itemize}
     \item[(1)] Naj bo $U_x = \{x\}$. Če je in $U_y = \{y\}$ za katerikoli $y \in N_x$, pridemo v protislovje, saj je 
-    $\{x,y\}$ nepovezana v $O$, $y$ pa je sosed $x$.
+    $\{x,y\}$ nepovezana v $\mathcal{T}$, $y$ pa je sosed $x$.
     \item[(2)] Naj bo $U_x = \{x\} \cup N_x$. Če velja $U_y = \{y\} \cup N_y$ za katerikoli $y \in N_x$, potem je
-    $U_x \cap U_y = \{x, y\} \in O$ (ker je $y \in N_x \Rightarrow x \in N_y$). Ker je
+    $U_x \cap U_y = \{x, y\} \in \mathcal{T}$ (ker je $y \in N_x \Rightarrow x \in N_y$). Ker je
     $U_x$ najmanjša odprta množica, ki vsebuje $x$, je $U_x = \{x,y\}$. Prav tako je
     tudi $U_y = \{x,y\}$. Iz leme \ref*{lem2}, sledi, da je $N_x = \{y\}$ in $N_y = \{x\}$.
     Ker je graf povezan in je $y$ edini sosed $x$, sta ti dve točki cel graf
@@ -767,13 +787,13 @@ Naj bo $O$ poljubna kompatibilna topologija na $G^b$. Naslednje leme držijo za 
 Iz zadnje leme sledi spodnji izrek.
 \begin{theorem}
 Vsak povezan, dvodelen graf $G^b = (V,E)$, ki ima vsaj tri vozlišča, ima natanko
-dve kompatibilni topologiji. To sta $O_1$ in $O_2$:
+dve kompatibilni topologiji. To sta $\mathcal{T}_1$ in $\mathcal{T}_2$:
 \[
   \begin{split}
-  O_1:&\quad
+  \mathcal{T}_1:&\quad
   U_x:=\{x\}\ \ \forall x \in V_A, \quad
   U_x:=\{x\}\cup N_x\ \  \forall x \in V_B\\
-  O_2:&\quad
+  \mathcal{T}_2:&\quad
   U_x:=\{x\}\cup N_x\ \  \forall x \in V_A, \quad
   U_x:=\{x\}\ \ \forall x \in V_B\\
 \end{split}
@@ -787,20 +807,20 @@ Cikel $C$, ki ima liho število vozlišč $n > 3$, nima kompatibilne topologije.
 \end{corollary}
 \begin{proof}
 Za vsak $x \in V(C)$ je $G_x^b := C[\{x\} \cup N_x]$ dvodelen graf, ki ima vsaj tri
-vozlišča. Recimo, da ima $C$ kompatibilno topologijo $O$. Potem je na vsakem $G_x^b$ inducirana 
-kompatibilna topologija $O_1$ ali $O_2$. Za vsaki dve sosednji točki $x,y \in V(C)$ velja
+vozlišča. Recimo, da ima $C$ kompatibilno topologijo $\mathcal{T}$. Potem je na vsakem $G_x^b$ inducirana 
+kompatibilna topologija $\mathcal{T}_1$ ali $\mathcal{T}_2$. Za vsaki dve sosednji točki $x,y \in V(C)$ velja
 \[
-  O|_{V(G_x^b)} \cong O_1 \iff O|_{V(G_y^b)} \cong O_2.
+  \mathcal{T}|_{V(G_x^b)} \cong \mathcal{T}_1 \iff \mathcal{T}|_{V(G_y^b)} \cong \mathcal{T}_2.
 \]
 sicer bi $U_x = \{x\}$ in $U_y = \{y\}$, kar bi pomenilo, da je množica
-$\{x, y\}$ nepovezana v $O$, kar to je v protislovju s predpostavko, da sta $x$ in
+$\{x, y\}$ nepovezana v $\mathcal{T}$, kar to je v protislovju s predpostavko, da sta $x$ in
 $y$ povezana. Če si izberemo neko začetno točko $X_0 \in V(C)$, lahko zaporedoma
 izbiramo sosednje točke in opazujemo inducirane kompatibilne topologije:
-\[O|_{V(G_{X_0}^b)} \cong O_1\]
-\[O|_{V(G_{X_1}^b)} \cong O_2\]
-\[O|_{V(G_{X_3}^b)} \cong O_1\]
-Ker ima cikel liho število vozlišč, se na $x_0$ inducira kompatibilna topologija $O_2$. Torej
-sta na podgrafu $G^b_{x_0}$ inducirani tako $O_1$ kot $O_2$, kar ni mogoče.
+\[\mathcal{T}|_{V(G_{X_0}^b)} \cong \mathcal{T}_1\]
+\[\mathcal{T}|_{V(G_{X_1}^b)} \cong \mathcal{T}_2\]
+\[\mathcal{T}|_{V(G_{X_3}^b)} \cong \mathcal{T}_1\]
+Ker ima cikel liho število vozlišč, se na $x_0$ inducira kompatibilna topologija $\mathcal{T}_2$. Torej
+sta na podgrafu $G^b_{x_0}$ inducirani tako $\mathcal{T}_1$ kot $\mathcal{T}_2$, kar ni mogoče.
 \end{proof}
 
 Iz posledice \ref*{corollary1} in iz Izreka \ref*{theorem1} sledi naslednji izrek.
@@ -825,7 +845,7 @@ Abstraktni celični kompleksi so podobni simplicialnim kompleksom, le da
 celice poljubne oblike in relacije med njimi bolj splošne. Abstraktni celični kompleks
 je trojica $C = (E,B,Dim)$, kjer je $E$ množica abstraktnih objektov (celic), $B \subseteq E \times E$ antisimetrična,
 irefleksivna in tranzitivna relacija in $Dim:\ E \rightarrow I\subseteq\mathbb{N}$ funkcija
-za katero velja: $Dim(e) < Dim(e')$ za vsak $(e,e') \in E$. Tej funkciji pravimo
+za katero velja: $Dim(e) < Dim(e')$ za vsak $(e,e') \subseteq E$. Tej funkciji pravimo
 dimenzija.
 \begin{figure}[h]
   \begin{center}
