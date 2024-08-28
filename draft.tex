@@ -472,7 +472,7 @@ $T_0,\ T_1,\ T_2,\ T_3,\ T_4$.\\
 \end{itemize}
 
 Ostali aksiomi v tem delu niso pomembni, saj se bomo osredotočali na končne
-topološke prostore. \textbf{Končna} topologija je topologija na končni množici. Vsaka končna
+topološke prostore. \textbf{Končna topologija} je topologija na končni množici. Vsaka končna
 topologija je topologija Aleksandrova in brž ko zahtevamo na takem prostoru
 $T_1$, se nam porodi diskretna topologija.
 
@@ -553,15 +553,24 @@ Simpleks, ki ima $n+1$ točk, imenujemo \textbf{$n$-simpleks} in pravimo, da je 
 Vse točke $K$ predstavljajo 0-simplekse. Dimenzija $K$ je supremum dimenzij
 vseh simpleksov v $K$. Če je $K$ prazen, ima dimenzijo -1, če pa vsebuje $K$ simplekse
 poljubno velike dimenzije, je njegova dimenzija neskončno.\\
-Naj bo $\sigma = \{v_0,v_1,\dots,v_n\}$ simpleks dimenzije $n$. Zaprt simpleks
-$\bar{\sigma}$ je množica konveksnih kombinacij točk v $\sigma$:
+Naj bo $\sigma = \{v_0,v_1,\dots,v_n\}$ simpleks dimenzije $n$.
+Konveksna kombinacija točk $\{v_0,v_1,\dots,v_n\}$ je definirana kot
 \[
-  \bar{\sigma} = \left\{\sum_{i=0}^n \lambda_i v_i\ |\ \lambda_i \geq 0, \sum_{i=0}^n \lambda_i = 1\right\}
+  \sum_{i=0}^n \lambda_i v_i,\ \lambda_i \geq 0,\ \sum_{i=0}^n \lambda_i = 1.
 \]
+Zaprt simpleks $\bar{\sigma}$ je množica vseh konveksnih kombinacij točk iz $\sigma$.
+Za konveksno kombinacijo $\sum_{i=0}^n \lambda_i v_i$ definiramo nosilec konveksne kombinacije
+kot množica vseh $v_i$, katerih pripadajoč $\lambda_i$ je različen od 0.
+\begin{example}
+  Nosilec konveksne kombinacije $0.8 v_0 + 0.2 v_1 + 0 v_3$ je $\{v_0,v_1\}$.
+\end{example}
 Geometrijska realizacija $|K|$ simplicialnega kompleksa $K$ je množica 
-vseh takih konveksnih kombinacij $\sum_{v\in K} \lambda_v v,\ \lambda_v \geq 0$, tako da vsi $v$, ki imajo
-neničelno $\lambda_v$, tvorijo simpleks v $K$. $|K|$ je torej unija vseh zaprtih
-simpleksov $K$.
+vseh takih konveksnih kombinacij, katerih nosilec je simpleks v $K$.
+$|K|$ je torej unija vseh zaprtih simpleksov $K$.
+Navadno točk ne podamo kot vektorje ampak kot elemente v `splošni legi'
+nekega abstraktnega prostora, torej so konveksne kombinacije teh točk
+tudi abstraktne.
+\newpage
 \begin{example}
   Naj bo $K$ simplicialni kompleks, ki vsebuje simplekse
   $\{a,b,c\}$, $\{b,d\}$, $\{c,d\}$, $\{b,e\}$, $\{f\}$ in vse njihove neprazne
@@ -574,8 +583,6 @@ simpleksov $K$.
       \caption{geometrijska realizacija simplicialnega kompleksa $K$}
       \label{sx}
   \end{figure}
-  Abstraktne konveksne kombinacije lahko vizualiziramo s konveksnimi kombinacijami
-  točk, ki so v 'splošni legi'.
 \end{example}
 \newpage
 Topološki prostor $X$ je \textbf{topološki polieder}, če obstaja simplicialni
@@ -671,6 +678,13 @@ točka v $\mathbb{Z}^n,\ n > 1$.\\
   V razdelku \ref{obstoj} bomo pokazali, da 8-povezana mreža in s tem tudi
   $(d_{\inf},n)$-prostor nima kompatibilne topologije.
 
+\begin{figure}[h]
+  \begin{center}
+  \includegraphics[width=0.9\textwidth]{4mreza8mreza.pdf}
+  \end{center}
+  \caption{izsek 4-povezane in 8-povezane mreže}
+\end{figure}
+
 \section{Topologije na grafih}
 \begin{definition}
   Za dan topološki prostor $(X, \mathcal{T})$ in dano podmnožico $S \subseteq X$ definiramo
@@ -712,10 +726,28 @@ Naj bo $N_x = \{y \  | \  yx \in E\}$ množica sosednjih točk točke $x$.\\
   U_x:=\{x\}\ \ \forall x \in V_B\\
 \end{split}
 \]
-Kompatibilni topologiji $O_1$ in $O_2$ nista ekvivalentni, razen na grafih,
+Kompatibilni topologiji $\mathcal{T}_1$ in $\mathcal{T}_2$ nista ekvivalentni, razen na grafih,
 ki nimajo povezav; lahko nista niti homeomorfni.
+\begin{example}
+  Naj bo $G^b$ dvodelen graf s 5 vozlišči, prikazan na sliki \ref{t1t2_skica}. Na levem 
+  delu slike je skicirana topologija $\mathcal{T}_1$. Z rdečo so označene okolice točk iz $V_A$,
+  torej iz definicije ($U_x:=\{x\}\ \ \forall x \in V_A$) so to samo enojci. Z modro so označene
+  okolice točk iz $V_B$, ki so definirane kot unija točke same in njenih sosedov
+  ($U_x:=\{x\}\cup N_x\ \  \forall x \in V_B$). Ne smemo tudi pozabiti, da celotna topologija
+  vsebuje tudi preseke in unije teh okolic, ki na sliki niso prikazane. Na desni strani slike
+  je skicirana topologija $\mathcal{T}_2$ po enakem postopku. Čeprav sta si topologiji podobni,
+  nista homeomorfni.
+
+  \begin{figure}
+    \begin{center}
+    \includegraphics[width=0.6\textwidth]{t1t2_skica.pdf}
+    \end{center}
+    \caption{skica topologij $\mathcal{T}_1$ in $\mathcal{T}_2$ na dvodelnem grafu}
+    \label{t1t2_skica}
+  \end{figure}
+\end{example}
 \begin{theorem}
-  $O_1$ in $O_2$ sta kompatibilni topologiji na $G^b$.
+  $\mathcal{T}_1$ in $\mathcal{T}_2$ sta kompatibilni topologiji na $G^b$.
 \end{theorem}
 \begin{proof}
   Naj bo $\mathcal{T}$ enak $\mathcal{T}_1$ ali $\mathcal{T}_2$.
@@ -847,7 +879,7 @@ je trojica $C = (E,B,Dim)$, kjer je $E$ množica abstraktnih objektov (celic), $
 irefleksivna in tranzitivna relacija in $Dim:\ E \rightarrow I\subseteq\mathbb{N}$ funkcija
 za katero velja: $Dim(e) < Dim(e')$ za vsak $(e,e') \subseteq E$. Tej funkciji pravimo
 dimenzija.
-\begin{figure}[h]
+\begin{figure}
   \begin{center}
   \includegraphics[width=0.4\textwidth]{r2-cell.pdf}
   \end{center}
@@ -867,13 +899,19 @@ $G(C)$ na sledeč način:
   \item Povezava med dvema vozliščema $x$ in $y$ obstaja, če in samo če je
   $(x,y) \in B$ ali $(y,x) \in B$.
 \end{itemize}
-\begin{figure}[h]
+\begin{figure}[p]
   \begin{center}
   \includegraphics[width=1\textwidth]{r2-cell-graph.pdf}
   \end{center}
   \caption{levi del slike prikazuje induciran podgraf, asociiran s celičnim kompleksom
   iz slike \ref{celicni}, desni del papredstavlja orientacijo grafa}
   \label{celicni-graf}
+
+  \begin{center}
+  \includegraphics[width=1\textwidth]{odd-circle-r2-cell.pdf}
+  \end{center}
+  \caption{poskus iskanja cikla lihe dolžine v asociiranem grafu celičnega kompleksa}
+  \label{fail-celicni-graf}
 \end{figure}
 Na levem delu slike \ref{celicni-graf} je predstavljen del grafa, asociiranega s celičnim
 kompleksom prostora $\mathbb{R}^2$. Siva vozlišča predstavljajo celice dimenzije 0, rdeča
@@ -885,29 +923,22 @@ $(x,y) \in B$ narišemo povezavo iz $x$ v $y$ (Slika \ref{celicni-graf}).
   Graf $G(C)$ je zelo podoben grafu 8-povezane mreže in zdi se, da vsebuje induciran
   podgraf, ki je cikel lihe dolžine, podobno kot na sliki \ref{oddCircle}. Iz tega
   bi lahko sklepali, da tak kompleks nima kompatibilne topologije. Cikel lihe dolžine
-  na sliki \ref{fail-celicni-graf} je sicer podgraf $G(C)$, vendar ni induciran.
+  na levem delu slike \ref{fail-celicni-graf} je sicer podgraf $G(C)$, vendar ni induciran.
   Induciran podgraf vsebuje vse povezave med vozlišči, ne samo izbrane.
 \end{note}
-\begin{figure}[h]
-  \begin{center}
-  \includegraphics[width=1\textwidth]{odd-circle-r2-cell.pdf}
-  \end{center}
-  \caption{poskus iskanja cikla lihe dolžine v asociiranem grafu celičnega kompleksa}
-  \label{fail-celicni-graf}
-\end{figure}
-S $H(X)$ označimo horizontalne sosede rdečega vozlišča $x$, z $V(x)$ pa vertikalne
-sosede rdečega vozlišča $x$.\\
 \begin{lemma}
   Naj bo $C$ celični kompleks prostora $\mathbb{R}^2$, in $\mathcal{T}$ $T_0$-Aleksandrova
   topologija, kompatibilna na $G(C)$. Za vsa vozlišča $x$ sive ali modre barve velja
   \[U_x = \{x\} \cup N_x \quad \text{ali} \quad U_x = \{x\}\text{.}\]
 \end{lemma}
 \begin{sketch}
-Če velja $U_x \neq \{x\}$, lahko zaradi lastnosti $T_0$ pokažemo, da je šest od
-osmih sosedov $x$ v $U_x$. Sklepamo lahko, da sta tudi ostala dva soseda v $U_x$.
-Torej je $U_x = \{x\} \cup N_x$.
+  Če velja $U_x \neq \{x\}$, lahko zaradi lastnosti $T_0$ pokažemo, da je šest od
+  osmih sosedov $x$ v $U_x$. Sklepamo lahko, da sta tudi ostala dva soseda v $U_x$.
+  Torej je $U_x = \{x\} \cup N_x$.
 \end{sketch}
 
+S $H(X)$ označimo horizontalne sosede rdečega vozlišča $x$, z $V(x)$ pa vertikalne
+sosede rdečega vozlišča $x$.\\
 \begin{theorem}
   Naj bo $C$ celični kompleks prostora $\mathbb{R}^2$. Na grafu $G(C)$ obstajata
   natanko dve kompatibilni topologiji. To sta $\mathcal{T}_1$ in $\mathcal{T}_2$:
