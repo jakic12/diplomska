@@ -443,7 +443,7 @@ Elemente $\mathcal{T}$ imenujemo \textbf{odprte množice} v $X$. \textbf{Topolo�
 \textbf{Okolica} točke $x \in X$ je vsaka podmnožica $V \subseteq X$, ki vsebuje
 odprto množico $U$, ki vsebuje $x$.\\
 Premislimo kaj so ekstremne možnosti za topologijo na $X$.
-Najmanj, kar mora vsebovati sta prazna množica in $X$. Hitro lako preverimo, da
+Najmanj, kar mora vsebovati sta prazna množica in $X$, torej $\mathcal{T} = \{\emptyset, X\}$. Hitro lako preverimo, da
 je to topologija, pravimo ji \textbf{trivialna topologija}. Na drugi strani,
 lahko vzamemo vse podmnožice $X$ kot odprte množice. To je \textbf{diskretna topologija}.
 Družina odprtih množic je \textbf{baza} topologije prostora $(X,\mathcal{T})$, če 
@@ -459,10 +459,11 @@ ki vsebujejo točko $x$ je torej \textbf{najmanjša odprta okolica} točke $x$, 
 Za topologijo $\mathcal{T}$ na množici $X$ pravimo, da \textbf{loči} podmnožico $A \subseteq X$
 od podmnožice $B \subset X$, če obstaja odprta množica $U$, ki vsebuje $A$ in ne vsebuje $B$,
 torej $A \subseteq U$ in $B \cap U = \emptyset$. Topologija \textbf{ostro loči}, če obstajata
-$U,V \in \mathcal{T}$, da velja $A \subseteq U, B \subseteq V$ in $U \cup V = \emptyset$ \\
+$U,V \in \mathcal{T}$, da velja $A \subseteq U, B \subseteq V$ in $U \cap V = \emptyset$ \\
 \textbf{Aksiomi ločljivosti} so zahteve za topološki prostor, ki zagotavljajo določeno
 stopnjo ločljivosti med točkami. Pišemo jih kot zaporedje vedno ostrejših zahtev
-$T_0,\ T_1,\ T_2,\ T_3,\ T_4$.\\
+$T_0,\ T_1,\ T_2,\ T_3,\ T_4$. Če prostor $(X, \mathcal{T})$ zadošča pogoju $T_i$,
+pravimo, da je $X$ $T_i$-prostor.
 
 \begin{itemize}
   \item[$X$] je $T_0$: Za različni točki $x,y \in X$ obstaja odprta množica $U$, ki vsebuje
@@ -472,9 +473,11 @@ $T_0,\ T_1,\ T_2,\ T_3,\ T_4$.\\
 \end{itemize}
 
 Ostali aksiomi v tem delu niso pomembni, saj se bomo osredotočali na končne
-topološke prostore. \textbf{Končna topologija} je topologija na končni množici. Vsaka končna
-topologija je topologija Aleksandrova in brž ko zahtevamo na takem prostoru
-$T_1$, se nam porodi diskretna topologija.
+topološke prostore. \textbf{Končna topologija} je topologija na končni množici. Digitalne slike so
+končne množice, zato se v tem delu osredotočamo izključno na končne topologije.
+Izkaže se, da je vsaka končna topologija topologija Aleksandrova in brž ko zahtevamo
+na takem prostoru $T_1$, se nam porodi diskretna topologija. Torej za nas zanimivi
+končni topološki prostori so $T_0$ in ne $T_1$. 
 
 \chapter{Končne topologije, delne urejenosti in celični kompleksi}
 \section{Povezava končnih topologij in delnih urejenosti}\label{poset-top}
@@ -489,9 +492,9 @@ ker če izrazimo $U_x$ kot unijo odprtih množic iz baze, mora ena od teh množi
 vsebovati $x$. Tedaj ta množica sovpada z $U_x$.\\
 Naj bo $X$ topološki prostor z bazo $\{U_x\}_{x \in X}$. Na množici $X$ definiramo
 relacijo le s pravilom:
-\[x \leq y\quad \Longleftrightarrow\quad x \subseteq y\]
+\[x \leq y\quad \Longleftrightarrow\quad U_x \subseteq U_y\]
 Podana relacija je šibka urejenost nad $X$. Obratno, iz šibke urejenosti
-definiramo topologijo nad $X$ z bazo $\{y \in X\ |\ x \leq y\}_{x \in X}$.
+definiramo topologijo nad $X$ z bazo $\bigcup_{x\in X}\{y \in X\ |\ x \leq y\}$.
 Sedaj lahko pokažemo, da je $y \leq x$, če in samo če $y \in U_x$.
 Če je $y \leq x$, potem je $y$ v vsaki osnovni množici, ki vsebuje $x$. Iz tega sledi $y \in U_x$.
 Tudi obratno, če $y \in U_x$, potem je $y \in \{z \in X\ |\ z \leq x\}$, zato lahko sklepamo, da je $y \leq x$.\\
@@ -695,6 +698,42 @@ točka v $\mathbb{Z}^n,\ n > 1$.\\
   topologija} na $G$, če velja, da je
   $V' \subseteq V$ topološko povezan če in samo če je $G[V']$ grafovsko povezan.
 \end{definition}
+\newpage
+\begin{figure}[h]
+  \begin{center}
+  \includegraphics[width=0.4\textwidth]{compatible-topology.pdf}
+  \end{center}
+  \caption{Primer kompatibilne topologije na grafu}
+  \label{compat-topol}
+\end{figure}
+\begin{example}
+  Naj bo $G$ graf na 4 vozliščih $V=\{a,b,c,d\}$ in povezavah $E=\{ac,ab,bd\}$. Na množici
+  vozlišč $V$ lahko definiramo topologijo $\mathcal{T}_k = \{\emptyset, \{a\}, \{a, b\}, \{a, b, c\}, \{a, b, d\}, \{a, b, c, d\}\}$.
+  Graf in topologija sta prikazana na sliki \ref{compat-topol}. Povezave grafa so prikazane z modrimi daljicami,
+  odprte množice topologije pa s črnimi krivuljami. Topologija je $T_0$, saj za vsak par točk
+  obstaja množica, ki vsebuje eno in ne drugo. Naprimer $b,d$ ločujeta množici $\{a, b\}, \{a, b, d\}$.
+  Topologija $\mathcal{T}_k$ je tudi kompatibilna z grafom $G$, saj je $V' \subseteq V$ povezan v $\mathcal{T}_k$,
+  če in samo če je $V'$ povezan v $G$. Primer $G[\{c,d\}]$ je graf brez povezav, ki vsebuje točki $c$ in $d$. Podprostor
+  topologije $\mathcal{T}_k$ na točkah $\{c,d\}$ je $\mathcal{T}_k|_{\{c,d\}} = \{\emptyset, \{c\}, \{d\}, \{c, d\}\}$.
+  Ta prostor je nepovezan, saj lahko prostor razdelimo na dve disjunktni uniji odprtih množic ($\{c, d\} = \{c\} \cup \{d\}$).
+  To velja za vsak induciran podgraf na vsaki podmnožici točk, torej je topologija kompatibilna z grafom.
+\end{example}
+\begin{figure}[h]
+  \begin{center}
+  \includegraphics[width=0.4\textwidth]{incompatible-topology.pdf}
+  \end{center}
+  \caption{Primer topologije na grafu, ki ni kompatibilna}
+  \label{incompat-topol}
+\end{figure}
+
+\begin{example}
+  Naj bo $G$ isti graf na 4 vozliščih $V=\{a,b,c,d\}$ kot v prejšnjem primeru, torej $E=\{ac,ab,bd\}$.
+  Sedaj definiramo topologijo $\mathcal{T}_n = \{\emptyset, \{a\}, \{b\}, \{a, b\}, \{a, c\}, \{a, b, c\}, \{a, b, c, d\}\}$.
+  Skica grafa in topologije je prikazana na sliki \ref{incompat-topol}. Topologija je prav tako $T_0$.
+  Topologija ni kompatibilna z grafom, saj je $\{a,b\}$ protiprimer pogoja kompatibilnosti. $G[\{a,b\}]$
+  je povezan graf, vendar je $\{a,b\}$ nepovezana množica v $\mathcal{T}_n$. Razdelimo ga lahko na dve
+  disjunktni odprti množici $\{a\}$ in $\{b\}$.
+\end{example}
 \begin{theorem}\label{theorem1}
   Naj bo $G$ graf s kompatibilno topologijo $\mathcal{T}$. Za vsak induciran podgraf
   $H \sqsubseteq G$ je topologija, omejena na $V(H)$, kompatibilna topologija
@@ -856,6 +895,7 @@ sta na podgrafu $G^b_{x_0}$ inducirani tako $\mathcal{T}_1$ kot $\mathcal{T}_2$,
 \end{proof}
 
 Iz posledice \ref*{corollary1} in iz Izreka \ref*{theorem1} sledi naslednji izrek.
+\newpage
 \begin{theorem}
 Naj bo $G$ graf v katerem obstaja induciran podgraf, ki je cikel lihe dolžine. Potem
 $G$ nima kompatibilne topologije.
@@ -871,7 +911,7 @@ saj v njem obstaja induciran podgraf, ki je cikel lihe (Slika \ref{oddCircle}).
 \end{figure}
 Mrežo lahko s pomočjo celičnih kompleksov malce drugače konstruiramo, tako
 da bo imela kompatibilno topologijo.
-
+\newpage
 \section{Celični kompleksi} \label{celicni-kompleksi}
 Abstraktni celični kompleksi so podobni simplicialnim kompleksom, le da
 celice poljubne oblike in relacije med njimi bolj splošne. Abstraktni celični kompleks
@@ -899,19 +939,13 @@ $G(C)$ na sledeč način:
   \item Povezava med dvema vozliščema $x$ in $y$ obstaja, če in samo če je
   $(x,y) \in B$ ali $(y,x) \in B$.
 \end{itemize}
-\begin{figure}[p]
+\begin{figure}[h]
   \begin{center}
-  \includegraphics[width=1\textwidth]{r2-cell-graph.pdf}
-  \end{center}
-  \caption{levi del slike prikazuje induciran podgraf, asociiran s celičnim kompleksom
-  iz slike \ref{celicni}, desni del papredstavlja orientacijo grafa}
-  \label{celicni-graf}
-
-  \begin{center}
-  \includegraphics[width=1\textwidth]{odd-circle-r2-cell.pdf}
-  \end{center}
-  \caption{poskus iskanja cikla lihe dolžine v asociiranem grafu celičnega kompleksa}
-  \label{fail-celicni-graf}
+    \includegraphics[width=1\textwidth]{r2-cell-graph.pdf}
+    \end{center}
+    \caption{levi del slike prikazuje induciran podgraf, asociiran s celičnim kompleksom
+    iz slike \ref{celicni}, desni del papredstavlja orientacijo grafa}
+    \label{celicni-graf}
 \end{figure}
 Na levem delu slike \ref{celicni-graf} je predstavljen del grafa, asociiranega s celičnim
 kompleksom prostora $\mathbb{R}^2$. Siva vozlišča predstavljajo celice dimenzije 0, rdeča
@@ -919,6 +953,14 @@ vozlišča celice dimenzije 1, modra vozlišča pa celice dimenzije 2.
 Ker je $B$ tranzitivna, je graf $G(C)$ graf primerljivosti. 
 Relacijo lahko lepše prikažemo z orientacijo grafa $G(C)$, tako da za vsak
 $(x,y) \in B$ narišemo povezavo iz $x$ v $y$ (Slika \ref{celicni-graf}).
+\begin{figure}[h]
+  \begin{center}
+  \includegraphics[width=1\textwidth]{odd-circle-r2-cell.pdf}
+  \end{center}
+  \caption{poskus iskanja cikla lihe dolžine v asociiranem grafu celičnega kompleksa}
+  \label{fail-celicni-graf}
+\end{figure}
+\newpage
 \begin{note}
   Graf $G(C)$ je zelo podoben grafu 8-povezane mreže in zdi se, da vsebuje induciran
   podgraf, ki je cikel lihe dolžine, podobno kot na sliki \ref{oddCircle}. Iz tega
