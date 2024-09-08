@@ -59,8 +59,8 @@
 \newcommand{\tsubject}{\ttitle}
 \newcommand{\tsubjectEn}{\ttitleEn}
 \newcommand{\tauthor}{Jakob Drusany}
-\newcommand{\tkeywords}{računalnik, računalnik, računalnik}
-\newcommand{\tkeywordsEn}{computer, computer, computer}
+\newcommand{\tkeywords}{procesiranje slik, simplicialni kompleksi, topologija aleksandrova, teorija grafov}
+\newcommand{\tkeywordsEn}{Image processing, Simplicial complexes, Alexandrov topology, Graph theory}
 
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
@@ -68,7 +68,7 @@
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 \hypersetup{pdftitle={\ttitle}}
 \hypersetup{pdfsubject=\ttitleEn}
-\hypersetup{pdfauthor={\tauthor, matjaz.kralj@fri.uni-lj.si}}
+\hypersetup{pdfauthor={\tauthor}}
 \hypersetup{pdfkeywords=\tkeywordsEn}
 
 
@@ -256,7 +256,7 @@ Za objavo in koriščenje rezultatov diplomske naloge je potrebno pisno privolje
 \noindent\textbf{Kandidat:} Jakob Drusany\\
 \noindent\textbf{Naslov:} Digitalna topologija na grafih\\
 % vstavite ustrezen naziv študijskega programa!
-\noindent\textbf{Vrsta naloge:} Diplomska naloga na interdisciplinarnem univerzitetnem programu prve stopnje Raˇcunalniˇstvo in matematika\\
+\noindent\textbf{Vrsta naloge:} Diplomska naloga na interdisciplinarnem univerzitetnem programu prve stopnje Računalništvo in matematika\\
 % izberite pravi habilitacijski naziv mentorja!
 \noindent\textbf{Mentor:} prof. dr. Petar Pavešić\\
 
@@ -280,13 +280,13 @@ opis diplome v angleščini
 \vspace{2cm}
 
 % prazna stran
-\clearemptydoublepage
+% \clearemptydoublepage
 
 % zahvala
-\thispagestyle{empty}\mbox{}\vfill\null\it%
-\noindent
-Na tem mestu zapišite, komu se zahvaljujete za izdelavo diplomske naloge. Pazite, da ne boste koga pozabili. Utegnil vam bo zameriti. Temu se da izogniti tako, da celotno zahvalo izpustite.
-\rm\normalfont
+% \thispagestyle{empty}\mbox{}\vfill\null\it%
+% \noindent
+% Na tem mestu zapišite, komu se zahvaljujete za izdelavo diplomske naloge. Pazite, da ne boste koga pozabili. Utegnil vam bo zameriti. Temu se da izogniti tako, da celotno zahvalo izpustite.
+% \rm\normalfont
 
 % prazna stran
 \clearemptydoublepage
@@ -343,8 +343,11 @@ Na tem mestu zapišite, komu se zahvaljujete za izdelavo diplomske naloge. Pazit
 \bigskip
 
 %\noindent\textbf{Povzetek:} 
-\noindent V vzorcu je predstavljen postopek priprave diplomskega dela z uporabo okolja \LaTeX. Vaš povzetek mora sicer vsebovati približno 100 besed, ta tukaj je odločno prekratek.
-Dober povzetek vključuje: (1) kratek opis obravnavanega problema, (2) kratek opis vašega pristopa za reševanje tega problema in (3) (najbolj uspešen) rezultat ali prispevek magistrske naloge.
+\noindent V tem delu sem predstavil članek z naslovom ``\textit{Digital topology on graphs}''.   
+Predstavil bom končne topološke prostore ter njihovo povezavo z delnimi
+urejenostmi in celičnimi kompleksi. Poleg tega bom razložil, kako je mogoče
+definirati kompatibilne topologije na grafih za analizo topoloških lastnosti slik.
+Dotaknil se bom tudi njihovega obstoja in lastnosti.
 
 \bigskip
 
@@ -365,8 +368,12 @@ Dober povzetek vključuje: (1) kratek opis obravnavanega problema, (2) kratek op
 \bigskip
 
 %\noindent\textbf{Abstract:} 
-\noindent This sample document presents an approach to typesetting your BSc thesis using \LaTeX. 
-A proper abstract should contain around 100 words which makes this one way too short.
+\noindent In this thesis I will present the article ``\textit{Digital topology on graphs}''.
+I will cover finite topological spaces and their connection to partial
+orders and cell complexes. Additionally, I will present how topological
+properties of images can be analyzed using compatible topologies on graphs, as well
+as discuss their existence and properties.
+
 \bigskip
 
 \noindent\textbf{Keywords:} \tkeywordsEn.
@@ -476,8 +483,8 @@ Ostali aksiomi v tem delu niso pomembni, saj se bomo osredotočali na končne
 topološke prostore. \textbf{Končna topologija} je topologija na končni množici. Digitalne slike so
 končne množice, zato se v tem delu osredotočamo izključno na končne topologije.
 Izkaže se, da je vsaka končna topologija topologija Aleksandrova in brž ko zahtevamo
-na takem prostoru $T_1$, se nam porodi diskretna topologija. Torej za nas zanimivi
-končni topološki prostori so $T_0$ in ne $T_1$. 
+na takem prostoru $T_1$, se nam porodi diskretna topologija. Torej so za nas zanimivi
+končni topološki prostori, ki so $T_0$ in ne $T_1$.
 
 \chapter{Končne topologije, delne urejenosti in celični kompleksi}
 \section{Povezava končnih topologij in delnih urejenosti}\label{poset-top}
@@ -703,17 +710,17 @@ točka v $\mathbb{Z}^n,\ n > 1$.\\
   \begin{center}
   \includegraphics[width=0.4\textwidth]{compatible-topology.pdf}
   \end{center}
-  \caption{Primer kompatibilne topologije na grafu}
+  \caption{primer kompatibilne topologije na grafu}
   \label{compat-topol}
 \end{figure}
 \begin{example}
-  Naj bo $G$ graf na 4 vozliščih $V=\{a,b,c,d\}$ in povezavah $E=\{ac,ab,bd\}$. Na množici
-  vozlišč $V$ lahko definiramo topologijo $\mathcal{T}_k = \{\emptyset, \{a\}, \{a, b\}, \{a, b, c\}, \{a, b, d\}, \{a, b, c, d\}\}$.
+  Naj bo $G$ graf na 4 vozliščih $V=\{a,b,c,d\}$ s povezavami $E=\{ac,ab,bd\}$. Na množici
+  vozlišč $V$ lahko definiramo topologijo \[\mathcal{T}_k = \{\emptyset, \{a\}, \{a, b\}, \{a, b, c\}, \{a, b, d\}, \{a, b, c, d\}\}.\]
   Graf in topologija sta prikazana na sliki \ref{compat-topol}. Povezave grafa so prikazane z modrimi daljicami,
   odprte množice topologije pa s črnimi krivuljami. Topologija je $T_0$, saj za vsak par točk
-  obstaja množica, ki vsebuje eno in ne drugo. Naprimer $b,d$ ločujeta množici $\{a, b\}, \{a, b, d\}$.
+  obstaja množica, ki vsebuje eno in ne druge. Na primer točki $b$ in $d$ ločujeta množici $\{a, b\}, \{a, b, d\}$.
   Topologija $\mathcal{T}_k$ je tudi kompatibilna z grafom $G$, saj je $V' \subseteq V$ povezan v $\mathcal{T}_k$,
-  če in samo če je $V'$ povezan v $G$. Primer $G[\{c,d\}]$ je graf brez povezav, ki vsebuje točki $c$ in $d$. Podprostor
+  če in samo če je $V'$ povezan v $G$. Za primer si oglejmo induciran podgraf $G[\{c,d\}]$. To je graf brez povezav, ki vsebuje točki $c$ in $d$. Podprostor
   topologije $\mathcal{T}_k$ na točkah $\{c,d\}$ je $\mathcal{T}_k|_{\{c,d\}} = \{\emptyset, \{c\}, \{d\}, \{c, d\}\}$.
   Ta prostor je nepovezan, saj lahko prostor razdelimo na dve disjunktni uniji odprtih množic ($\{c, d\} = \{c\} \cup \{d\}$).
   To velja za vsak induciran podgraf na vsaki podmnožici točk, torej je topologija kompatibilna z grafom.
@@ -722,15 +729,15 @@ točka v $\mathbb{Z}^n,\ n > 1$.\\
   \begin{center}
   \includegraphics[width=0.4\textwidth]{incompatible-topology.pdf}
   \end{center}
-  \caption{Primer topologije na grafu, ki ni kompatibilna}
+  \caption{primer topologije na grafu, ki ni kompatibilna}
   \label{incompat-topol}
 \end{figure}
 
 \begin{example}
   Naj bo $G$ isti graf na 4 vozliščih $V=\{a,b,c,d\}$ kot v prejšnjem primeru, torej $E=\{ac,ab,bd\}$.
-  Sedaj definiramo topologijo $\mathcal{T}_n = \{\emptyset, \{a\}, \{b\}, \{a, b\}, \{a, c\}, \{a, b, c\}, \{a, b, c, d\}\}$.
-  Skica grafa in topologije je prikazana na sliki \ref{incompat-topol}. Topologija je prav tako $T_0$.
-  Topologija ni kompatibilna z grafom, saj je $\{a,b\}$ protiprimer pogoja kompatibilnosti. $G[\{a,b\}]$
+  Sedaj definiramo topologijo \[\mathcal{T}_n = \{\emptyset, \{a\}, \{b\}, \{a, b\}, \{a, c\}, \{a, b, c\}, \{a, b, c, d\}\}.\]
+  Skica grafa in topologije $\mathcal{T}_n$ je prikazana na sliki \ref{incompat-topol}. Ta topologija je prav tako $T_0$,
+  ni pa kompatibilna z grafom, saj je $\{a,b\}$ protiprimer pogoja kompatibilnosti. $G[\{a,b\}]$
   je povezan graf, vendar je $\{a,b\}$ nepovezana množica v $\mathcal{T}_n$. Razdelimo ga lahko na dve
   disjunktni odprti množici $\{a\}$ in $\{b\}$.
 \end{example}
@@ -828,15 +835,15 @@ Naj bo $\mathcal{T}$ poljubna kompatibilna topologija na $G^b$. Naslednje leme d
   $U_x = \{x\}$ ali $U_x = \{x\} \cup N_x$.
 \end{lemma}
 \begin{proof}
-  Recimo, da lema ne drži. Potem obstaja $x'$, da $U_{x'} \neq \{x'\}$ in
-  $U_{x'} \subsetneq \{x'\} \cup N_{x'}$. Torej obstaja $y \in N_{x'}$, $y \notin U_{x'}$.
-  Ker je $y \in N_{x'}$, sta $x$ in $y$ povezana. Ker sta povezana in je $G^b$
-  dvodelen graf, velja $N_{x'} \cup N_y = \emptyset$. Ker sta $U_{x'}$ in $U_y$ 
-  podmnožici $N_x'$ in $N_y$, je bodisi $U_{x'} \cap U_y = \emptyset$,
-  bodisi $U_{x'} \cap U_y = \{x'\}$. Če velja $U_{x'} \cap U_y = \emptyset$, sledi
-  protislovje, saj je $\{x',y\}$ povezana množica v $\mathcal{T}$.
-  Če velja $U_{x'} \cap U_y = \{x'\}$, potem je $U_{x'} = \{x'\}$, kar je v
-  protislovju s predpostavko $U_{x'} \neq \{x'\}$.
+  Recimo, da lema ne drži. Potem obstaja $x$, da $U_{x} \neq \{x\}$ in
+  $U_{x} \subsetneq \{x\} \cup N_{x}$. Torej obstaja $y \in N_{x}$, $y \notin U_{x}$.
+  Ker je $y \in N_{x}$, sta $x$ in $y$ povezana. Ker sta povezana in je $G^b$
+  dvodelen graf, velja $N_{x} \cap N_y = \emptyset$. Ker sta $U_{x}$ in $U_y$ 
+  podmnožici $\{x\} \cup N_x$ in $\{y\} \cup N_y$, je bodisi $U_{x} \cap U_y = \emptyset$,
+  bodisi $U_{x} \cap U_y = \{x\}$. Če velja $U_{x} \cap U_y = \emptyset$, sledi
+  protislovje, saj je $\{x,y\}$ povezana množica v $\mathcal{T}$.
+  Če velja $U_{x} \cap U_y = \{x\}$, potem je $U_{x} = \{x\}$, kar je v
+  protislovju s predpostavko $U_{x} \neq \{x\}$.
 \end{proof}
 \begin{lemma}\label{lem3}
   Naj bo $x \in V(G^b)$. Za vsak $y \in N_x$ velja $U_x = \{x\} \iff U_y = \{y\} \cup N_y$.
@@ -944,7 +951,7 @@ $G(C)$ na sledeč način:
     \includegraphics[width=1\textwidth]{r2-cell-graph.pdf}
     \end{center}
     \caption{levi del slike prikazuje induciran podgraf, asociiran s celičnim kompleksom
-    iz slike \ref{celicni}, desni del papredstavlja orientacijo grafa}
+    iz slike \ref{celicni}, desni del pa predstavlja orientacijo grafa}
     \label{celicni-graf}
 \end{figure}
 Na levem delu slike \ref{celicni-graf} je predstavljen del grafa, asociiranega s celičnim
