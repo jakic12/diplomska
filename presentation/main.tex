@@ -1,0 +1,210 @@
+\documentclass{beamer}
+
+\usepackage[utf8x]{inputenc} 
+\usepackage[slovene,english]{babel}
+\usepackage{amssymb}
+\usepackage{amsmath}
+\usepackage{amsthm}
+\usepackage{svg}
+\usepackage{ulem}
+\usepackage{graphicx}
+
+\usetheme{Madrid}
+
+\setbeamercovered{transparent=25} % pause environment is transparent
+
+% command semitransp to make text semitransparent (actually mixes text with background color to make it appear semitransparent)
+\newcommand{\semitransp}[2][25]{\color{fg!#1}#2\color{fg}}
+
+\title{Digitalna topologija na grafih}
+\subtitle{Predstavitev diplomskega dela}
+\author{Jakob Drusany}
+\institute[UL FRI, UL FMF]{Fakulteta za računalništvo in informatiko\\Fakulteta za matematiko in fiziko\\Univerza v Ljubljani}
+\date{\selectlanguage{slovene}\today}
+
+
+
+\begin{document}
+
+\begin{frame}
+    \titlepage
+    {\centering \small Mentor: prof. dr. Petar Pavešić\par}
+\end{frame}
+
+\begin{frame}
+\frametitle{Table of Contents}
+\tableofcontents
+\end{frame}
+
+% Automatically add a table of contents slide at the beginning of each section
+% do i need this?
+\AtBeginSection[]
+{
+  \begin{frame}
+    \frametitle{Table of Contents}
+    \tableofcontents[currentsection]
+  \end{frame}
+}
+
+\section{Uvod}
+\subsection{Motivacija}
+\begin{frame}[t]
+    \frametitle{Motivacija}
+    Zakaj hočemo topologije na slikah?
+\end{frame}
+\subsection{Teoretične osnove}
+\begin{frame}[t]
+\frametitle{Teoretične osnove}
+\begin{block}{Definicija}
+    \alert{Topologija} (ali topološka struktura) na množici $X$ je družina $\mathcal{T}$ podmnožic
+    $X$, ki zadošča naslednjim zahtevam:
+    \begin{itemize}
+        \item[(1)] prazna množica in $X$ sta elementa $\mathcal{T}$;
+        \item[(2)] unija poljubne poddružine $\mathcal{T}$ je element $\mathcal{T}$;
+        \item[(3)] presek poljubne končne poddružine $\mathcal{T}$ je element $\mathcal{T}$.
+    \end{itemize}
+\end{block}
+\vspace{.25cm}
+\pause
+Elemente $\mathcal{T}$ imenujemo \alert{odprte množice} v $X$. \alert{Topološki prostor}
+($X$, $\mathcal{T}$) je množica $X$, opremljena s topologijo $\mathcal{T}$ \\ \vspace{.25cm}
+\alert{Okolica} točke $x \in X$ je vsaka podmnožica $V \subseteq X$, ki vsebuje
+odprto množico $U$, ki vsebuje $x$.
+\end{frame}
+
+\begin{frame}[t]
+\frametitle{Teoretične osnove}
+\begin{block}{Definicija}
+    \alert{Topologija Aleksandrova} na množici $X$ je družina $\mathcal{T}$ podmnožic
+    $X$, ki zadošča naslednjim zahtevam:
+    \begin{itemize}
+        \item[(1)] prazna množica in $X$ sta elementa $\mathcal{T}$;
+        \item[(2)] unija poljubne poddružine $\mathcal{T}$ je element $\mathcal{T}$;
+        \item[(3)] presek poljubne \sout{končne} poddružine $\mathcal{T}$ je element $\mathcal{T}$.
+    \end{itemize}
+\end{block}
+\pause
+\vspace{.25cm}
+Presek vseh odprtih množic, ki vsebujejo točko $x$ je \alert{najmanjša odprta okolica} točke $x$, ki jo označimo z $U_x$.
+\end{frame}
+
+\begin{frame}
+    \frametitle{TODO?}
+    Dodamo lahko še sekcijo o ločitvenih aksiomih
+\end{frame}
+
+\section{Končne topologije, delne urejenosti in celični kompleksi}
+\begin{frame}[t] % top align
+    \frametitle{TODO}
+    \vspace{-8mm}
+    % NO TRANSPARENCY
+    \[
+        \text{Delna urejenost}
+        \quad
+        \raisebox{-3pt}{\scalebox{2}{$\substack{\longleftarrow\\[-1em] \longrightarrow }$}}
+        \quad
+        \text{Končna topologija}
+        \quad
+        \raisebox{-3pt}{\scalebox{2}{$\substack{\longleftarrow\\[-1em] \longrightarrow }$}}
+        \quad
+        \text{Celični kompleks}
+    \]
+    \vspace{1cm}
+    NO TRANSPARENCY
+\end{frame}
+
+\begin{frame}[t] % top align
+    \frametitle{TODO}
+    \vspace{-8mm}
+    % FIRST LEFT 
+    \[
+        \text{Delna urejenost}
+        \quad
+        \raisebox{-3pt}{\scalebox{2}{$\substack{\longleftarrow\\[-1em] \semitransp{\longrightarrow} }$}}
+        \quad
+        \text{Končna topologija}
+        \quad
+        \semitransp{
+            \raisebox{-3pt}{\scalebox{2}{$\substack{\longleftarrow\\[-1em] \longrightarrow }$}}
+            \quad
+            \text{Celični kompleks}
+        }
+    \]
+    \vspace{1cm}
+    FIRST LEFT 
+\end{frame}
+\begin{frame}[t] % top align
+    \frametitle{TODO}
+    \vspace{-8mm}
+    % FIRST RIGHT 
+    \[
+        \text{Delna urejenost}
+        \quad
+        \raisebox{-3pt}{\scalebox{2}{$\substack{\semitransp{\longleftarrow}\\[-1em] \longrightarrow }$}}
+        \quad
+        \text{Končna topologija}
+        \quad
+        \semitransp{
+            \raisebox{-3pt}{\scalebox{2}{$\substack{\longleftarrow\\[-1em] \longrightarrow }$}}
+            \quad
+            \text{Celični kompleks}
+        }
+    \]
+    \vspace{1cm}
+    FIRST RIGHT 
+\end{frame}
+\begin{frame}[t] % top align
+    \frametitle{TODO}
+    \vspace{-8mm}
+    % SECOND LEFT 
+    \[
+        \semitransp{
+            \text{Delna urejenost}
+            \quad
+            \raisebox{-3pt}{\scalebox{2}{$\substack{\longleftarrow\\[-1em] \longrightarrow }$}}
+            \quad
+        }
+        \text{Končna topologija}
+        \quad
+        \raisebox{-3pt}{\scalebox{2}{$\substack{\longleftarrow\\[-1em] \semitransp{\longrightarrow} }$}}
+        \quad
+        \text{Celični kompleks}
+    \]
+    \vspace{1cm}
+    SECOND LEFT 
+\end{frame}
+\begin{frame}[t] % top align
+    \frametitle{TODO}
+    \vspace{-8mm}
+    % SECOND RIGHT 
+    \[
+        \semitransp{
+        \text{Delna urejenost}
+        \quad
+        \raisebox{-3pt}{\scalebox{2}{$\substack{\longleftarrow\\[-1em] \longrightarrow }$}}
+        \quad
+        }
+        \text{Končna topologija}
+        \quad
+        \raisebox{-3pt}{\scalebox{2}{$\substack{\semitransp{\longleftarrow}\\[-1em] \longrightarrow }$}}
+        \quad
+        \text{Celični kompleks}
+    \]
+    \vspace{1cm}
+    SECOND RIGHT 
+\end{frame}
+\subsection{Povezava končnih topologij in delnih urejenosti}
+\subsection{Simplicialni kompleksi}
+\subsection{Povezava topoloških prostorov in simplicialnih kompleksov}
+
+\section{Digitalni prostori}
+\subsection{Topologije na grafih}
+\subsection{Kompatibilne topologije na dvodelnih grafih}
+\subsection{Obstoj kompatibilne topologije na grafu}
+\subsection{Celični kompleksi}
+
+\begin{frame}
+\frametitle{Outline}
+\end{frame}
+
+\end{document}

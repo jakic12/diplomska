@@ -1,0 +1,49 @@
+\babel@toc {english}{}\relax 
+\babel@toc {slovene}{}\relax 
+\babel@toc {english}{}\relax 
+\babel@toc {slovene}{}\relax 
+\babel@toc {english}{}\relax 
+\babel@toc {slovene}{}\relax 
+\babel@toc {english}{}\relax 
+\beamer@sectionintoc {1}{Uvod}{3}{0}{1}
+\babel@toc {slovene}{}\relax 
+\babel@toc {english}{}\relax 
+\beamer@subsectionintoc {1}{1}{Motivacija}{4}{0}{1}
+\babel@toc {slovene}{}\relax 
+\babel@toc {english}{}\relax 
+\beamer@subsectionintoc {1}{2}{Teoretične osnove}{5}{0}{1}
+\babel@toc {slovene}{}\relax 
+\babel@toc {english}{}\relax 
+\babel@toc {slovene}{}\relax 
+\babel@toc {english}{}\relax 
+\babel@toc {slovene}{}\relax 
+\babel@toc {english}{}\relax 
+\babel@toc {slovene}{}\relax 
+\babel@toc {english}{}\relax 
+\babel@toc {slovene}{}\relax 
+\babel@toc {english}{}\relax 
+\beamer@sectionintoc {2}{Končne topologije, delne urejenosti in celični kompleksi}{10}{0}{2}
+\babel@toc {slovene}{}\relax 
+\babel@toc {english}{}\relax 
+\babel@toc {slovene}{}\relax 
+\babel@toc {english}{}\relax 
+\babel@toc {slovene}{}\relax 
+\babel@toc {english}{}\relax 
+\babel@toc {slovene}{}\relax 
+\babel@toc {english}{}\relax 
+\babel@toc {slovene}{}\relax 
+\babel@toc {english}{}\relax 
+\babel@toc {slovene}{}\relax 
+\babel@toc {english}{}\relax 
+\beamer@subsectionintoc {2}{1}{Povezava končnih topologij in delnih urejenosti}{16}{0}{2}
+\beamer@subsectionintoc {2}{2}{Simplicialni kompleksi}{16}{0}{2}
+\beamer@subsectionintoc {2}{3}{Povezava topoloških prostorov in simplicialnih kompleksov}{16}{0}{2}
+\beamer@sectionintoc {3}{Digitalni prostori}{16}{0}{3}
+\babel@toc {slovene}{}\relax 
+\babel@toc {english}{}\relax 
+\beamer@subsectionintoc {3}{1}{Topologije na grafih}{17}{0}{3}
+\beamer@subsectionintoc {3}{2}{Kompatibilne topologije na dvodelnih grafih}{17}{0}{3}
+\beamer@subsectionintoc {3}{3}{Obstoj kompatibilne topologije na grafu}{17}{0}{3}
+\beamer@subsectionintoc {3}{4}{Celični kompleksi}{17}{0}{3}
+\babel@toc {slovene}{}\relax 
+\babel@toc {english}{}\relax 
