@@ -5,7 +5,7 @@ orders and cell complexes. Additionally, I will present how topological
 properties of images can be analyzed using compatible topologies on graphs, as well
 as discuss their existence and properties.
 
-# [Paper](slike/Screenshot_1.pdf)
+# [Paper](build/draft.pdf)
 ![Some title here](slike/Screenshot_1.png)
-# [Presentation](slike/Screenshot_1.pdf)
+# [Presentation](presentation/main.pdf)
 ![Some title here](slike/Screenshot_2.png)
