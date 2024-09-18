@@ -1,11 +1,14 @@
 # Fdb version 4
-["pdflatex"] 1726518406.57429 "d:/Projects/diplomska/presentation/main.tex" "main.pdf" "main" 1726518409.26552 0
+["pdflatex"] 1726687232.54862 "d:/Projects/diplomska/presentation/main.tex" "main.pdf" "main" 1726687237.69274 0
   "../slike/compatible-topology.pdf" 1726442993 4364 8b66b02a8b9ab8bd9cd199f05473ea61 ""
+  "../slike/graf-slika.pdf" 1726568050 9763 0e38f79509235be87fc5126446ac0928 ""
+  "../slike/horse-skeletonization.png" 1726678661 10838 d7de8c13615e97cc229eec17b2d080d9 ""
   "../slike/incompatible-topology.pdf" 1726442993 4398 335658a3f3b7cb74ef444eb2de4c340e ""
   "../slike/odd-circle-gb.pdf" 1726515677 12694 d5fde6ed4e619114712f26f23f36ed9d ""
   "../slike/odd-circle-t1-t2-big.pdf" 1726514745 30163 90d55aa9bbecec125f045d9460b659c5 ""
   "../slike/odd-circle-t1-t2-overlayed.pdf" 1726514939 14297 062f05f47fe069b0267a115068ff5c57 ""
   "../slike/odd_circle.pdf" 1724422022 5224 9a44f2c5fa0c22538a3dfae9e9703c0f ""
+  "../slike/r2-cell-graph.pdf" 1721788727 12531 06614b55a569feed0f1a1d69d73d5c71 ""
   "../slike/t1t2_skica.pdf" 1726442993 10668 4dfef918f5ff8d60091aa14ec7312434 ""
   "d:/Programs/texlive/2024/texmf-dist/fonts/map/fontname/texfonts.map" 1721497638 3524 cb3e574dea2d1052e39280babc910dc8 ""
   "d:/Programs/texlive/2024/texmf-dist/fonts/tfm/public/amsfonts/cmextra/cmex7.tfm" 1721495662 1004 54797486969f23fa377b128694d548df ""
@@ -225,11 +228,11 @@
   "d:/Programs/texlive/2024/texmf-var/fonts/map/pdftex/updmap/pdftex.map" 1721502130 5529079 5b9b3a93cabdf3916863b1e5e0092012 ""
   "d:/Programs/texlive/2024/texmf-var/web2c/pdftex/pdflatex.fmt" 1721502400 8239343 e869852fe3bd87a9d519b90e3a20d8b3 ""
   "d:/Programs/texlive/2024/texmf.cnf" 1721502110 713 e69b156964470283e0530f5060668171 ""
-  "d:/Projects/diplomska/presentation/main.tex" 1726518403 10824 35e44d7c9e16b2b5289569822ff9195f ""
-  "main.aux" 1726518408 5417 8b0711522416beb96b1a2cf8530a0312 "pdflatex"
-  "main.nav" 1726518408 2719 adaa1028f6e424f70088240949e2bba5 "pdflatex"
-  "main.out" 1726518408 1870 e666c4a82a59c834e16c29ea653c2136 "pdflatex"
-  "main.tex" 1726518403 10824 35e44d7c9e16b2b5289569822ff9195f ""
+  "d:/Projects/diplomska/presentation/main.tex" 1726687230 11848 7a012aed5fa299b0d5961ea8535deaac ""
+  "main.aux" 1726687237 5979 72396588da06756d78d3751fd4c5f73b "pdflatex"
+  "main.nav" 1726687237 3041 ef8182b9fd238287746ca16d029f890f "pdflatex"
+  "main.out" 1726687237 1870 71778c2282ddd0a10b2029eeee7ab780 "pdflatex"
+  "main.tex" 1726687230 11848 7a012aed5fa299b0d5961ea8535deaac ""
   (generated)
   "main.aux"
   "main.log"

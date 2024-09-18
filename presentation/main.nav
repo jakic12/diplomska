@@ -7,43 +7,49 @@
 \headcommand {\beamer@subsectionentry {0}{1}{1}{2}{Motivacija}}
 \headcommand {\slideentry {1}{1}{1}{2/2}{Motivacija}{0}}
 \headcommand {\beamer@framepages {2}{2}}
-\headcommand {\beamer@subsectionpages {2}{2}}
-\headcommand {\beamer@subsectionentry {0}{1}{2}{3}{Teoretične osnove}}
-\headcommand {\beamer@subsectionpages {3}{2}}
-\headcommand {\beamer@subsectionentry {0}{1}{3}{3}{Povezava končnih topologij in delnih urejenosti}}
-\headcommand {\beamer@subsectionpages {3}{2}}
-\headcommand {\beamer@subsectionentry {0}{1}{4}{3}{Simplicialni kompleksi}}
-\headcommand {\beamer@subsectionpages {3}{2}}
-\headcommand {\beamer@subsectionentry {0}{1}{5}{3}{Povezava topoloških prostorov in simplicialnih kompleksov}}
-\headcommand {\beamer@sectionpages {2}{2}}
-\headcommand {\beamer@subsectionpages {3}{2}}
-\headcommand {\sectionentry {2}{Digitalni prostori}{3}{Digitalni prostori}{0}}
-\headcommand {\beamer@subsectionpages {3}{2}}
-\headcommand {\beamer@subsectionentry {0}{2}{1}{3}{Topologije na grafih}}
-\headcommand {\slideentry {2}{1}{1}{3/3}{Topologije na grafih}{0}}
+\headcommand {\slideentry {1}{1}{2}{3/3}{Motivacija}{0}}
 \headcommand {\beamer@framepages {3}{3}}
-\headcommand {\slideentry {2}{1}{2}{4/4}{Topologije na grafih}{0}}
+\headcommand {\beamer@subsectionpages {2}{3}}
+\headcommand {\beamer@subsectionentry {0}{1}{2}{4}{Teoretične osnove}}
+\headcommand {\beamer@subsectionpages {4}{3}}
+\headcommand {\beamer@subsectionentry {0}{1}{3}{4}{Povezava končnih topologij in delnih urejenosti}}
+\headcommand {\beamer@subsectionpages {4}{3}}
+\headcommand {\beamer@subsectionentry {0}{1}{4}{4}{Simplicialni kompleksi}}
+\headcommand {\beamer@subsectionpages {4}{3}}
+\headcommand {\beamer@subsectionentry {0}{1}{5}{4}{Povezava topoloških prostorov in simplicialnih kompleksov}}
+\headcommand {\beamer@sectionpages {2}{3}}
+\headcommand {\beamer@subsectionpages {4}{3}}
+\headcommand {\sectionentry {2}{Digitalni prostori}{4}{Digitalni prostori}{0}}
+\headcommand {\beamer@subsectionpages {4}{3}}
+\headcommand {\beamer@subsectionentry {0}{2}{1}{4}{Topologije na grafih}}
+\headcommand {\slideentry {2}{1}{1}{4/4}{Topologije na grafih}{0}}
 \headcommand {\beamer@framepages {4}{4}}
-\headcommand {\slideentry {2}{1}{3}{5/5}{Topologije na grafih}{0}}
+\headcommand {\slideentry {2}{1}{2}{5/5}{Topologije na grafih}{0}}
 \headcommand {\beamer@framepages {5}{5}}
-\headcommand {\beamer@subsectionpages {3}{5}}
-\headcommand {\beamer@subsectionentry {0}{2}{2}{6}{Obstoj kompatibilne topologije na grafu}}
-\headcommand {\beamer@subsectionpages {6}{5}}
-\headcommand {\beamer@subsectionentry {0}{2}{3}{6}{Celični kompleksi}}
-\headcommand {\slideentry {2}{3}{1}{6/6}{Celični kompleksi}{0}}
+\headcommand {\slideentry {2}{1}{3}{6/6}{Topologije na grafih}{0}}
 \headcommand {\beamer@framepages {6}{6}}
-\headcommand {\slideentry {2}{3}{2}{7/7}{Celični kompleksi}{0}}
+\headcommand {\beamer@subsectionpages {4}{6}}
+\headcommand {\beamer@subsectionentry {0}{2}{2}{7}{Obstoj kompatibilne topologije na grafu}}
+\headcommand {\beamer@subsectionpages {7}{6}}
+\headcommand {\beamer@subsectionentry {0}{2}{3}{7}{Celični kompleksi}}
+\headcommand {\slideentry {2}{3}{1}{7/7}{Celični kompleksi}{0}}
 \headcommand {\beamer@framepages {7}{7}}
-\headcommand {\slideentry {2}{3}{3}{8/8}{Celični kompleksi}{0}}
+\headcommand {\slideentry {2}{3}{2}{8/8}{Celični kompleksi}{0}}
 \headcommand {\beamer@framepages {8}{8}}
-\headcommand {\slideentry {2}{3}{4}{9/9}{Celični kompleksi}{0}}
+\headcommand {\slideentry {2}{3}{3}{9/9}{Celični kompleksi}{0}}
 \headcommand {\beamer@framepages {9}{9}}
-\headcommand {\slideentry {2}{3}{5}{10/11}{Celični kompleksi}{0}}
-\headcommand {\beamer@framepages {10}{11}}
-\headcommand {\slideentry {2}{3}{6}{12/13}{Celični kompleksi}{0}}
-\headcommand {\beamer@framepages {12}{13}}
-\headcommand {\beamer@partpages {1}{13}}
-\headcommand {\beamer@subsectionpages {6}{13}}
-\headcommand {\beamer@sectionpages {3}{13}}
-\headcommand {\beamer@documentpages {13}}
-\headcommand {\gdef \inserttotalframenumber {11}}
+\headcommand {\slideentry {2}{3}{4}{10/10}{Celični kompleksi}{0}}
+\headcommand {\beamer@framepages {10}{10}}
+\headcommand {\slideentry {2}{3}{5}{11/12}{Celični kompleksi}{0}}
+\headcommand {\beamer@framepages {11}{12}}
+\headcommand {\slideentry {2}{3}{6}{13/14}{Celični kompleksi}{0}}
+\headcommand {\beamer@framepages {13}{14}}
+\headcommand {\slideentry {2}{3}{7}{15/15}{Celični kompleksi}{0}}
+\headcommand {\beamer@framepages {15}{15}}
+\headcommand {\slideentry {2}{3}{8}{16/16}{Celični kompleksi}{0}}
+\headcommand {\beamer@framepages {16}{16}}
+\headcommand {\beamer@partpages {1}{16}}
+\headcommand {\beamer@subsectionpages {7}{16}}
+\headcommand {\beamer@sectionpages {4}{16}}
+\headcommand {\beamer@documentpages {16}}
+\headcommand {\gdef \inserttotalframenumber {14}}

@@ -1,4 +1,4 @@
-This is pdfTeX, Version 3.141592653-2.6-1.40.26 (TeX Live 2024) (preloaded format=pdflatex 2024.7.20)  16 SEP 2024 22:26
+This is pdfTeX, Version 3.141592653-2.6-1.40.26 (TeX Live 2024) (preloaded format=pdflatex 2024.7.20)  18 SEP 2024 21:20
 entering extended mode
  restricted \write18 enabled.
  file:line:error style messages enabled.
@@ -1193,124 +1193,154 @@ Dictionary: translator-theorem-dictionary, Language: English
 [1
 
 {d:/Programs/texlive/2024/texmf-var/fonts/map/pdftex/updmap/pdftex.map}]
+<../slike/horse-skeletonization.png, id=102, 578.16pt x 289.08pt>
+File: ../slike/horse-skeletonization.png Graphic file (type png)
+<use ../slike/horse-skeletonization.png>
+Package pdftex.def Info: ../slike/horse-skeletonization.png  used on input line 63.
+(pdftex.def)             Requested size: 205.37926pt x 102.68806pt.
+
 
 [2
 
-]
-LaTeX Font Info:    Trying to load font information for U+msa on input line 220.
+ <../slike/horse-skeletonization.png (PNG copy)>]
+<../slike/graf-slika.pdf, id=131, 197.73875pt x 98.3675pt>
+File: ../slike/graf-slika.pdf Graphic file (type pdf)
+<use ../slike/graf-slika.pdf>
+Package pdftex.def Info: ../slike/graf-slika.pdf  used on input line 71.
+(pdftex.def)             Requested size: 273.83728pt x 136.23657pt.
+
+
+[3
+
+ <../slike/graf-slika.pdf>]
+LaTeX Font Info:    Trying to load font information for U+msa on input line 236.
  (d:/Programs/texlive/2024/texmf-dist/tex/latex/amsfonts/umsa.fd
 File: umsa.fd 2013/01/14 v3.01 AMS symbols A
 )
-LaTeX Font Info:    Trying to load font information for U+msb on input line 220.
+LaTeX Font Info:    Trying to load font information for U+msb on input line 236.
  (d:/Programs/texlive/2024/texmf-dist/tex/latex/amsfonts/umsb.fd
 File: umsb.fd 2013/01/14 v3.01 AMS symbols B
 )
-LaTeX Font Info:    Trying to load font information for OT1+mathkerncmss on input line 220.
+LaTeX Font Info:    Trying to load font information for OT1+mathkerncmss on input line 236.
  (d:/Programs/texlive/2024/texmf-dist/tex/latex/sansmathaccent/ot1mathkerncmss.fd
 File: ot1mathkerncmss.fd 2020/01/31 Fontinst v1.933 font definitions for OT1/mathkerncmss.
 )
 
-[3
-
-]
-<../slike/compatible-topology.pdf, id=175, 45.16875pt x 45.16875pt>
-File: ../slike/compatible-topology.pdf Graphic file (type pdf)
-<use ../slike/compatible-topology.pdf>
-Package pdftex.def Info: ../slike/compatible-topology.pdf  used on input line 229.
-(pdftex.def)             Requested size: 102.68962pt x 102.69975pt.
-
-
 [4
 
- <../slike/compatible-topology.pdf>]
-<../slike/incompatible-topology.pdf, id=205, 45.16875pt x 45.16875pt>
-File: ../slike/incompatible-topology.pdf Graphic file (type pdf)
-<use ../slike/incompatible-topology.pdf>
-Package pdftex.def Info: ../slike/incompatible-topology.pdf  used on input line 238.
+]
+<../slike/compatible-topology.pdf, id=208, 45.16875pt x 45.16875pt>
+File: ../slike/compatible-topology.pdf Graphic file (type pdf)
+<use ../slike/compatible-topology.pdf>
+Package pdftex.def Info: ../slike/compatible-topology.pdf  used on input line 245.
 (pdftex.def)             Requested size: 102.68962pt x 102.69975pt.
 
 
 [5
 
- <../slike/incompatible-topology.pdf>]
+ <../slike/compatible-topology.pdf>]
+<../slike/incompatible-topology.pdf, id=238, 45.16875pt x 45.16875pt>
+File: ../slike/incompatible-topology.pdf Graphic file (type pdf)
+<use ../slike/incompatible-topology.pdf>
+Package pdftex.def Info: ../slike/incompatible-topology.pdf  used on input line 254.
+(pdftex.def)             Requested size: 102.68962pt x 102.69975pt.
+
 
 [6
 
-]
-<../slike/t1t2_skica.pdf, id=274, 90.3375pt x 68.50594pt>
-File: ../slike/t1t2_skica.pdf Graphic file (type pdf)
-<use ../slike/t1t2_skica.pdf>
-Package pdftex.def Info: ../slike/t1t2_skica.pdf  used on input line 276.
-(pdftex.def)             Requested size: 171.14764pt x 129.7999pt.
-
+ <../slike/incompatible-topology.pdf>]
 
 [7
 
- <../slike/t1t2_skica.pdf>]
-<../slike/odd-circle-gb.pdf, id=317, 293.59688pt x 97.86563pt>
-File: ../slike/odd-circle-gb.pdf Graphic file (type pdf)
-<use ../slike/odd-circle-gb.pdf>
-Package pdftex.def Info: ../slike/odd-circle-gb.pdf  used on input line 289.
-(pdftex.def)             Requested size: 273.83728pt x 91.27838pt.
+]
+<../slike/t1t2_skica.pdf, id=308, 90.3375pt x 68.50594pt>
+File: ../slike/t1t2_skica.pdf Graphic file (type pdf)
+<use ../slike/t1t2_skica.pdf>
+Package pdftex.def Info: ../slike/t1t2_skica.pdf  used on input line 292.
+(pdftex.def)             Requested size: 171.14764pt x 129.7999pt.
 
 
 [8
 
- <../slike/odd-circle-gb.pdf>]
-<../slike/odd-circle-t1-t2-big.pdf, id=347, 293.59688pt x 195.73125pt>
-File: ../slike/odd-circle-t1-t2-big.pdf Graphic file (type pdf)
-<use ../slike/odd-circle-t1-t2-big.pdf>
-Package pdftex.def Info: ../slike/odd-circle-t1-t2-big.pdf  used on input line 297.
-(pdftex.def)             Requested size: 273.83728pt x 182.5568pt.
+ <../slike/t1t2_skica.pdf>]
+<../slike/odd-circle-gb.pdf, id=350, 293.59688pt x 97.86563pt>
+File: ../slike/odd-circle-gb.pdf Graphic file (type pdf)
+<use ../slike/odd-circle-gb.pdf>
+Package pdftex.def Info: ../slike/odd-circle-gb.pdf  used on input line 305.
+(pdftex.def)             Requested size: 273.83728pt x 91.27838pt.
 
 
 [9
 
- <../slike/odd-circle-t1-t2-big.pdf>]
-<../slike/odd-circle-t1-t2-overlayed.pdf, id=377, 293.59688pt x 97.86563pt>
-File: ../slike/odd-circle-t1-t2-overlayed.pdf Graphic file (type pdf)
-<use ../slike/odd-circle-t1-t2-overlayed.pdf>
-Package pdftex.def Info: ../slike/odd-circle-t1-t2-overlayed.pdf  used on input line 311.
-(pdftex.def)             Requested size: 273.83728pt x 91.27838pt.
+ <../slike/odd-circle-gb.pdf>]
+<../slike/odd-circle-t1-t2-big.pdf, id=380, 293.59688pt x 195.73125pt>
+File: ../slike/odd-circle-t1-t2-big.pdf Graphic file (type pdf)
+<use ../slike/odd-circle-t1-t2-big.pdf>
+Package pdftex.def Info: ../slike/odd-circle-t1-t2-big.pdf  used on input line 313.
+(pdftex.def)             Requested size: 273.83728pt x 182.5568pt.
 
 
 [10
 
- <../slike/odd-circle-t1-t2-overlayed.pdf>]
+ <../slike/odd-circle-t1-t2-big.pdf>]
+<../slike/odd-circle-t1-t2-overlayed.pdf, id=411, 293.59688pt x 97.86563pt>
 File: ../slike/odd-circle-t1-t2-overlayed.pdf Graphic file (type pdf)
 <use ../slike/odd-circle-t1-t2-overlayed.pdf>
-Package pdftex.def Info: ../slike/odd-circle-t1-t2-overlayed.pdf  used on input line 311.
+Package pdftex.def Info: ../slike/odd-circle-t1-t2-overlayed.pdf  used on input line 327.
 (pdftex.def)             Requested size: 273.83728pt x 91.27838pt.
 
 
 [11
 
-]
-<../slike/odd_circle.pdf, id=446, 98.3675pt x 98.3675pt>
-File: ../slike/odd_circle.pdf Graphic file (type pdf)
-<use ../slike/odd_circle.pdf>
-Package pdftex.def Info: ../slike/odd_circle.pdf  used on input line 327.
-(pdftex.def)             Requested size: 119.80544pt x 119.804pt.
-
-Overfull \vbox (3.17606pt too high) detected at line 327
- []
-
+ <../slike/odd-circle-t1-t2-overlayed.pdf>]
+File: ../slike/odd-circle-t1-t2-overlayed.pdf Graphic file (type pdf)
+<use ../slike/odd-circle-t1-t2-overlayed.pdf>
+Package pdftex.def Info: ../slike/odd-circle-t1-t2-overlayed.pdf  used on input line 327.
+(pdftex.def)             Requested size: 273.83728pt x 91.27838pt.
 
 
 [12
 
- <../slike/odd_circle.pdf>]
+]
+<../slike/odd_circle.pdf, id=479, 98.3675pt x 98.3675pt>
 File: ../slike/odd_circle.pdf Graphic file (type pdf)
 <use ../slike/odd_circle.pdf>
-Package pdftex.def Info: ../slike/odd_circle.pdf  used on input line 327.
+Package pdftex.def Info: ../slike/odd_circle.pdf  used on input line 343.
 (pdftex.def)             Requested size: 119.80544pt x 119.804pt.
 
-Overfull \vbox (3.17606pt too high) detected at line 327
+Overfull \vbox (3.17606pt too high) detected at line 343
  []
 
 
 
 [13
+
+ <../slike/odd_circle.pdf>]
+File: ../slike/odd_circle.pdf Graphic file (type pdf)
+<use ../slike/odd_circle.pdf>
+Package pdftex.def Info: ../slike/odd_circle.pdf  used on input line 343.
+(pdftex.def)             Requested size: 119.80544pt x 119.804pt.
+
+Overfull \vbox (3.17606pt too high) detected at line 343
+ []
+
+
+
+[14
+
+]
+<../slike/r2-cell-graph.pdf, id=546, 195.73125pt x 97.86563pt>
+File: ../slike/r2-cell-graph.pdf Graphic file (type pdf)
+<use ../slike/r2-cell-graph.pdf>
+Package pdftex.def Info: ../slike/r2-cell-graph.pdf  used on input line 355.
+(pdftex.def)             Requested size: 205.37926pt x 102.69472pt.
+
+
+[15
+
+ <../slike/r2-cell-graph.pdf>]
+
+[16
 
 ]
 \tf@nav=\write6
@@ -1328,21 +1358,21 @@ LaTeX2e <2024-06-01> patch level 2
 L3 programming layer <2024-05-27>
  ***********
 Package rerunfilecheck Info: File `main.out' has not changed.
-(rerunfilecheck)             Checksum: E666C4A82A59C834E16C29EA653C2136;1870.
+(rerunfilecheck)             Checksum: 71778C2282DDD0A10B2029EEEE7AB780;1870.
  ) 
 Here is how much of TeX's memory you used:
- 23893 strings out of 473583
- 467372 string characters out of 5727815
+ 23981 strings out of 473583
+ 469649 string characters out of 5727815
  1939908 words of memory out of 5000000
- 46230 multiletter control sequences out of 15000+600000
+ 46312 multiletter control sequences out of 15000+600000
  565537 words of font info for 63 fonts, out of 8000000 for 9000
  1141 hyphenation exceptions out of 8191
  128i,19n,123p,439b,570s stack positions out of 10000i,1000n,20000p,200000b,200000s
 <d:/Programs/texlive/2024/texmf-dist/fonts/type1/public/amsfonts/cm/cmmi10.pfb><d:/Programs/texlive/2024/texmf-dist/fonts/type1/public/amsfonts/cm/cmss10.pfb><d:/Programs/texlive/2024/texmf-dist/fonts/type1/public/amsfonts/cm/cmss12.pfb><d:/Programs/texlive/2024/texmf-dist/fonts/type1/public/amsfonts/cm/cmss8.pfb><d:/Programs/texlive/2024/texmf-dist/fonts/type1/public/amsfonts/cm/cmssi10.pfb><d:/Programs/texlive/2024/texmf-dist/fonts/type1/public/amsfonts/cm/cmssi8.pfb><d:/Programs/texlive/2024/texmf-dist/fonts/type1/public/amsfonts/cm/cmsy10.pfb><d:/Programs/texlive/2024/texmf-dist/fonts/type1/public/amsfonts/cm/cmsy8.pfb>
-Output written on main.pdf (13 pages, 200926 bytes).
+Output written on main.pdf (16 pages, 240592 bytes).
 PDF statistics:
- 557 PDF objects out of 1000 (max. 8388607)
- 460 compressed objects within 5 object streams
- 37 named destinations out of 1000 (max. 500000)
- 374 words of extra memory for PDF output out of 10000 (max. 10000000)
+ 649 PDF objects out of 1000 (max. 8388607)
+ 541 compressed objects within 6 object streams
+ 43 named destinations out of 1000 (max. 500000)
+ 395 words of extra memory for PDF output out of 10000 (max. 10000000)
 
